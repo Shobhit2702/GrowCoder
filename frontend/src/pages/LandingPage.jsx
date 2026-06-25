@@ -17,7 +17,8 @@ import {
   Line, 
   XAxis, 
   YAxis, 
-  Tooltip 
+  Tooltip,
+  CartesianGrid
 } from 'recharts'
 
 const performanceData = [
@@ -71,7 +72,7 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#030712] text-zinc-100 overflow-x-hidden grid-bg">
+    <div className="dark relative min-h-screen bg-[#030712] text-zinc-100 overflow-x-hidden grid-bg">
       {/* Background Decorative Gradients */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none radial-glow z-0" />
       <div className="absolute top-[800px] right-0 w-[400px] h-[400px] bg-indigo-950/10 rounded-full blur-[120px] pointer-events-none z-0" />
@@ -220,15 +221,16 @@ export default function LandingPage() {
 
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={performanceData} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
+                    <CartesianGrid stroke="#27272a" strokeDasharray="3 3" opacity={0.3} />
                     <XAxis 
                       dataKey="month" 
-                      stroke="#52525b" 
+                      stroke="#a1a1aa" 
                       fontSize={11}
                       tickLine={false}
                       axisLine={false}
                     />
                     <YAxis 
-                      stroke="#52525b" 
+                      stroke="#a1a1aa" 
                       fontSize={11}
                       tickLine={false}
                       axisLine={false}
@@ -246,16 +248,16 @@ export default function LandingPage() {
                     <Line 
                       type="monotone" 
                       dataKey="performance" 
-                      stroke="#4f46e5" 
+                      stroke="#818cf8" 
                       strokeWidth={3}
-                      dot={{ r: 4, stroke: '#818cf8', strokeWidth: 2, fill: '#030712' }}
+                      dot={{ r: 4, stroke: '#c7d2fe', strokeWidth: 2, fill: '#030712' }}
                       activeDot={{ r: 6 }}
                       connectNulls={false}
                     />
                     <Line 
                       type="monotone" 
                       dataKey="prediction" 
-                      stroke="#10b981" 
+                      stroke="#34d399" 
                       strokeWidth={3}
                       strokeDasharray="4 4"
                       dot={false}
@@ -361,7 +363,7 @@ export default function LandingPage() {
               </div>
               <div>
                 <h3 className="font-display font-bold text-lg text-white mb-2">Coding DNA Analysis</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
+                <p className="text-zinc-300 text-sm leading-relaxed">
                   Deep-dive into your problem-solving patterns. We map your logical strengths across 24 technical dimensions.
                 </p>
               </div>
@@ -374,7 +376,7 @@ export default function LandingPage() {
               </div>
               <div>
                 <h3 className="font-display font-bold text-lg text-white mb-2">Weakness Detection</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
+                <p className="text-zinc-300 text-sm leading-relaxed">
                   Identify specific algorithmic blind spots before recruiters do. Get heatmaps of where your performance drops.
                 </p>
               </div>
@@ -387,7 +389,7 @@ export default function LandingPage() {
               </div>
               <div>
                 <h3 className="font-display font-bold text-lg text-white mb-2">AI Recommendations</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
+                <p className="text-zinc-300 text-sm leading-relaxed">
                   Receive daily customized LeetCode plans that evolve as you improve. Your path to Big Tech, automated.
                 </p>
               </div>
