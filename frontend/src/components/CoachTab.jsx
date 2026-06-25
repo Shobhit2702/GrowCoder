@@ -24,11 +24,11 @@ export default function CoachTab() {
     { id: 2, text: 'Review Spaced Repetition Cards', checked: true }
   ])
 
-  const toggleChecklist = (id: number) => {
+  const toggleChecklist = (id) => {
     setChecklist(prev => prev.map(item => item.id === id ? { ...item, checked: !item.checked } : item))
   }
 
-  const handleSend = (e: React.FormEvent) => {
+  const handleSend = (e) => {
     e.preventDefault()
     if (!input.trim()) return
     const userMsg = input

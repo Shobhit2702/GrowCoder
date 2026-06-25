@@ -45,7 +45,7 @@ export default function LandingPage() {
   const [syncStep, setSyncStep] = useState(0)
   const [syncComplete, setSyncComplete] = useState(false)
 
-  const handleStartAnalysis = (e: React.FormEvent) => {
+  const handleStartAnalysis = (e) => {
     e.preventDefault()
     if (!username.trim()) return
     setIsSyncing(true)

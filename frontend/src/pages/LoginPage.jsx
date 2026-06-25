@@ -28,7 +28,7 @@ export default function LoginPage() {
   const [syncComplete, setSyncComplete] = useState(false)
 
   useEffect(() => {
-    let interval: ReturnType<typeof setInterval> | undefined
+    let interval
     if (isSyncing) {
       setSyncStep(0)
       setSyncComplete(false)
@@ -46,7 +46,7 @@ export default function LoginPage() {
     return () => clearInterval(interval)
   }, [isSyncing])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     if (!username.trim()) return
     setIsSyncing(true)

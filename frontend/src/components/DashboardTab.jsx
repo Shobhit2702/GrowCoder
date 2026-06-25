@@ -48,11 +48,7 @@ const solvedTrendData = [
   { name: 'W4.4', solved: 8, active: false }
 ]
 
-interface DashboardTabProps {
-  isDark: boolean;
-}
-
-export default function DashboardTab({ isDark }: DashboardTabProps) {
+export default function DashboardTab({ isDark }) {
   return (
     <div className="space-y-6">
       {/* Profile Status Header */}

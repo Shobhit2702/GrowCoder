@@ -10,11 +10,7 @@ import {
   Lightbulb 
 } from 'lucide-react'
 
-interface AnalysisTabProps {
-  setActiveTab: (tab: string) => void;
-}
-
-export default function AnalysisTab({ setActiveTab }: AnalysisTabProps) {
+export default function AnalysisTab({ setActiveTab }) {
   return (
     <div className="space-y-6">
       {/* Page Header */}
