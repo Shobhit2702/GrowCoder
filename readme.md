@@ -1,86 +1,84 @@
-# 🚀 CodePilot AI
+# 🚀 GrowCode
 
-### Your Personal AI Coding Growth Analyst
+### Transform Coding Practice into Measurable Growth
 
-CodePilot AI is an AI-powered LeetCode analytics platform that helps developers understand their coding behavior, identify weaknesses, track progress, and receive personalized improvement plans.
+GrowCode is an AI-powered coding analytics platform designed to help developers improve smarter, not harder. By analyzing a user's LeetCode activity, GrowCode identifies strengths, weaknesses, learning patterns, and growth opportunities, then generates personalized recommendations and action plans.
 
-Instead of simply showing solved questions, CodePilot AI analyzes a user's coding journey and provides actionable insights to accelerate interview preparation and competitive programming growth.
+The goal of GrowCode is simple:
+
+> **Stop guessing what to practice next. Start growing with data-driven insights.**
 
 ---
 
 ## ✨ Features
 
-### 🧠 Coding DNA Analysis Engine
+### 🧠 Coding DNA Analysis
 
-Generate a complete coding personality profile based on:
+Understand your unique coding profile through detailed analysis of:
 
 * Problem-solving behavior
 * Topic mastery
-* Consistency patterns
 * Difficulty progression
-* Learning speed
-* Strength and weakness distribution
+* Consistency patterns
+* Learning trends
+* Strengths and weaknesses
 
 ---
 
-### 📊 LeetCode Performance Analytics
+### 📊 Performance Analytics Dashboard
 
-Visualize key metrics including:
+Track key coding metrics including:
 
-* Total solved problems
+* Total problems solved
 * Easy / Medium / Hard distribution
+* Submission activity
 * Acceptance rate
-* Submission trends
+* Daily and weekly progress
 * Topic-wise performance
-* Daily and weekly activity
 
 ---
 
 ### 🎯 Weakness Detection Engine
 
-Automatically identify:
+Automatically discover:
 
 * Weak DSA topics
-* Low-practice areas
-* Performance bottlenecks
-* Growth-limiting concepts
-
-The system estimates how much each weakness impacts overall coding performance.
+* Frequently struggled concepts
+* Learning bottlenecks
+* Areas limiting overall growth
 
 ---
 
-### 🤖 AI Recommendation Engine
+### 🤖 Personalized Problem Recommendations
 
-Receive personalized problem recommendations based on:
+Receive tailored question suggestions based on:
 
 * Current skill level
 * Weak topics
 * Solving history
-* Target interview companies
-* Desired contest rating
+* Growth goals
 
 ---
 
-### 📅 Adaptive Daily Roadmap
+### 📅 Adaptive Daily Growth Plan
 
-Generate customized daily plans such as:
+Generate a customized roadmap that includes:
 
-* Problems to solve
-* Topics to revise
-* Revision schedules
-* Weekly milestones
-* Interview preparation roadmap
+* Recommended questions
+* Revision tasks
+* Topic-focused practice
+* Daily coding goals
 
 ---
 
-### 📈 Growth Prediction System
+### 📈 Growth Insights
 
-Predict future progress using historical performance data:
+Monitor your improvement through:
 
-* Estimated problem count growth
-* Skill progression
-* Consistency score
-* Interview readiness score
+* Consistency tracking
+* Progress trends
+* Skill development analytics
+* Performance reports
 
 ---
 
@@ -91,7 +89,6 @@ Predict future progress using historical performance data:
 * React.js
 * Tailwind CSS
 * Framer Motion
-* Recharts
 
 ### Backend
 
@@ -104,104 +101,98 @@ Predict future progress using historical performance data:
 
 ### APIs
 
-* LeetCode GraphQL API
+* LeetCode Data API
 * Custom Analytics Engine
 
 ### AI Layer
 
 * OpenAI API
-* Recommendation Algorithms
-* Performance Analysis Models
+* Recommendation System
+* Analytics Engine
 
 ---
 
-## 🏗 Project Architecture
+## 🏗 Current folder structure
+```
+growcode/
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── ...
+│
+└── README.md
 
-```text
-Frontend (React)
-        │
-        ▼
-Backend API (Node.js + Express)
-        │
-        ▼
-Analytics Engine
-        │
-        ├── Coding DNA Analyzer
-        ├── Weakness Detection Engine
-        ├── Recommendation Engine
-        └── Growth Predictor
-        │
-        ▼
-MongoDB Database
 ```
 
+## 🎯 Why GrowCode?
+
+Most coding platforms tell you:
+
+* How many questions you've solved
+* Your contest rating
+* Your recent submissions
+
+GrowCode goes further and answers:
+
+* What topics are holding me back?
+* What should I practice next?
+* Am I improving consistently?
+* Where should I focus my effort?
+* How can I accelerate my coding growth?
+
 ---
 
-## 📸 Planned Modules
+## 🚀 Current Development Status
 
-### Phase 1
+### Phase 1 (In Progress)
 
-* Landing Page
-* Authentication System
-* Dashboard UI
+* [x] Landing Page
+* [x] Login Page
+* [ ] Dashboard UI
+* [ ] User Authentication
 
 ### Phase 2
 
-* LeetCode User Integration
-* Data Fetching Engine
-* Analytics Dashboard
+* [ ] LeetCode Integration
+* [ ] Analytics Dashboard
+* [ ] Data Processing Layer
 
 ### Phase 3
 
-* AI Insights Engine
-* Coding DNA Analysis
-* Weakness Detection
+* [ ] Coding DNA Analysis
+* [ ] Weakness Detection Engine
+* [ ] AI Insights
 
 ### Phase 4
 
-* Personalized Recommendations
-* Daily Planner
-* Growth Prediction
-
-### Phase 5
-
-* Company-specific Interview Roadmaps
-* Contest Analytics
-* Advanced Reports
+* [ ] Personalized Recommendations
+* [ ] Daily Growth Planner
+* [ ] Progress Tracking
 
 ---
 
-## 🎯 Problem Statement
+## ⚙️ Installation
 
-Most coding platforms only display statistics.
-
-Developers still struggle to answer:
-
-* What am I weak at?
-* What should I solve next?
-* Am I improving?
-* Which topic is limiting my growth?
-* Am I interview ready?
-
-CodePilot AI solves these problems using data-driven analytics and AI-powered recommendations.
-
----
-
-## 🚀 Getting Started
-
-### Clone Repository
+Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/codepilot-ai.git
+git clone https://github.com/your-username/growcode.git
 ```
 
-### Install Dependencies
+Navigate to the project directory:
+
+```bash
+cd growcode
+```
+
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-### Start Development Server
+Start the development server:
 
 ```bash
 npm run dev
@@ -209,30 +200,21 @@ npm run dev
 
 ---
 
-## 📌 Future Enhancements
+## 🔮 Future Roadmap
 
-* Contest Performance Analysis
-* Company-specific Preparation Plans
-* AI Mock Interviews
-* Resume Skill Gap Analysis
-* Coding Habit Tracking
-* Multi-platform Support (LeetCode, Codeforces, CodeChef)
-
----
-
-## 🤝 Contributing
-
-Contributions, feature suggestions, and improvements are welcome.
-
-Feel free to open issues and submit pull requests.
+* AI Coding Coach
+* Interview Readiness Score
+* Contest Performance Analytics
+* Company-Specific Preparation Plans
+* Multi-Platform Support
+* Weekly Progress Reports
+* Smart Revision System
 
 ---
 
-## 📄 License
 
-This project is licensed under the MIT License.
 
----
+
 
 ## 👨‍💻 Author
 
@@ -240,4 +222,4 @@ This project is licensed under the MIT License.
 
 B.Tech (ECE), NIT Patna
 
-Building AI-powered tools to help developers grow faster and smarter.
+Building tools that help developers learn faster, practice smarter, and grow consistently.

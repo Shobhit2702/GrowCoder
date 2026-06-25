@@ -219,7 +219,7 @@ export default function LoginPage() {
 
             <div className="space-y-3">
               <Link 
-                to="/"
+                to="/dashboard"
                 className="block w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3.5 rounded-xl transition-all shadow-md shadow-emerald-500/10 active:scale-[0.98]"
               >
                 Go to Dashboard
