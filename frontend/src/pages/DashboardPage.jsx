@@ -56,7 +56,7 @@ export default function DashboardPage() {
       case 'achievements':
         return <AchievementsTab />
       case 'settings':
-        return <SettingsTab />
+        return <SettingsTab isDark={isDark} setIsDark={setIsDark} handleLogout={handleLogout} />
       case 'dashboard':
       default:
         return <DashboardTab isDark={isDark} />
