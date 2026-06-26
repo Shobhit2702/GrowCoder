@@ -35,12 +35,12 @@
 }
 
 .dark {
-  --bg-color: #030712;
+  --bg-color: #0b0e14;
   --text-color: #f3f4f6;
-  --border-color: rgba(255, 255, 255, 0.08);
-  --card-bg: rgba(15, 23, 42, 0.6);
-  --grid-color: rgba(255, 255, 255, 0.03);
-  --radial-glow: radial-gradient(circle 600px at 50% 200px, rgba(79, 70, 229, 0.15), transparent 80%);
+  --border-color: #171c26;
+  --card-bg: #121620;
+  --grid-color: rgba(255, 255, 255, 0.01);
+  --radial-glow: radial-gradient(circle 600px at 50% 200px, rgba(59, 130, 246, 0.1), transparent 80%);
 }
 
 body {
