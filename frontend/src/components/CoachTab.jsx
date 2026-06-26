@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { 
-  Flame, 
   ChevronRight, 
   Check, 
-  Lightbulb, 
   Bookmark, 
   Sparkles, 
   User, 
   Send, 
-  ArrowRight 
+  Play, 
+  Zap, 
+  Cpu, 
+  Code,
+  GitFork
 } from 'lucide-react'
 
 export default function CoachTab() {
@@ -18,10 +20,12 @@ export default function CoachTab() {
   ])
   const [input, setInput] = useState('')
   
-  // Interactive checklist states
+  // Interactive checklist states matching Operator style
   const [checklist, setChecklist] = useState([
-    { id: 1, text: 'System Design: Bloom Filters', checked: false },
-    { id: 2, text: 'Review Spaced Repetition Cards', checked: true }
+    { id: 1, text: 'SYSTEM DESIGN: BLOOM FILTERS', checked: true },
+    { id: 2, text: 'REVIEW SPACED REPETITION CARDS', checked: true },
+    { id: 3, text: 'SOLVE 2 DP HARD PROBLEMS', checked: false },
+    { id: 4, text: 'MOCK INTERVIEW: AMAZON V2', checked: false }
   ])
 
   const toggleChecklist = (id) => {
@@ -35,178 +39,249 @@ export default function CoachTab() {
     setMessages(prev => [...prev, { sender: 'user', text: userMsg }])
     setInput('')
 
-    // Simulate live AI reply
+    // Simulate AI feedback
     setTimeout(() => {
       setMessages(prev => [...prev, { 
         sender: 'ai', 
-        text: `Good point. To define the states for Word Break II, let dp[i] represent if s[0...i] can be segmented. Since we need the actual sentences, we store the lists of paths at each DP index. Let's trace it on paper or write code below!` 
+        text: `Affirmative. To resolve state definition for 'Word Break II', we can write dynamic programming transition: let dp[i] represent the list of valid sentences formed from prefix s[0...i]. Let's verify overlapping substructures step-by-step.` 
       }])
     }, 1000)
   }
+
+  const completedCount = checklist.filter(item => item.checked).length
 
   // STATE A: Main AI Coach Dashboard
   if (!isSessionActive) {
     return (
       <div className="space-y-6">
-        {/* Header Row with Streak */}
-        <section className="flex justify-between items-start gap-4">
-          <div>
-            <h1 className="font-display font-extrabold text-3xl sm:text-4xl text-zinc-900 dark:text-white tracking-tight">
-              AI Coach
-            </h1>
-            <span className="inline-flex items-center gap-1.5 text-[9px] font-bold text-emerald-600 dark:text-emerald-400 mt-2 font-mono">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-              CO-PILOT ACTIVE
-            </span>
-          </div>
-
-          {/* Streak Flame Badge */}
-          <div className="glass-card px-4 py-2 rounded-xl flex items-center gap-2 border-brand-purple/20 bg-brand-purple/5 shadow-md shadow-brand-purple/5">
-            <Flame className="w-4 h-4 text-brand-purple fill-brand-purple/20 animate-pulse" />
-            <span className="text-xs font-bold text-zinc-900 dark:text-white font-mono">27 Days</span>
-          </div>
-        </section>
-
-        {/* TODAY'S FOCUS CARD */}
-        <section className="glass-card rounded-[24px] p-6 bg-brand-indigo/5 border border-brand-indigo/15 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-brand-indigo/10 rounded-full blur-2xl pointer-events-none" />
+        
+        {/* TODAY'S FOCUS: DAILY MISSION LOG CARD */}
+        <section className="bg-white dark:bg-[#080b11]/60 border border-zinc-200 dark:border-[#171c26] rounded-lg p-6 sm:p-8 relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-2xl transition-colors">
           
-          <span className="text-[9px] tracking-widest text-brand-indigo uppercase font-extrabold block mb-2 font-mono">
-            TODAY'S FOCUS
-          </span>
-          <h2 className="font-display font-extrabold text-3xl text-zinc-900 dark:text-white tracking-tight mb-6">
-            Dynamic Programming
-          </h2>
+          {/* Neon Corner Brackets */}
+          <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-blue-500/80" />
+          <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-blue-500/80" />
+          <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-blue-500/80" />
+          <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-blue-500/80" />
 
-          {/* Target and Est Column Grid */}
-          <div className="grid grid-cols-2 gap-4 border-t border-zinc-200/50 dark:border-zinc-900 pt-5 mb-6 font-mono">
-            <div>
-              <span className="block text-[9px] text-zinc-500 font-bold uppercase tracking-wider">Target Questions</span>
-              <span className="text-xl font-extrabold text-zinc-900 dark:text-white mt-1 block">
-                5 <span className="text-xs text-zinc-400 font-medium">Total</span>
-              </span>
-            </div>
-            <div>
-              <span className="block text-[9px] text-zinc-500 font-bold uppercase tracking-wider">Est. Time</span>
-              <span className="text-xl font-extrabold text-zinc-900 dark:text-white mt-1 block">
-                90 <span className="text-xs text-zinc-400 font-medium">min</span>
-              </span>
-            </div>
-          </div>
-
-          <button 
-            className="w-full bg-brand-indigo hover:bg-brand-indigo/90 text-white font-bold py-3.5 rounded-xl transition-all shadow-md shadow-brand-indigo/15 hover:shadow-brand-indigo/35 flex items-center justify-center gap-2 text-sm"
-            onClick={() => setIsSessionActive(true)}
-          >
-            Start Session
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </section>
-
-        {/* DAILY CHECKLIST */}
-        <section className="space-y-3">
-          <span className="text-[9px] tracking-widest text-zinc-500 uppercase font-bold block font-mono">
-            DAILY CHECKLIST
-          </span>
-
-          <div className="space-y-2.5">
-            {checklist.map(item => (
-              <div 
-                key={item.id}
-                onClick={() => toggleChecklist(item.id)}
-                className="glass-card rounded-2xl p-4 flex items-center justify-between cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-950/20 transition-all select-none"
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors ${item.checked ? 'bg-emerald-500 border-emerald-500 text-white' : 'border-zinc-400 dark:border-zinc-800 bg-transparent'}`}>
-                    {item.checked && <Check className="w-3.5 h-3.5 stroke-[3px]" />}
-                  </div>
-                  <span className={`text-xs font-semibold ${item.checked ? 'line-through text-zinc-400 dark:text-zinc-500' : 'text-zinc-900 dark:text-zinc-200'}`}>
-                    {item.text}
-                  </span>
-                </div>
-                <ChevronRight className="w-4 h-4 text-zinc-400" />
+          {/* Left Column contents */}
+          <div className="space-y-4 text-left max-w-2xl flex-1">
+            <div className="flex items-center gap-2.5 font-mono">
+              <div className="w-5 h-5 rounded bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#3b82f6]">
+                <Zap className="w-3.5 h-3.5 fill-current" />
               </div>
-            ))}
-          </div>
-        </section>
+              <span className="text-[10px] font-bold tracking-widest text-[#3b82f6] uppercase">DAILY_MISSION_LOG</span>
+            </div>
 
-        {/* SMART PATH RECOMMENDATIONS */}
-        <section className="space-y-4">
-          <div className="flex justify-between items-end">
-            <span className="text-[9px] tracking-widest text-zinc-500 uppercase font-bold font-mono">
-              SMART PATH
-            </span>
-            <button className="text-xs font-bold text-brand-indigo hover:underline" onClick={() => alert('Viewing all paths...')}>
-              View All
+            <h2 className="font-display font-black text-4xl sm:text-5xl text-zinc-900 dark:text-white tracking-tight uppercase leading-none mt-2">
+              Dynamic Programming
+            </h2>
+
+            <p className="text-zinc-650 dark:text-zinc-400 text-sm sm:text-[14.5px] leading-relaxed font-sans font-medium">
+              Master the art of recursive optimization. Focus today on overlapping subproblems and optimal substructure identification in complex string manipulations.
+            </p>
+
+            {/* Target & Est Metrics block */}
+            <div className="grid grid-cols-2 gap-4 border-t border-zinc-200 dark:border-zinc-900 pt-5 font-mono max-w-sm">
+              <div>
+                <span className="block text-[9px] text-zinc-500 dark:text-zinc-400 font-bold uppercase tracking-wider">Target Questions</span>
+                <span className="text-2xl font-black text-[#2563eb] dark:text-[#3b82f6] mt-1 block">
+                  5 Total
+                </span>
+              </div>
+              <div>
+                <span className="block text-[9px] text-zinc-500 dark:text-zinc-400 font-bold uppercase tracking-wider">Est. Time</span>
+                <span className="text-2xl font-black text-zinc-800 dark:text-white mt-1 block">
+                  90 min
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Initiate trigger button */}
+          <div className="shrink-0 w-full md:w-auto">
+            <button 
+              onClick={() => setIsSessionActive(true)}
+              className="w-full md:w-auto bg-[#2563eb] hover:bg-[#3b82f6] text-white font-mono font-bold text-[11px] tracking-wider py-4 px-8 rounded transition-all active:scale-[0.98] flex items-center justify-center gap-2.5 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/35 cursor-pointer uppercase"
+            >
+              <Play className="w-4 h-4 fill-current" />
+              Initiate Session
             </button>
           </div>
 
-          <div className="space-y-4">
-            {/* Recommended Problem 1 */}
-            <div className="glass-card rounded-[22px] p-5 space-y-4">
-              <div className="flex justify-between items-start">
-                <h3 className="text-sm font-bold text-zinc-900 dark:text-white">Word Break II</h3>
-                <span className="text-[9px] font-bold text-rose-500 bg-rose-500/10 px-2 py-0.5 rounded">Hard</span>
-              </div>
+        </section>
 
-              {/* AI Reason callout */}
-              <div className="bg-brand-indigo/5 border border-brand-indigo/15 dark:border-brand-indigo/10 rounded-xl p-3.5 flex items-start gap-2.5">
-                <Lightbulb className="w-4 h-4 text-brand-indigo shrink-0 mt-0.5" />
-                <div className="text-[11px] leading-normal text-zinc-600 dark:text-zinc-400">
-                  <span className="font-bold text-brand-indigo">AI Reason: </span>
-                  Recommended because your DP accuracy is 37%. Practice backtracking with memoization.
+        {/* BOTTOM SECTION: CHECKLIST & SMART PATH ANALYSIS */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          
+          {/* Bottom Left: Progress Checklist (Col span 5) */}
+          <div className="lg:col-span-5 flex flex-col">
+            <div className="bg-white dark:bg-[#080b11]/60 border border-zinc-200 dark:border-[#171c26] rounded-lg p-5 relative overflow-hidden shadow-2xl flex flex-col justify-between flex-1 min-h-[380px] transition-colors">
+              
+              {/* Corner brackets */}
+              <div className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-blue-500/60" />
+              <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-blue-500/60" />
+
+              {/* Header */}
+              <div>
+                <div className="flex items-center justify-between mb-4 border-b border-zinc-200 dark:border-[#171c26] pb-3">
+                  <div className="flex items-center gap-2 font-mono">
+                    <span className="text-[#3b82f6] text-xs">📋</span>
+                    <span className="text-[10px] font-bold tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">PROGRESS_CHECKLIST</span>
+                  </div>
+                  <span className="text-[9px] font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-250 dark:border-emerald-500/15 px-2 py-0.5 rounded font-bold">
+                    {completedCount}/4 COMPLETE
+                  </span>
+                </div>
+
+                {/* Checklist list */}
+                <div className="space-y-3">
+                  {checklist.map(item => (
+                    <div 
+                      key={item.id}
+                      onClick={() => toggleChecklist(item.id)}
+                      className={`flex items-center justify-between border rounded p-3.5 cursor-pointer transition-all select-none ${
+                        item.checked 
+                          ? 'bg-emerald-500/5 border-emerald-500/10 hover:bg-emerald-500/10' 
+                          : 'bg-zinc-500/5 border-zinc-200 dark:border-[#171c26] hover:bg-zinc-500/10'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`w-4.5 h-4.5 rounded border flex items-center justify-center transition-colors ${
+                          item.checked 
+                            ? 'bg-emerald-500 border-emerald-500 text-white' 
+                            : 'border-zinc-400 dark:border-zinc-700 bg-transparent'
+                        }`}>
+                          {item.checked && <Check className="w-3.5 h-3.5 stroke-[3.5px]" />}
+                        </div>
+                        <span className={`text-[11.5px] font-mono font-bold leading-tight transition-colors ${
+                          item.checked 
+                            ? 'text-zinc-450 dark:text-zinc-550 line-through' 
+                            : 'text-zinc-800 dark:text-zinc-200'
+                        }`}>
+                          {item.text}
+                        </span>
+                      </div>
+                      <span className={`text-[8.5px] font-mono font-bold transition-colors ${
+                        item.checked ? 'text-emerald-600 dark:text-emerald-400' : 'text-zinc-500 dark:text-zinc-500'
+                      }`}>
+                        {item.checked ? 'STATUS: VERIFIED' : 'STATUS: PENDING_EXECUTION'}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Action buttons */}
-              <div className="flex gap-2">
-                <button 
-                  className="flex-1 bg-zinc-200 dark:bg-zinc-100 hover:bg-zinc-300 dark:hover:bg-white text-zinc-900 font-bold py-2.5 rounded-xl text-xs transition-colors shadow-sm"
-                  onClick={() => setIsSessionActive(true)}
-                >
-                  Solve Now
-                </button>
-                <button 
-                  className="w-10 h-10 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900/60 flex items-center justify-center text-zinc-400 transition-colors"
-                  onClick={() => alert('Bookmarked Word Break II')}
-                >
-                  <Bookmark className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-
-            {/* Recommended Problem 2 */}
-            <div className="glass-card rounded-[22px] p-5 space-y-4">
-              <div className="flex justify-between items-start">
-                <h3 className="text-sm font-bold text-zinc-900 dark:text-white">Edit Distance</h3>
-                <span className="text-[9px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded">Medium</span>
-              </div>
-
-              <div className="bg-brand-indigo/5 border border-brand-indigo/15 dark:border-brand-indigo/10 rounded-xl p-3.5 flex items-start gap-2.5">
-                <Lightbulb className="w-4 h-4 text-brand-indigo shrink-0 mt-0.5" />
-                <div className="text-[11px] leading-normal text-zinc-600 dark:text-zinc-400">
-                  <span className="font-bold text-brand-indigo">AI Reason: </span>
-                  Completes your "Classic String DP" cluster. High relevance for FAANG interviews.
-                </div>
-              </div>
-
-              <div className="flex gap-2">
-                <button 
-                  className="flex-1 bg-zinc-200 dark:bg-zinc-100 hover:bg-zinc-300 dark:hover:bg-white text-zinc-900 font-bold py-2.5 rounded-xl text-xs transition-colors shadow-sm"
-                  onClick={() => setIsSessionActive(true)}
-                >
-                  Solve Now
-                </button>
-                <button 
-                  className="w-10 h-10 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900/60 flex items-center justify-center text-zinc-400 transition-colors"
-                  onClick={() => alert('Bookmarked Edit Distance')}
-                >
-                  <Bookmark className="w-4 h-4" />
-                </button>
-              </div>
             </div>
           </div>
-        </section>
+
+          {/* Bottom Right: Smart Path Analysis Recommendations (Col span 7) */}
+          <div className="lg:col-span-7 flex flex-col space-y-3.5 text-left justify-between">
+            <div className="flex items-center gap-2 font-mono pl-1">
+              <GitFork className="w-4.5 h-4.5 text-[#3b82f6] -rotate-90" />
+              <span className="text-[10px] font-bold tracking-widest text-zinc-500 dark:text-zinc-400 uppercase">SMART_PATH_ANALYSIS</span>
+            </div>
+
+            {/* Row of 2 panels */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
+              
+              {/* Problem 1: Word Break II */}
+              <div className="bg-white dark:bg-[#080b11]/60 border border-zinc-200 dark:border-[#171c26] rounded-lg p-5 relative overflow-hidden shadow-2xl flex flex-col justify-between transition-colors h-full min-h-[280px]">
+                
+                {/* Corner brackets */}
+                <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-blue-500/60" />
+                <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-blue-500/60" />
+
+                {/* Scrollable Container */}
+                <div className="flex-1 overflow-y-auto pr-1 scrollbar-thin scroll-smooth text-left space-y-3 mb-2 max-h-[175px]">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-[9.5px] text-orange-600 dark:text-orange-500 font-mono font-bold uppercase">DIFFICULTY: HARD</span>
+                    <Bookmark className="w-3.5 h-3.5 text-zinc-500 hover:text-zinc-350 cursor-pointer transition-colors" />
+                  </div>
+
+                  <h3 className="font-display font-extrabold text-lg text-zinc-900 dark:text-white tracking-tight uppercase leading-tight">
+                    Word Break II
+                  </h3>
+
+                  {/* AI Reason box */}
+                  <div className="bg-[#0f1422]/65 border-l-2 border-blue-500 p-3 rounded-r text-[10.5px] font-mono leading-relaxed text-zinc-650 dark:text-zinc-400">
+                    <span className="text-blue-500 font-bold block mb-0.5">AI REASON:</span>
+                    "You previously struggled with String-to-List mapping logic. This problem specifically targets your memoization gap in non-linear backtracking."
+                  </div>
+
+                  {/* Extra Technical Details to make it scrollable */}
+                  <div className="bg-zinc-500/5 dark:bg-[#121824]/20 border border-zinc-200 dark:border-[#171c26] p-2.5 rounded font-mono text-[9px] text-zinc-500 dark:text-zinc-400 leading-normal space-y-1">
+                    <div><span className="font-bold text-[#3b82f6]">COMPLEXITY:</span> O(2^N) backtracking optimized to O(N^2) via memoization.</div>
+                    <div><span className="font-bold text-[#3b82f6]">SUBPROBLEMS:</span> Overlapping prefixes s[0...i].</div>
+                    <div><span className="font-bold text-[#3b82f6]">PREREQ:</span> Recursion, Memoization, DFS, Trie.</div>
+                  </div>
+                </div>
+
+                <button 
+                  onClick={() => setIsSessionActive(true)}
+                  className="w-full bg-transparent hover:bg-purple-500/5 border border-purple-500/30 hover:border-purple-555 text-purple-600 dark:text-purple-400 hover:text-purple-300 font-mono font-bold text-[10px] tracking-wider py-2.5 rounded transition-all cursor-pointer text-center uppercase mt-3 shadow-[0_0_10px_rgba(139,92,246,0.05)] shrink-0"
+                >
+                  Solve_Now
+                </button>
+              </div>
+
+              {/* Problem 2: Edit Distance */}
+              <div className="bg-white dark:bg-[#080b11]/60 border border-zinc-200 dark:border-[#171c26] rounded-lg p-5 relative overflow-hidden shadow-2xl flex flex-col justify-between transition-colors h-full min-h-[280px]">
+                
+                {/* Corner brackets */}
+                <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-blue-500/60" />
+                <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-blue-500/60" />
+
+                {/* Scrollable Container */}
+                <div className="flex-1 overflow-y-auto pr-1 scrollbar-thin scroll-smooth text-left space-y-3 mb-2 max-h-[175px]">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-[9.5px] text-blue-600 dark:text-blue-450 font-mono font-bold uppercase">DIFFICULTY: MEDIUM</span>
+                    <Bookmark className="w-3.5 h-3.5 text-zinc-500 hover:text-zinc-350 cursor-pointer transition-colors" />
+                  </div>
+
+                  <h3 className="font-display font-extrabold text-lg text-zinc-900 dark:text-white tracking-tight uppercase leading-tight">
+                    Edit Distance
+                  </h3>
+
+                  {/* AI Reason box */}
+                  <div className="bg-[#0f1422]/65 border-l-2 border-purple-500 p-3 rounded-r text-[10.5px] font-mono leading-relaxed text-zinc-650 dark:text-zinc-400">
+                    <span className="text-[#8b5cf6] font-bold block mb-0.5">AI REASON:</span>
+                    "Mastering this establishes the foundation for DNA sequencing and fuzzy search algorithms—key patterns for upcoming FAANG assessments."
+                  </div>
+
+                  {/* Extra Technical Details to make it scrollable */}
+                  <div className="bg-zinc-500/5 dark:bg-[#121824]/20 border border-zinc-200 dark:border-[#171c26] p-2.5 rounded font-mono text-[9px] text-zinc-500 dark:text-zinc-400 leading-normal space-y-1">
+                    <div><span className="font-bold text-[#8b5cf6]">COMPLEXITY:</span> O(M * N) space and time complexity.</div>
+                    <div><span className="font-bold text-[#8b5cf6]">SUBPROBLEMS:</span> Alignments s1[0...i] vs s2[0...j].</div>
+                    <div><span className="font-bold text-[#8b5cf6]">PREREQ:</span> Dynamic Programming table matching.</div>
+                  </div>
+                </div>
+
+                <button 
+                  onClick={() => setIsSessionActive(true)}
+                  className="w-full bg-transparent hover:bg-purple-500/5 border border-purple-500/30 hover:border-purple-555 text-purple-600 dark:text-purple-400 hover:text-purple-300 font-mono font-bold text-[10px] tracking-wider py-2.5 rounded transition-all cursor-pointer text-center uppercase mt-3 shadow-[0_0_10px_rgba(139,92,246,0.05)] shrink-0"
+                >
+                  Solve_Now
+                </button>
+              </div>
+
+            </div>
+
+            {/* Smart Path Telemetry console footer */}
+            <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-[#171c26] flex flex-wrap justify-between items-center gap-4 font-mono text-[9.5px] text-zinc-500 dark:text-zinc-400 leading-none">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-bold">
+                <div>SUCCESS RATE / <span className="text-emerald-500">78.4%</span></div>
+                <div>GLOBAL RANK / <span className="text-zinc-900 dark:text-zinc-200">Top 3.2%</span></div>
+                <div>WEEKLY GAIN / <span className="text-emerald-500">+14.1%</span></div>
+              </div>
+              <div className="text-zinc-500 text-right font-medium">
+                LAST_UPDATE: T-94:22:15_MS
+              </div>
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
     )
@@ -214,52 +289,70 @@ export default function CoachTab() {
 
   // STATE B: Active AI Chat Coach Session
   return (
-    <div className="glass-card rounded-[28px] p-6 h-[550px] flex flex-col justify-between relative overflow-hidden bg-zinc-950/40">
+    <div className="bg-white dark:bg-[#080b11]/60 border border-zinc-200 dark:border-[#171c26] rounded-lg p-6 h-[550px] flex flex-col justify-between relative overflow-hidden transition-colors shadow-2xl">
       
+      {/* Neon Corner Brackets */}
+      <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-blue-500/80" />
+      <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-blue-500/80" />
+      <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-blue-500/80" />
+      <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-blue-500/80" />
+
       {/* Chat Session Header */}
-      <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-900 pb-4 mb-2">
+      <div className="flex items-center justify-between border-b border-zinc-200 dark:border-[#171c26] pb-4 mb-2">
         <div className="flex items-center gap-2.5">
           <button 
             onClick={() => setIsSessionActive(false)}
-            className="text-xs font-bold text-brand-indigo hover:underline"
+            className="text-xs font-bold text-[#2563eb] dark:text-[#3b82f6] hover:underline cursor-pointer"
           >
-            ← End Drill
+            ← End Session
           </button>
-          <span className="text-zinc-400">|</span>
+          <span className="text-zinc-350 dark:text-zinc-650">|</span>
           <span className="text-xs font-bold text-zinc-900 dark:text-white font-mono">DP Optimization Session</span>
         </div>
-        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+        
+        {/* LIVE FEED status pill */}
+        <div className="flex items-center gap-1.5 font-mono text-[9px] text-zinc-500 dark:text-zinc-400 select-none">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
+          <span>LIVE_FEED</span>
+        </div>
       </div>
 
       {/* Messaging Box */}
-      <div className="flex-1 overflow-y-auto space-y-4 pr-1 py-2 scrollbar-thin">
-        {messages.map((msg, idx) => (
-          <div 
-            key={idx} 
-            className={`flex gap-3 max-w-[85%] ${msg.sender === 'user' ? 'ml-auto flex-row-reverse' : ''}`}
-          >
-            <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-white ${msg.sender === 'user' ? 'bg-brand-purple' : 'bg-brand-indigo'}`}>
-              {msg.sender === 'user' ? <User className="w-4 h-4" /> : <Sparkles className="w-4 h-4" />}
+      <div className="flex-1 overflow-y-auto space-y-4 pr-1 py-2 scrollbar-thin scroll-smooth">
+        {messages.map((msg, idx) => {
+          const isUser = msg.sender === 'user'
+          return (
+            <div 
+              key={idx} 
+              className={`flex gap-3 max-w-[85%] ${isUser ? 'ml-auto flex-row-reverse' : ''}`}
+            >
+              <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-white ${isUser ? 'bg-purple-600' : 'bg-[#2563eb]'}`}>
+                {isUser ? <User className="w-4 h-4" /> : <Sparkles className="w-4 h-4" />}
+              </div>
+              <div className={`rounded-lg p-3.5 text-xs leading-relaxed border transition-colors ${
+                isUser 
+                  ? 'bg-purple-500/5 dark:bg-[#150f24]/30 text-zinc-800 dark:text-zinc-200 border-purple-200/40 dark:border-purple-500/20' 
+                  : 'bg-blue-500/5 dark:bg-[#0b1424]/30 text-zinc-800 dark:text-zinc-200 border-blue-200/40 dark:border-blue-500/20'
+              }`}>
+                {msg.text}
+              </div>
             </div>
-            <div className={`rounded-2xl p-3.5 text-xs leading-relaxed ${msg.sender === 'user' ? 'bg-brand-purple/10 text-zinc-800 dark:text-zinc-200 border border-brand-purple/20' : 'bg-brand-indigo/10 text-zinc-800 dark:text-zinc-200 border border-brand-indigo/20'}`}>
-              {msg.text}
-            </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
 
       {/* Input Bar */}
-      <form onSubmit={handleSend} className="flex gap-2 border-t border-zinc-200 dark:border-zinc-900 pt-4 mt-2">
+      <form onSubmit={handleSend} className="flex gap-2 border-t border-zinc-200 dark:border-[#171c26] pt-4 mt-2">
         <input 
           type="text" 
           placeholder="Ask AI Coach for DP hints..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="flex-1 bg-zinc-100 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-900 focus:border-brand-indigo rounded-xl px-4 py-3 text-xs focus:outline-none text-zinc-900 dark:text-white font-mono"
+          className="flex-1 bg-zinc-50 dark:bg-[#0c0e14]/65 border border-zinc-200 dark:border-[#171c26] focus:border-[#2563eb] rounded px-4 py-3.5 text-xs focus:outline-none text-zinc-950 dark:text-white font-mono transition-colors"
         />
         <button 
           type="submit"
-          className="bg-brand-indigo hover:bg-brand-indigo/90 text-white px-4 py-3 rounded-xl shadow-md transition-all shadow-brand-indigo/10 flex items-center justify-center"
+          className="bg-[#2563eb] hover:bg-[#3b82f6] text-white px-5 py-3.5 rounded shadow-md transition-all shadow-blue-500/10 flex items-center justify-center cursor-pointer shrink-0"
         >
           <Send className="w-4 h-4" />
         </button>
