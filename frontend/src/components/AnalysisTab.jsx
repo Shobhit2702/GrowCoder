@@ -1,256 +1,478 @@
+import { useRef } from 'react'
 import { 
-  Sparkles, 
   CheckCircle2, 
-  AlertCircle, 
-  TrendingUp, 
-  ArrowRight, 
-  Code2, 
-  Sliders, 
-  Activity, 
-  Lightbulb 
+  Cpu, 
+  AlertTriangle, 
+  Info, 
+  Lightbulb, 
+  Target,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react'
 
 export default function AnalysisTab({ setActiveTab }) {
+  const masteryContainerRef = useRef(null)
+  const bottlenecksContainerRef = useRef(null)
+
+  const handleScrollMastery = () => {
+    if (masteryContainerRef.current) {
+      const container = masteryContainerRef.current
+      const isAtBottom = container.scrollHeight - container.scrollTop === container.clientHeight
+      if (isAtBottom) {
+        container.scrollTo({ top: 0, behavior: 'smooth' })
+      } else {
+        container.scrollBy({ top: 70, behavior: 'smooth' })
+      }
+    }
+  }
+
+  const handleScrollBottlenecks = (direction) => {
+    if (bottlenecksContainerRef.current) {
+      const container = bottlenecksContainerRef.current
+      const scrollAmount = direction === 'left' ? -220 : 220
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+    }
+  }
+
   return (
     <div className="space-y-6">
+      
       {/* Page Header */}
-      <section className="mb-2">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-indigo/10 border border-brand-indigo/20 text-[9px] font-bold text-brand-indigo tracking-wider uppercase mb-3.5">
-          <Sparkles className="w-3 h-3 animate-pulse" />
-          AI ANALYSIS
-        </div>
-        <h1 className="font-display font-extrabold text-3xl sm:text-4xl text-zinc-900 dark:text-white tracking-tight">
-          Weakness Analysis
-        </h1>
-        <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-2 leading-relaxed">
-          Identifying your largest growth blockers. Our neural analysis indicates that your algorithmic efficiency is constrained by specific pattern recognition gaps in dynamic contexts.
-        </p>
-      </section>
-
-      {/* STRENGTHS & WEAKNESSES ROW */}
-      <section className="glass-card rounded-[24px] p-6 space-y-6">
-        
-        {/* Strengths Sub-section */}
+      <section className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-zinc-200 dark:border-[#171c26]/60 pb-5 mb-2 shrink-0">
         <div>
-          <div className="flex items-center gap-2 mb-4 text-emerald-600 dark:text-emerald-400">
-            <CheckCircle2 className="w-4 h-4" />
-            <span className="text-[10px] tracking-widest uppercase font-bold text-zinc-500">STRENGTHS</span>
-          </div>
-          
-          <div className="space-y-4">
-            <div>
-              <div className="flex justify-between items-center text-xs mb-1.5">
-                <span className="font-bold text-zinc-900 dark:text-zinc-100">Arrays</span>
-                <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">
-                  Mastered
-                </span>
-              </div>
-              <div className="w-full bg-zinc-200 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                <div className="bg-emerald-500 h-2 rounded-full" style={{ width: '92%' }} />
-              </div>
-              <span className="text-[9px] text-zinc-400 mt-1 block text-right font-mono">92% Proficiency</span>
-            </div>
-
-            <div>
-              <div className="flex justify-between items-center text-xs mb-1.5">
-                <span className="font-bold text-zinc-900 dark:text-zinc-100">Trees</span>
-                <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">
-                  Mastered
-                </span>
-              </div>
-              <div className="w-full bg-zinc-200 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                <div className="bg-emerald-500 h-2 rounded-full" style={{ width: '82%' }} />
-              </div>
-              <span className="text-[9px] text-zinc-400 mt-1 block text-right font-mono">82% Proficiency</span>
-            </div>
-          </div>
+          <span className="text-[10px] tracking-widest text-zinc-500 uppercase font-mono font-bold">NEURAL ANALYSIS PHASE 04</span>
+          <h1 className="font-display font-black text-4xl text-zinc-900 dark:text-white mt-1.5 uppercase leading-none">
+            WEAKNESS ANALYSIS
+          </h1>
         </div>
-
-        <div className="border-t border-zinc-200 dark:border-zinc-900 pt-6">
-          <div className="flex items-center gap-2 mb-4 text-brand-purple">
-            <AlertCircle className="w-4 h-4" />
-            <span className="text-[10px] tracking-widest uppercase font-bold text-zinc-500">WEAKNESSES</span>
-          </div>
-
-          <div className="space-y-4">
-            <div>
-              <div className="flex justify-between items-center text-xs mb-1.5">
-                <span className="font-bold text-zinc-900 dark:text-zinc-100">Dynamic Programming</span>
-                <span className="text-[10px] font-bold text-rose-500 bg-rose-500/10 px-2 py-0.5 rounded-full">
-                  Struggling
-                </span>
-              </div>
-              <div className="w-full bg-zinc-200 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                <div className="bg-rose-500 h-2 rounded-full" style={{ width: '34%' }} />
-              </div>
-              <span className="text-[9px] text-zinc-400 mt-1 block text-right font-mono">34% Proficiency</span>
-            </div>
-
-            <div>
-              <div className="flex justify-between items-center text-xs mb-1.5">
-                <span className="font-bold text-zinc-900 dark:text-zinc-100">Backtracking</span>
-                <span className="text-[10px] font-bold text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded-full">
-                  Impediment
-                </span>
-              </div>
-              <div className="w-full bg-zinc-200 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                <div className="bg-amber-500 h-2 rounded-full" style={{ width: '48%' }} />
-              </div>
-              <span className="text-[9px] text-zinc-400 mt-1 block text-right font-mono">48% Proficiency</span>
-            </div>
-          </div>
+        <div className="mt-3.5 sm:mt-0 flex items-center bg-[#2563eb]/10 border border-[#2563eb]/45 px-4 py-2 rounded text-[10px] font-mono text-[#2563eb] dark:text-zinc-200 gap-2.5 shadow-md">
+          <span className="text-[#3b82f6] font-bold">ELO PROJECTION:</span>
+          <span className="font-black text-zinc-900 dark:text-white">+142</span>
         </div>
       </section>
 
-      {/* MAX IMPACT CARD */}
-      <section className="glass-card rounded-[24px] p-6 relative overflow-hidden bg-brand-indigo/5 border border-brand-indigo/15">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-brand-indigo/10 rounded-full blur-2xl pointer-events-none" />
+      {/* Main Grid Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
-        <div className="flex justify-between items-start mb-4">
-          <div>
-            <span className="inline-flex items-center gap-1 text-[9px] font-extrabold tracking-widest text-emerald-500 dark:text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded-md mb-2">
-              <TrendingUp className="w-3.5 h-3.5" />
-              MAX IMPACT
-            </span>
-            <h3 className="text-zinc-500 dark:text-zinc-400 text-xs font-bold uppercase tracking-wider">Next Priority</h3>
-          </div>
-        </div>
+        {/* LEFT COLUMN: Strengths & Topic Mastery (Col-span 5) */}
+        <div className="lg:col-span-5 space-y-6">
+          
+          {/* Strengths Card */}
+          <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden flex flex-col justify-between shadow-2xl transition-colors">
+            <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-500/50" />
+            <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
 
-        <p className="text-zinc-800 dark:text-zinc-200 text-sm mb-6 leading-relaxed">
-          Focus on <strong className="text-zinc-950 dark:text-white font-bold">DP Optimization</strong> to gain approx. <strong className="text-emerald-600 dark:text-emerald-400 font-bold">+85 ELO</strong> points this week.
-        </p>
+            {/* Header */}
+            <div className="flex items-center justify-between mb-5 border-b border-zinc-200 dark:border-[#171c26]/60 pb-3">
+              <span className="text-[10px] font-mono font-bold tracking-wider text-zinc-400 dark:text-zinc-400">STRENGTHS / TOPIC MASTERY</span>
+              <CheckCircle2 className="w-4.5 h-4.5 text-emerald-500" />
+            </div>
 
-        <button 
-          className="w-full bg-brand-indigo hover:bg-brand-indigo/90 text-white font-bold py-3 rounded-xl transition-all shadow-md shadow-brand-indigo/15 hover:shadow-brand-indigo/35 flex items-center justify-center gap-2 text-sm"
-          onClick={() => setActiveTab('coach')}
-        >
-          START DRILL
-          <ArrowRight className="w-4 h-4" />
-        </button>
-      </section>
-
-      {/* GROWTH VELOCITY */}
-      <section className="glass-card rounded-[24px] p-6">
-        <span className="text-[9px] tracking-widest text-zinc-500 uppercase font-bold block mb-4 font-mono">
-          GROWTH VELOCITY
-        </span>
-        <div className="flex items-baseline gap-4 mb-4">
-          <span className="text-3xl font-extrabold text-zinc-950 dark:text-white tracking-tight">12.4%</span>
-          <div>
-            <span className="text-emerald-600 dark:text-emerald-400 text-xs font-bold block">
-              +2.1% week over week
-            </span>
-            <span className="text-zinc-400 text-[10px] font-mono">Consistency: HIGH</span>
-          </div>
-        </div>
-        <div className="w-full bg-zinc-200 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-          <div className="bg-brand-indigo h-2 rounded-full" style={{ width: '68%' }} />
-        </div>
-      </section>
-
-      {/* CRITICAL BOTTLENECKS */}
-      <section className="space-y-4">
-        <span className="text-[9px] tracking-widest text-zinc-500 uppercase font-bold block font-mono">
-          CRITICAL BOTTLENECKS
-        </span>
-
-        <div className="space-y-3">
-          {/* Bottleneck 1 */}
-          <div className="glass-card rounded-2xl p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-purple-500/10 border border-purple-500/25 flex items-center justify-center text-brand-purple">
-                <Code2 className="w-4.5 h-4.5" />
-              </div>
+            {/* Mastery progress rows with vertical scroll wrapper */}
+            <div 
+              ref={masteryContainerRef}
+              className="space-y-4 max-h-[220px] overflow-y-auto pr-1.5 scrollbar-thin scroll-smooth"
+            >
+              {/* Item 1 */}
               <div>
-                <h4 className="text-sm font-bold text-zinc-900 dark:text-white">Dynamic Programming</h4>
-                <p className="text-zinc-500 text-xs mt-0.5">Multi-state optimization</p>
+                <div className="flex justify-between items-center text-[10.5px] font-mono font-bold mb-1">
+                  <span className="text-zinc-800 dark:text-white">ARRAYS</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">94% MASTERED</span>
+                </div>
+                <div className="w-full bg-zinc-100 dark:bg-[#07080d] border border-zinc-200 dark:border-zinc-900 rounded-full h-1.5 overflow-hidden">
+                  <div className="bg-[#10b981] h-1.5 rounded-full" style={{ width: '94%' }} />
+                </div>
               </div>
-            </div>
-            <div className="text-right">
-              <span className="block text-xs font-bold text-rose-500 font-mono">9.2 SEVERITY</span>
-              <span className="text-[10px] text-zinc-400 mt-0.5 block">+42 Rating Potential</span>
-            </div>
-          </div>
 
-          {/* Bottleneck 2 */}
-          <div className="glass-card rounded-2xl p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-500">
-                <Sliders className="w-4.5 h-4.5" />
-              </div>
+              {/* Item 2 */}
               <div>
-                <h4 className="text-sm font-bold text-zinc-900 dark:text-white">Backtracking</h4>
-                <p className="text-zinc-500 text-xs mt-0.5">State-space search pruning</p>
+                <div className="flex justify-between items-center text-[10.5px] font-mono font-bold mb-1">
+                  <span className="text-zinc-800 dark:text-white">TREES</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">92% MASTERED</span>
+                </div>
+                <div className="w-full bg-zinc-100 dark:bg-[#07080d] border border-zinc-200 dark:border-zinc-900 rounded-full h-1.5 overflow-hidden">
+                  <div className="bg-[#10b981] h-1.5 rounded-full" style={{ width: '92%' }} />
+                </div>
               </div>
-            </div>
-            <div className="text-right">
-              <span className="block text-xs font-bold text-amber-500 font-mono">6.5 SEVERITY</span>
-              <span className="text-[10px] text-zinc-400 mt-0.5 block">+28 Rating Potential</span>
-            </div>
-          </div>
 
-          {/* Bottleneck 3 */}
-          <div className="glass-card rounded-2xl p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/25 flex items-center justify-center text-blue-500">
-                <Activity className="w-4.5 h-4.5" />
-              </div>
+              {/* Item 3 */}
               <div>
-                <h4 className="text-sm font-bold text-zinc-900 dark:text-white">Graphs (DFS/BFS)</h4>
-                <p className="text-zinc-500 text-xs mt-0.5">Cycle detection & connectivity</p>
+                <div className="flex justify-between items-center text-[10.5px] font-mono font-bold mb-1">
+                  <span className="text-zinc-800 dark:text-white">LINKED LISTS</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">88% MASTERED</span>
+                </div>
+                <div className="w-full bg-zinc-100 dark:bg-[#07080d] border border-zinc-200 dark:border-zinc-900 rounded-full h-1.5 overflow-hidden">
+                  <div className="bg-[#10b981] h-1.5 rounded-full" style={{ width: '88%' }} />
+                </div>
+              </div>
+
+              {/* Item 4 */}
+              <div>
+                <div className="flex justify-between items-center text-[10.5px] font-mono font-bold mb-1">
+                  <span className="text-zinc-800 dark:text-white">HASHING</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">85% MASTERED</span>
+                </div>
+                <div className="w-full bg-zinc-100 dark:bg-[#07080d] border border-zinc-200 dark:border-zinc-900 rounded-full h-1.5 overflow-hidden">
+                  <div className="bg-[#10b981] h-1.5 rounded-full" style={{ width: '85%' }} />
+                </div>
+              </div>
+
+              {/* Item 5 */}
+              <div>
+                <div className="flex justify-between items-center text-[10.5px] font-mono font-bold mb-1">
+                  <span className="text-zinc-800 dark:text-white">STRINGS</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">82% MASTERED</span>
+                </div>
+                <div className="w-full bg-zinc-100 dark:bg-[#07080d] border border-zinc-200 dark:border-zinc-900 rounded-full h-1.5 overflow-hidden">
+                  <div className="bg-[#10b981] h-1.5 rounded-full" style={{ width: '82%' }} />
+                </div>
+              </div>
+
+              {/* Extra Items */}
+              <div>
+                <div className="flex justify-between items-center text-[10.5px] font-mono font-bold mb-1">
+                  <span className="text-zinc-800 dark:text-white">HEAPS & PRIORITY QUEUES</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">80% MASTERED</span>
+                </div>
+                <div className="w-full bg-zinc-100 dark:bg-[#07080d] border border-zinc-200 dark:border-zinc-900 rounded-full h-1.5 overflow-hidden">
+                  <div className="bg-[#10b981] h-1.5 rounded-full" style={{ width: '80%' }} />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between items-center text-[10.5px] font-mono font-bold mb-1">
+                  <span className="text-zinc-800 dark:text-white">STACKS & QUEUES</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">78% MASTERED</span>
+                </div>
+                <div className="w-full bg-zinc-100 dark:bg-[#07080d] border border-zinc-200 dark:border-zinc-900 rounded-full h-1.5 overflow-hidden">
+                  <div className="bg-[#10b981] h-1.5 rounded-full" style={{ width: '78%' }} />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between items-center text-[10.5px] font-mono font-bold mb-1">
+                  <span className="text-zinc-800 dark:text-white">BIN SEARCH</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">76% MASTERED</span>
+                </div>
+                <div className="w-full bg-zinc-100 dark:bg-[#07080d] border border-zinc-200 dark:border-zinc-900 rounded-full h-1.5 overflow-hidden">
+                  <div className="bg-[#10b981] h-1.5 rounded-full" style={{ width: '76%' }} />
+                </div>
+              </div>
+
+            </div>
+
+            {/* Scroll down indicator chevron */}
+            <div className="flex justify-center pt-3 pb-1">
+              <button 
+                onClick={handleScrollMastery}
+                className="text-zinc-500 dark:text-zinc-555 hover:text-zinc-800 dark:hover:text-zinc-350 cursor-pointer font-bold select-none animate-bounce focus:outline-none bg-zinc-100 dark:bg-zinc-900/30 w-7 h-7 rounded-full flex items-center justify-center border border-zinc-200 dark:border-zinc-800/40"
+                title="Scroll Topics"
+              >
+                v
+              </button>
+            </div>
+
+            {/* Dash border info card */}
+            <div className="bg-zinc-50 dark:bg-zinc-950/40 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-lg p-3.5 text-[9.5px] font-mono text-zinc-550 leading-relaxed text-left">
+              <span className="text-blue-500 font-bold">INFO:</span> NO DEGRADATION DETECTED IN CORE STRUCTURES. MASTERY REMAINS WITHIN THE TOP 2% OF ENGINEERING COHORTS.
+            </div>
+
+          </div>
+
+          {/* AI-Optimized Strategy card below Strengths */}
+          <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden flex items-start gap-4 shadow-2xl transition-colors">
+            <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-500/50" />
+            <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
+
+            <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#3b82f6] shrink-0 mt-0.5">
+              <Lightbulb className="w-4.5 h-4.5" />
+            </div>
+            <div className="text-left font-mono">
+              <div className="text-[10px] font-bold text-[#3b82f6] dark:text-blue-400 tracking-wider">AI-OPTIMIZED STRATEGY</div>
+              <p className="text-[11px] text-zinc-655 dark:text-zinc-400 mt-2 leading-relaxed">
+                Practice translating recursive top-down equations to bottom-up tabular DP.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        {/* RIGHT COLUMN: Bottlenecks & Anomaly root cause analyzer (Col-span 7) */}
+        <div className="lg:col-span-7 space-y-6">
+          
+          {/* CRITICAL BOTTLENECKS SECTION */}
+          <div className="space-y-3.5">
+            <div className="text-left">
+              <span className="text-[10px] tracking-widest text-zinc-555 dark:text-zinc-400 uppercase font-mono font-bold">CRITICAL BOTTLENECKS</span>
+            </div>
+
+            {/* Row of panels - Overlaid with horizontal scroll buttons */}
+            <div className="relative">
+              
+              {/* Scroll Left Button */}
+              <button 
+                onClick={() => handleScrollBottlenecks('left')}
+                className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-[#131622]/95 border border-zinc-200 dark:border-zinc-800/80 hover:border-blue-500 flex items-center justify-center cursor-pointer transition-all active:scale-90 shadow-xl"
+                title="Scroll Left"
+              >
+                <ChevronLeft className="w-4 h-4 text-[#2563eb]" />
+              </button>
+
+              {/* Scroll Right Button */}
+              <button 
+                onClick={() => handleScrollBottlenecks('right')}
+                className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-[#131622]/95 border border-zinc-200 dark:border-zinc-800/80 hover:border-blue-500 flex items-center justify-center cursor-pointer transition-all active:scale-90 shadow-xl"
+                title="Scroll Right"
+              >
+                <ChevronRight className="w-4 h-4 text-[#2563eb]" />
+              </button>
+
+              {/* Scroll Container */}
+              <div 
+                ref={bottlenecksContainerRef}
+                className="flex gap-4 overflow-x-auto pb-3 scrollbar-none scroll-smooth select-none"
+              >
+                {/* Bottleneck 1: Dynamic Programming */}
+                <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden shadow-2xl flex flex-col justify-between h-[155px] min-w-[280px] shrink-0 md:shrink md:flex-1 transition-colors">
+                  <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-500/50" />
+                  <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
+
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="bg-red-500/10 border border-red-500/20 text-red-505 dark:text-red-400 font-mono font-bold text-[9px] px-2 py-0.5 rounded">
+                      PRIORITY 01
+                    </span>
+                    <AlertTriangle className="w-4 h-4 text-red-500 dark:text-red-400 animate-pulse" />
+                  </div>
+
+                  <h3 className="font-display font-bold text-lg text-zinc-900 dark:text-white tracking-tight uppercase text-left leading-tight">
+                    DYNAMIC PROGRAMMING
+                  </h3>
+
+                  <div className="border-t border-zinc-200 dark:border-[#171c26] pt-2 mt-2 flex justify-between items-center text-[10px] font-mono">
+                    <div>
+                      <span className="block text-[8px] text-zinc-500 font-bold uppercase tracking-wider">SEVERITY</span>
+                      <span className="text-red-505 dark:text-red-400 font-black">9.2 / 10</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="block text-[8px] text-zinc-500 font-bold uppercase tracking-wider">RATING POTENTIAL</span>
+                      <span className="text-emerald-600 dark:text-emerald-400 font-bold">+85 ELO</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottleneck 2: Backtracking */}
+                <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden shadow-2xl flex flex-col justify-between h-[155px] min-w-[280px] shrink-0 md:shrink md:flex-1 transition-colors">
+                  <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-500/50" />
+                  <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
+
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="bg-zinc-100 dark:bg-zinc-800/40 border border-zinc-200 dark:border-zinc-700/40 text-zinc-650 dark:text-zinc-400 font-mono font-bold text-[9px] px-2 py-0.5 rounded">
+                      PRIORITY 02
+                    </span>
+                  </div>
+
+                  <h3 className="font-display font-bold text-lg text-zinc-900 dark:text-white tracking-tight uppercase text-left leading-tight">
+                    BACKTRACKING
+                  </h3>
+
+                  <div className="border-t border-zinc-200 dark:border-[#171c26] pt-2 mt-2 flex justify-between items-center text-[10px] font-mono">
+                    <div>
+                      <span className="block text-[8px] text-zinc-500 font-bold uppercase tracking-wider">SEVERITY</span>
+                      <span className="text-zinc-700 dark:text-zinc-300 font-black">6.5 / 10</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="block text-[8px] text-zinc-500 font-bold uppercase tracking-wider">RATING POTENTIAL</span>
+                      <span className="text-emerald-600 dark:text-emerald-400 font-bold">+48 ELO</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottleneck 3: Graphs (DFS/BFS) */}
+                <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden shadow-2xl flex flex-col justify-between h-[155px] min-w-[280px] shrink-0 md:shrink md:flex-1 transition-colors">
+                  <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-500/50" />
+                  <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
+
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="bg-zinc-100 dark:bg-zinc-800/40 border border-zinc-200 dark:border-zinc-700/40 text-zinc-650 dark:text-zinc-400 font-mono font-bold text-[9px] px-2 py-0.5 rounded">
+                      PRIORITY 03
+                    </span>
+                  </div>
+
+                  <h3 className="font-display font-bold text-lg text-zinc-900 dark:text-white tracking-tight uppercase text-left leading-tight">
+                    GRAPHS (DFS/BFS)
+                  </h3>
+
+                  <div className="border-t border-zinc-200 dark:border-[#171c26] pt-2 mt-2 flex justify-between items-center text-[10px] font-mono">
+                    <div>
+                      <span className="block text-[8px] text-zinc-500 font-bold uppercase tracking-wider">SEVERITY</span>
+                      <span className="text-zinc-700 dark:text-zinc-300 font-black">5.4 / 10</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="block text-[8px] text-zinc-500 font-bold uppercase tracking-wider">RATING POTENTIAL</span>
+                      <span className="text-emerald-600 dark:text-emerald-400 font-bold">+32 ELO</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottleneck 4: Greedy Algorithms */}
+                <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden shadow-2xl flex flex-col justify-between h-[155px] min-w-[280px] shrink-0 md:shrink md:flex-1 transition-colors">
+                  <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-500/50" />
+                  <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
+
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="bg-zinc-100 dark:bg-zinc-800/40 border border-zinc-200 dark:border-zinc-700/40 text-zinc-650 dark:text-zinc-400 font-mono font-bold text-[9px] px-2 py-0.5 rounded">
+                      PRIORITY 04
+                    </span>
+                  </div>
+
+                  <h3 className="font-display font-bold text-lg text-zinc-900 dark:text-white tracking-tight uppercase text-left leading-tight">
+                    GREEDY ALGORITHMS
+                  </h3>
+
+                  <div className="border-t border-zinc-200 dark:border-[#171c26] pt-2 mt-2 flex justify-between items-center text-[10px] font-mono">
+                    <div>
+                      <span className="block text-[8px] text-zinc-500 font-bold uppercase tracking-wider">SEVERITY</span>
+                      <span className="text-zinc-700 dark:text-zinc-300 font-black">4.8 / 10</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="block text-[8px] text-zinc-500 font-bold uppercase tracking-wider">RATING POTENTIAL</span>
+                      <span className="text-emerald-600 dark:text-emerald-400 font-bold">+20 ELO</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottleneck 5: Heap & Sorting */}
+                <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden shadow-2xl flex flex-col justify-between h-[155px] min-w-[280px] shrink-0 md:shrink md:flex-1 transition-colors">
+                  <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-500/50" />
+                  <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
+
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="bg-zinc-100 dark:bg-zinc-800/40 border border-zinc-200 dark:border-zinc-700/40 text-zinc-650 dark:text-zinc-400 font-mono font-bold text-[9px] px-2 py-0.5 rounded">
+                      PRIORITY 05
+                    </span>
+                  </div>
+
+                  <h3 className="font-display font-bold text-lg text-zinc-900 dark:text-white tracking-tight uppercase text-left leading-tight">
+                    HEAP & SORTING
+                  </h3>
+
+                  <div className="border-t border-zinc-200 dark:border-[#171c26] pt-2 mt-2 flex justify-between items-center text-[10px] font-mono">
+                    <div>
+                      <span className="block text-[8px] text-zinc-500 font-bold uppercase tracking-wider">SEVERITY</span>
+                      <span className="text-zinc-700 dark:text-zinc-300 font-black">4.2 / 10</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="block text-[8px] text-zinc-500 font-bold uppercase tracking-wider">RATING POTENTIAL</span>
+                      <span className="text-emerald-600 dark:text-emerald-400 font-bold">+15 ELO</span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
-            <div className="text-right">
-              <span className="block text-xs font-bold text-blue-500 font-mono">4.1 SEVERITY</span>
-              <span className="text-[10px] text-zinc-400 mt-0.5 block">+15 Rating Potential</span>
+          </div>
+
+          {/* ROOT CAUSE ANALYSIS GLASSMORPHIC CARD */}
+          <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden shadow-2xl space-y-4 transition-colors">
+            <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-500/50" />
+            <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
+
+            {/* Header */}
+            <div className="flex items-center gap-2.5 font-mono border-b border-zinc-200 dark:border-[#171c26]/60 pb-3">
+              <Cpu className="w-4 h-4 text-[#3b82f6]" />
+              <span className="text-[10px] font-bold tracking-widest text-zinc-600 dark:text-zinc-300 uppercase leading-none mt-0.5">ROOT CAUSE ANALYSIS // DYNAMIC PROGRAMMING</span>
             </div>
+
+            {/* Grid layout containing 3 columns */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 font-mono text-left">
+              
+              {/* Anomaly 1 */}
+              <div className="flex flex-col justify-between space-y-3">
+                <div className="space-y-1.5">
+                  <span className="block text-[8.5px] font-bold text-[#3b82f6] tracking-wider">ANOMALY 01</span>
+                  <h4 className="text-[11.5px] font-bold text-zinc-900 dark:text-white tracking-wide leading-tight">STATE DEFINITION GAP</h4>
+                  <p className="text-[10px] text-zinc-650 dark:text-zinc-455 leading-relaxed font-sans mt-2">
+                    Recurrent failure to identify minimal sufficient parameters for state memoization, leading to redundant calculations in 42% of test cases.
+                  </p>
+                </div>
+                <div className="flex items-center gap-1.5 text-[8.5px] text-red-500 dark:text-red-400 bg-red-500/5 border border-red-500/10 px-2 py-1 rounded w-fit font-bold">
+                  <AlertTriangle className="w-3 h-3 text-red-500 dark:text-red-400 shrink-0" />
+                  <span>HIGH LATENCY IMPACT</span>
+                </div>
+              </div>
+
+              {/* Anomaly 2 */}
+              <div className="flex flex-col justify-between space-y-3 border-t md:border-t-0 md:border-l border-zinc-200 dark:border-[#171c26]/80 pt-4 md:pt-0 md:pl-4">
+                <div className="space-y-1.5">
+                  <span className="block text-[8.5px] font-bold text-[#3b82f6] tracking-wider">ANOMALY 02</span>
+                  <h4 className="text-[11.5px] font-bold text-zinc-900 dark:text-white tracking-wide leading-tight">PRUNING INEFFICIENCY</h4>
+                  <p className="text-[10px] text-zinc-655 dark:text-zinc-455 leading-relaxed font-sans mt-2">
+                    Inefficient bounding functions in optimization problems resulting in excessive branch exploration during depth-first traversals.
+                  </p>
+                </div>
+                <div className="flex items-center gap-1.5 text-[8.5px] text-[#3b82f6] bg-blue-500/5 border border-blue-500/10 px-2 py-1 rounded w-fit font-bold">
+                  <Info className="w-3 h-3 text-[#3b82f6] shrink-0" />
+                  <span>MODERATE COMPLEXITY</span>
+                </div>
+              </div>
+
+              {/* Anomaly 3 */}
+              <div className="flex flex-col justify-between space-y-3 border-t md:border-t-0 md:border-l border-zinc-200 dark:border-[#171c26]/80 pt-4 md:pt-0 md:pl-4">
+                <div className="space-y-1.5">
+                  <span className="block text-[8.5px] font-bold text-[#3b82f6] tracking-wider">ANOMALY 03</span>
+                  <h4 className="text-[11.5px] font-bold text-zinc-900 dark:text-white tracking-wide leading-tight">SUBPROBLEM OVERLAP</h4>
+                  <p className="text-[10px] text-zinc-655 dark:text-zinc-455 leading-relaxed font-sans mt-2">
+                    Misidentification of optimal substructure properties in non-linear sequence problems. Tendency to over-complicate recurrence relations.
+                  </p>
+                </div>
+                <div className="flex items-center gap-1.5 text-[8.5px] text-[#3b82f6] bg-blue-500/5 border border-blue-500/10 px-2 py-1 rounded w-fit font-bold">
+                  <Info className="w-3 h-3 text-[#3b82f6] shrink-0" />
+                  <span>KNOWLEDGE GAP DETECTED</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* NEXT PRIORITY ACTION container */}
+            <div className="bg-zinc-50 dark:bg-[#0c1018] border border-zinc-200 dark:border-[#171c26] rounded-xl p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 transition-colors">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded bg-[#2563eb]/10 border border-[#2563eb]/20 flex items-center justify-center text-[#3b82f6] shrink-0">
+                  <Target className="w-5 h-5 animate-pulse" />
+                </div>
+                <div className="text-left font-mono">
+                  <span className="block text-[10px] font-bold text-zinc-900 dark:text-white leading-none">NEXT PRIORITY ACTION</span>
+                  <p className="text-[10.5px] text-zinc-600 dark:text-zinc-455 mt-1.5 leading-normal">
+                    Focus on <strong className="text-blue-600 dark:text-blue-450 font-bold">DP Optimization</strong> to gain approx. +85 ELO points.
+                  </p>
+                </div>
+              </div>
+              <button 
+                className="bg-[#2563eb] hover:bg-[#3b82f6] text-white font-mono font-bold text-[10.5px] px-5 py-2.5 rounded transition-all active:scale-95 cursor-pointer shrink-0 uppercase tracking-wider shadow-md shadow-blue-600/15"
+                onClick={() => alert('Starting drill sequence for Dynamic Programming...')}
+              >
+                Start Drill
+              </button>
+            </div>
+
           </div>
+
         </div>
-      </section>
 
-      {/* ROOT CAUSE ANALYSIS */}
-      <section className="glass-card rounded-[24px] p-6 space-y-6">
-        <span className="text-[9px] tracking-widest text-zinc-500 uppercase font-bold block font-mono">
-          ROOT CAUSE ANALYSIS
-        </span>
+      </div>
 
-        <div className="space-y-4">
-          <div className="border-l-[3px] border-brand-purple pl-4">
-            <h4 className="text-xs font-bold text-brand-purple uppercase tracking-wider mb-1 font-mono">
-              STATE DEFINITION GAP
-            </h4>
-            <p className="text-zinc-700 dark:text-zinc-300 text-xs leading-relaxed">
-              You struggle to define the optimal state variables in 2D DP problems, often leading to O(N^3) solutions where O(N^2) is possible.
-            </p>
-          </div>
-
-          <div className="border-l-[3px] border-rose-500 pl-4">
-            <h4 className="text-xs font-bold text-rose-500 uppercase tracking-wider mb-1 font-mono">
-              PRUNING INEFFICIENCY
-            </h4>
-            <p className="text-zinc-700 dark:text-zinc-300 text-xs leading-relaxed">
-              In backtracking, you are identifying base cases correctly but missing early termination conditions, causing TLE on hard constraints.
-            </p>
-          </div>
-
-          <div className="border-l-[3px] border-blue-500 pl-4">
-            <h4 className="text-xs font-bold text-blue-500 uppercase tracking-wider mb-1 font-mono">
-              SUBPROBLEM OVERLAP
-            </h4>
-            <p className="text-zinc-700 dark:text-zinc-300 text-xs leading-relaxed">
-              High difficulty in identifying when a problem can be broken down into recursive sub-structures versus iterative greedy approaches.
-            </p>
-          </div>
+      {/* Code Status Footer Console */}
+      <div className="pt-4 border-t border-zinc-200 dark:border-[#171c26]/60 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 font-mono text-[9px] text-zinc-500 dark:text-zinc-555 leading-relaxed pt-3">
+        <div className="text-left text-[#3b82f6] dark:text-[#3b82f6]/70">
+          PATH: /USER/ANALYSIS/DP_CRITICAL <span className="text-zinc-300 dark:text-zinc-700 ml-1 mr-1">|</span> LN 256, COL 12 <span className="text-zinc-300 dark:text-zinc-700 ml-1 mr-1">|</span> UTF-8
         </div>
-
-        {/* Tip Box */}
-        <div className="bg-zinc-100 dark:bg-zinc-950/75 border border-zinc-200 dark:border-zinc-900 rounded-xl p-3.5 flex items-start gap-2.5 mt-4">
-          <Lightbulb className="w-5 h-5 text-brand-indigo shrink-0 mt-0.5" />
-          <p className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400 leading-normal">
-            <strong>Tip:</strong> Practice translating recursive relation equations to bottom-up tabular DP.
-          </p>
+        <div className="flex items-center gap-2 sm:justify-end">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
+          <span className="text-zinc-500 dark:text-zinc-400 font-semibold uppercase tracking-wider">CONNECTED</span>
+          <span className="text-zinc-300 dark:text-zinc-700 font-normal">|</span>
+          <span>V2.4.0-STABLE</span>
         </div>
-      </section>
+      </div>
+
     </div>
   )
 }

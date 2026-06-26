@@ -65,7 +65,6 @@ export default function DashboardTab({ isDark }) {
         </g>
       )
     }
-    // Subtle hover/resting blue dots for other weeks
     return (
       <circle key={`rating-dot-${index}`} cx={cx} cy={cy} r={2.5} fill="#2563eb" opacity={0.65} />
     );
@@ -75,17 +74,17 @@ export default function DashboardTab({ isDark }) {
     <div className="space-y-6">
       
       {/* Profile Status Header */}
-      <section className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-[#171c26]/60 pb-5 mb-2 shrink-0">
+      <section className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-zinc-200 dark:border-[#171c26]/60 pb-5 mb-2 shrink-0 transition-colors">
         <div>
           <span className="text-[10px] tracking-widest text-zinc-500 uppercase font-mono font-bold">SYSTEM STATUS</span>
-          <h1 className="font-display font-black text-4xl text-white mt-1.5 flex items-center">
+          <h1 className="font-display font-black text-4xl text-zinc-900 dark:text-white mt-1.5 flex items-center">
             Hello, Coder.<span className="text-[#3b82f6] animate-pulse">_</span>
           </h1>
         </div>
-        <div className="mt-3.5 sm:mt-0 flex items-center bg-black/45 border border-[#171c26] px-4 py-2 rounded-full text-[10px] font-mono text-zinc-400 gap-2.5">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-zinc-200">SYSTEM.STATUS: LIVE</span>
-          <span className="text-zinc-700">|</span>
+        <div className="mt-3.5 sm:mt-0 flex items-center bg-zinc-100 dark:bg-black/45 border border-zinc-200 dark:border-[#171c26] px-4 py-2 rounded-full text-[10px] font-mono text-zinc-500 dark:text-zinc-400 gap-2.5 shadow-sm transition-colors">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
+          <span className="text-zinc-800 dark:text-zinc-200">SYSTEM.STATUS: LIVE</span>
+          <span className="text-zinc-300 dark:text-zinc-700">|</span>
           <span>LATENCY: 12ms</span>
         </div>
       </section>
@@ -100,27 +99,27 @@ export default function DashboardTab({ isDark }) {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             
             {/* Card 1: Solved */}
-            <div className="bg-[#0b0e14]/50 border border-[#171c26] rounded-xl p-4 flex flex-col justify-between h-[105px] relative overflow-hidden group">
+            <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-4 flex flex-col justify-between h-[105px] relative overflow-hidden group transition-colors shadow-sm">
               <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-blue-500/50" />
               <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-blue-500/50" />
               
               <div>
-                <span className="text-[8.5px] tracking-wider text-zinc-500 uppercase font-mono font-bold">SOLVED</span>
-                <div className="text-2xl font-display font-black text-white mt-1 leading-none">768</div>
+                <span className="text-[8.5px] tracking-wider text-zinc-550 uppercase font-mono font-bold">SOLVED</span>
+                <div className="text-2xl font-display font-black text-zinc-900 dark:text-white mt-1 leading-none">768</div>
               </div>
-              <div className="text-[9.5px] text-emerald-500 font-mono font-semibold">
+              <div className="text-[9.5px] text-emerald-600 dark:text-emerald-400 font-mono font-semibold">
                 +12 this week
               </div>
             </div>
 
             {/* Card 2: Rating */}
-            <div className="bg-[#0b0e14]/50 border border-[#171c26] rounded-xl p-4 flex flex-col justify-between h-[105px] relative overflow-hidden group">
+            <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-4 flex flex-col justify-between h-[105px] relative overflow-hidden group transition-colors shadow-sm">
               <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-blue-500/50" />
               <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-blue-500/50" />
               
               <div>
-                <span className="text-[8.5px] tracking-wider text-zinc-500 uppercase font-mono font-bold">RATING</span>
-                <div className="text-2xl font-display font-black text-white mt-1 leading-none">1784</div>
+                <span className="text-[8.5px] tracking-wider text-zinc-555 uppercase font-mono font-bold">RATING</span>
+                <div className="text-2xl font-display font-black text-zinc-900 dark:text-white mt-1 leading-none">1784</div>
               </div>
               <div className="text-[9.5px] text-zinc-500 font-mono">
                 Top 5%
@@ -128,13 +127,13 @@ export default function DashboardTab({ isDark }) {
             </div>
 
             {/* Card 3: Consistency */}
-            <div className="bg-[#0b0e14]/50 border border-[#171c26] rounded-xl p-4 flex flex-col justify-between h-[105px] relative overflow-hidden group">
+            <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-4 flex flex-col justify-between h-[105px] relative overflow-hidden group transition-colors shadow-sm">
               <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-blue-500/50" />
               <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-blue-500/50" />
               
               <div>
-                <span className="text-[8.5px] tracking-wider text-zinc-500 uppercase font-mono font-bold">CONSISTENCY</span>
-                <div className="text-2xl font-display font-black text-white mt-1 leading-none">120</div>
+                <span className="text-[8.5px] tracking-wider text-zinc-555 uppercase font-mono font-bold">CONSISTENCY</span>
+                <div className="text-2xl font-display font-black text-zinc-900 dark:text-white mt-1 leading-none">120</div>
               </div>
               <div className="text-[9.5px] text-zinc-500 font-mono">
                 days
@@ -142,15 +141,15 @@ export default function DashboardTab({ isDark }) {
             </div>
 
             {/* Card 4: Growth */}
-            <div className="bg-[#0b0e14]/50 border border-[#171c26] rounded-xl p-4 flex flex-col justify-between h-[105px] relative overflow-hidden group">
+            <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-4 flex flex-col justify-between h-[105px] relative overflow-hidden group transition-colors shadow-sm">
               <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-blue-500/50" />
-              <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-blue-500/50" />
+              <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
               
               <div>
-                <span className="text-[8.5px] tracking-wider text-zinc-500 uppercase font-mono font-bold">GROWTH</span>
-                <div className="text-2xl font-display font-black text-white mt-1 leading-none">91/100</div>
+                <span className="text-[8.5px] tracking-wider text-zinc-555 uppercase font-mono font-bold">GROWTH</span>
+                <div className="text-2xl font-display font-black text-zinc-900 dark:text-white mt-1 leading-none">91/100</div>
               </div>
-              <div className="w-full bg-zinc-900 h-1 rounded-full overflow-hidden border border-zinc-800/40">
+              <div className="w-full bg-zinc-200 dark:bg-zinc-900 h-1 rounded-full overflow-hidden border border-zinc-300 dark:border-zinc-800/40">
                 <div className="bg-[#2563eb] h-full rounded-full" style={{ width: '91%' }} />
               </div>
             </div>
@@ -158,18 +157,18 @@ export default function DashboardTab({ isDark }) {
           </div>
 
           {/* Contest Rating Graph Panel */}
-          <div className="bg-[#0b0e14]/50 border border-[#171c26] rounded-xl p-5 relative overflow-hidden flex flex-col justify-between h-[360px] shadow-2xl">
+          <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden flex flex-col justify-between h-[360px] shadow-2xl transition-colors">
             <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-blue-500/50" />
-            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-blue-500/50" />
+            <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
             
             <div className="flex justify-between items-center mb-4">
               <div>
                 <div className="flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-[#3b82f6]" />
-                  <span className="text-[10px] tracking-widest text-zinc-400 uppercase font-mono font-bold">CONTEST RATING HISTORY</span>
+                  <span className="text-[10px] tracking-widest text-zinc-500 dark:text-zinc-400 uppercase font-mono font-bold">CONTEST RATING HISTORY</span>
                 </div>
                 <div className="text-[11px] font-mono text-zinc-500 mt-1 flex items-center gap-1.5">
-                  LATEST: <span className="font-bold text-white">1,784</span> <span className="text-emerald-500 font-bold flex items-center gap-0.5">↑ 42</span>
+                  LATEST: <span className="font-bold text-zinc-800 dark:text-white">1,784</span> <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-0.5">↑ 42</span>
                 </div>
               </div>
               
@@ -181,7 +180,7 @@ export default function DashboardTab({ isDark }) {
                     className={`px-2.5 py-0.5 rounded cursor-pointer transition-colors ${
                       ratingFilter === f 
                         ? 'bg-[#2563eb] text-white font-bold' 
-                        : 'text-zinc-500 hover:text-zinc-300 bg-zinc-900/60'
+                        : 'text-zinc-500 hover:text-zinc-700 dark:text-zinc-500 dark:hover:text-zinc-300 bg-zinc-100 dark:bg-zinc-900/60'
                     }`}
                   >
                     {f}
@@ -199,13 +198,13 @@ export default function DashboardTab({ isDark }) {
                       <stop offset="95%" stopColor="#2563eb" stopOpacity={0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid stroke="#171c26" strokeDasharray="3 3" opacity={0.35} vertical={false} />
+                  <CartesianGrid stroke={isDark ? '#171c26' : '#e4e4e7'} strokeDasharray="3 3" opacity={0.35} vertical={false} />
                   <Tooltip 
                     contentStyle={{ 
-                      background: '#09090b', 
-                      borderColor: '#171c26',
+                      background: isDark ? '#09090b' : '#ffffff', 
+                      borderColor: isDark ? '#171c26' : '#e4e4e7',
                       borderRadius: '8px',
-                      color: '#f4f4f5',
+                      color: isDark ? '#f4f4f5' : '#18181b',
                       fontSize: '11px',
                       fontFamily: 'monospace'
                     }} 
@@ -225,12 +224,12 @@ export default function DashboardTab({ isDark }) {
             </div>
 
             {/* Simulated Command-line footer inside line chart */}
-            <div className="flex justify-between items-center border-t border-[#171c26]/60 pt-3 mt-1 text-[9.5px] font-mono">
+            <div className="flex justify-between items-center border-t border-zinc-200 dark:border-[#171c26]/60 pt-3 mt-1 text-[9.5px] font-mono">
               <div>
-                <span className="block text-[7.5px] text-zinc-555 font-bold uppercase tracking-wider">AVERAGE LATENCY</span>
-                <span className="text-[#3b82f6] font-bold">4.2ns</span>
+                <span className="block text-[7.5px] text-zinc-550 font-bold uppercase tracking-wider">AVERAGE LATENCY</span>
+                <span className="text-[#3b82f6] font-bold">4.2ms</span>
               </div>
-              <div className="text-zinc-650 select-none">
+              <div className="text-zinc-500 dark:text-zinc-650 select-none">
                 root@growcode:~/analytics# tail -n 3 metrics.log
               </div>
             </div>
@@ -238,16 +237,16 @@ export default function DashboardTab({ isDark }) {
           </div>
 
           {/* Solved Trend 30D Bar Chart Panel */}
-          <div className="bg-[#0b0e14]/50 border border-[#171c26] rounded-xl p-5 relative overflow-hidden flex flex-col justify-between shadow-2xl">
+          <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden flex flex-col justify-between shadow-2xl transition-colors">
             <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-500/50" />
             <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
             
             <div className="flex justify-between items-center mb-3.5 font-mono">
               <div className="flex items-center gap-2">
                 <span className="text-[#2563eb] text-[10px]">📊</span>
-                <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase">TACTICAL_SOLVED_TREND.LOG</span>
+                <span className="text-[10px] font-bold tracking-widest text-zinc-500 dark:text-zinc-400 uppercase">TACTICAL_SOLVED_TREND.LOG</span>
               </div>
-              <span className="text-[8px] text-emerald-400 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10 font-bold">[DATA_SYNC_ACTIVE]</span>
+              <span className="text-[8px] text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-500/10 font-bold">[DATA_SYNC_ACTIVE]</span>
             </div>
             
             <div className="text-[9.5px] font-mono text-zinc-500 mb-2">PERIOD: LAST 30 DAYS</div>
@@ -257,10 +256,10 @@ export default function DashboardTab({ isDark }) {
                 <BarChart data={solvedTrendData} margin={{ top: 5, right: 0, left: 0, bottom: 0 }}>
                   <Tooltip 
                     contentStyle={{ 
-                      background: '#09090b', 
-                      borderColor: '#171c26',
+                      background: isDark ? '#09090b' : '#ffffff', 
+                      borderColor: isDark ? '#171c26' : '#e4e4e7',
                       borderRadius: '8px',
-                      color: '#f4f4f5',
+                      color: isDark ? '#f4f4f5' : '#18181b',
                       fontSize: '11px',
                       fontFamily: 'monospace'
                     }} 
@@ -269,7 +268,7 @@ export default function DashboardTab({ isDark }) {
                     {solvedTrendData.map((entry, idx) => (
                       <Cell 
                         key={`cyber-bar-cell-${idx}`} 
-                        fill={entry.active ? '#2563eb' : '#1f2937'} 
+                        fill={entry.active ? '#2563eb' : (isDark ? '#1f2937' : '#e4e4e7')} 
                       />
                     ))}
                   </Bar>
@@ -285,7 +284,7 @@ export default function DashboardTab({ isDark }) {
             </div>
 
             {/* Simulated log footer inside bar chart */}
-            <div className="flex justify-between items-center border-t border-[#171c26]/60 pt-3 mt-3 text-[9px] font-mono text-zinc-600">
+            <div className="flex justify-between items-center border-t border-zinc-200 dark:border-[#171c26]/60 pt-3 mt-3 text-[9px] font-mono text-zinc-500 dark:text-zinc-600">
               <span>STATUS: OPTIMIZED</span>
               <span>REFRESH_RATE: 500ms</span>
             </div>
@@ -298,36 +297,36 @@ export default function DashboardTab({ isDark }) {
         <div className="lg:col-span-1 space-y-6">
           
           {/* AI INSIGHT OPTIMIZATION NEEDED */}
-          <div className="bg-[#0b0e14]/50 border border-[#171c26] rounded-xl p-5 relative overflow-hidden shadow-2xl space-y-3.5">
+          <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden shadow-2xl space-y-3.5 transition-colors">
             <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-500/50" />
             <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
             
             <div className="flex items-center gap-2 font-mono">
               <Cpu className="w-4 h-4 text-[#3b82f6] animate-pulse" />
-              <span className="text-[10px] font-bold tracking-widest text-zinc-300 uppercase leading-none mt-0.5">AI INSIGHT: OPTIMIZATION NEEDED</span>
+              <span className="text-[10px] font-bold tracking-widest text-zinc-600 dark:text-zinc-300 uppercase leading-none mt-0.5">AI INSIGHT: OPTIMIZATION NEEDED</span>
             </div>
 
-            <p className="text-zinc-400 text-[12px] leading-relaxed">
-              Your <strong className="text-blue-400 font-semibold">Dynamic Programming efficiency</strong> is peaking, but Graph traversal remains a bottleneck in high-stress contests. Recommend focus on DFS/BFS variations.
+            <p className="text-zinc-650 dark:text-zinc-400 text-[12px] leading-relaxed">
+              Your <strong className="text-blue-600 dark:text-blue-400 font-bold">Dynamic Programming efficiency</strong> is peaking, but Graph traversal remains a bottleneck in high-stress contests. Recommend focus on DFS/BFS variations.
             </p>
 
-            <div className="flex items-center gap-2 text-[9px] font-mono text-emerald-400 bg-emerald-500/5 border border-emerald-500/10 rounded px-2.5 py-1.5 w-fit">
+            <div className="flex items-center gap-2 text-[9px] font-mono text-[#10b981] dark:text-emerald-400 bg-emerald-500/5 border border-emerald-200 dark:border-emerald-500/10 rounded px-2.5 py-1.5 w-fit font-bold">
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>SUGGESTED: PROJECT-AETHER-MODULE-04</span>
             </div>
           </div>
 
           {/* Topic Distribution Donut Chart */}
-          <div className="bg-[#0b0e14]/50 border border-[#171c26] rounded-xl p-5 relative overflow-hidden shadow-2xl">
+          <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden shadow-2xl transition-colors">
             <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-500/50" />
             <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
             
-            <span className="text-[10px] tracking-widest text-zinc-400 uppercase font-mono block mb-4 font-bold">TOPIC_DISTRIBUTION.JSON</span>
+            <span className="text-[10px] tracking-widest text-zinc-550 dark:text-zinc-400 uppercase font-mono block mb-4 font-bold">TOPIC_DISTRIBUTION.JSON</span>
             
             <div className="flex items-center justify-between gap-4">
               <div className="relative w-36 h-36 flex items-center justify-center shrink-0">
                 <div className="absolute flex flex-col items-center justify-center z-10 text-center">
-                  <span className="text-3xl font-display font-black text-white leading-none">14</span>
+                  <span className="text-3xl font-display font-black text-zinc-900 dark:text-white leading-none">14</span>
                   <span className="text-[8px] text-zinc-500 font-mono tracking-widest uppercase mt-1">TAGS</span>
                 </div>
                 <ResponsiveContainer width="100%" height="100%">
@@ -354,9 +353,9 @@ export default function DashboardTab({ isDark }) {
                   <div key={idx} className="flex items-center justify-between text-[11px] font-mono">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
-                      <span className="text-zinc-450">{item.name}</span>
+                      <span className="text-zinc-600 dark:text-zinc-450">{item.name}</span>
                     </div>
-                    <span className="text-white font-semibold">{item.value}%</span>
+                    <span className="text-zinc-800 dark:text-white font-semibold">{item.value}%</span>
                   </div>
                 ))}
               </div>
@@ -364,19 +363,19 @@ export default function DashboardTab({ isDark }) {
           </div>
 
           {/* Upcoming Contest registration box */}
-          <div className="bg-[#0b0e14]/50 border border-[#171c26] rounded-xl p-5 relative overflow-hidden shadow-2xl">
+          <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden shadow-2xl transition-colors">
             <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-500/50" />
             <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
             
-            <span className="text-[10px] tracking-widest text-zinc-400 uppercase font-mono block mb-4 font-bold">UPCOMING CONTEST</span>
+            <span className="text-[10px] tracking-widest text-zinc-550 dark:text-zinc-400 uppercase font-mono block mb-4 font-bold">UPCOMING CONTEST</span>
             
-            <div className="bg-[#080a10] border border-[#171c26] rounded-lg p-3.5 flex items-center justify-between">
+            <div className="bg-zinc-50 dark:bg-[#080a10] border border-zinc-200 dark:border-[#171c26] rounded-lg p-3.5 flex items-center justify-between transition-colors">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 bg-blue-500/10 border border-blue-500/20 rounded flex items-center justify-center text-[#3b82f6]">
                   <Calendar className="w-4.5 h-4.5" />
                 </div>
                 <div className="text-left font-mono">
-                  <h4 className="text-xs font-bold text-white">Weekly Contest 402</h4>
+                  <h4 className="text-xs font-bold text-zinc-900 dark:text-white">Weekly Contest 402</h4>
                   <p className="text-[9.5px] text-zinc-500 mt-1">Starts in 14h 22m</p>
                 </div>
               </div>
@@ -390,7 +389,7 @@ export default function DashboardTab({ isDark }) {
           </div>
 
           {/* Console readout status lines */}
-          <div className="pt-4 border-t border-[#171c26]/60 flex justify-between items-end font-mono text-[9.5px] text-zinc-500 leading-relaxed shrink-0">
+          <div className="pt-4 border-t border-zinc-200 dark:border-[#171c26]/60 flex justify-between items-end font-mono text-[9.5px] text-zinc-500 dark:text-zinc-550 leading-relaxed shrink-0 transition-colors">
             <div className="space-y-0.5 text-left">
               <div className="text-zinc-650">&gt; Fetching remote_origin...</div>
               <div className="text-zinc-650">&gt; Synchronization complete.</div>

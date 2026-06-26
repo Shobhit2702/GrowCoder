@@ -13,7 +13,8 @@ import {
   Bell,
   Search,
   Rocket,
-  Brain
+  Brain,
+  User
 } from 'lucide-react'
 
 import DashboardTab from '../components/DashboardTab'
@@ -62,47 +63,82 @@ export default function DashboardPage() {
     }
   }
 
+  const isAnalysisTab = activeTab === 'analysis'
+
   return (
-    <div className="dark min-h-screen bg-[#06080f] text-zinc-100 flex flex-col font-sans">
+    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 ${isDark ? 'dark bg-[#06080f] text-zinc-100' : 'light bg-zinc-50 text-zinc-900'}`}>
       {/* Decorative background glows */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[160px] pointer-events-none z-0" />
 
       {/* TOP HEADER / NAVBAR */}
-      <header className="h-16 border-b border-[#171c26] bg-[#080a10]/85 backdrop-blur-md px-6 flex items-center justify-between sticky top-0 z-40 shrink-0">
+      <header className="h-16 border-b border-zinc-200 dark:border-[#171c26] bg-white/80 dark:bg-[#080a10]/85 backdrop-blur-md px-6 flex items-center justify-between sticky top-0 z-40 shrink-0 transition-colors">
+        
         {/* Left: Logo & version */}
-        <div className="flex items-center gap-3">
-          <Link to="/" className="font-display font-black text-xl tracking-tight text-white flex items-center gap-1.5">
-            <span className="text-[#3b82f6]">GrowCode</span>
-          </Link>
-          <span className="text-[10px] font-mono text-zinc-500 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-900 mt-0.5">v4.2.0-stable</span>
-        </div>
-
-        {/* Center: Search Box */}
-        <div className="hidden md:flex items-center bg-[#0d1017] border border-[#171c26] rounded-lg px-3 py-1.5 w-80 justify-between">
-          <div className="flex items-center gap-2 text-zinc-500">
-            <Search className="w-3.5 h-3.5" />
-            <span className="text-[10.5px] font-mono tracking-wide">CMD+K TO SEARCH</span>
-          </div>
-          <span className="text-[8px] font-mono text-zinc-600 bg-zinc-950 px-1.5 py-0.5 rounded border border-zinc-900 select-none">/SEARCH</span>
-        </div>
-
-        {/* Right: Notification Bell & Profile Avatar */}
         <div className="flex items-center gap-4">
-          <button className="relative w-8 h-8 rounded-lg bg-[#0d1017] border border-[#171c26] flex items-center justify-center text-zinc-400 hover:text-zinc-200 transition-colors cursor-pointer">
+          <Link to="/" className="font-display font-black text-xl tracking-tight text-zinc-900 dark:text-white flex items-center gap-1.5">
+            {isAnalysisTab ? (
+              <span className="text-[#3b82f6] uppercase tracking-wide">GROWCODE</span>
+            ) : (
+              <span className="text-[#3b82f6]">GrowCode</span>
+            )}
+          </Link>
+          
+          {/* Neural Latency display in header (only for Weakness Analysis tab) */}
+          {isAnalysisTab ? (
+            <div className="hidden lg:flex items-center gap-4 text-[10px] font-mono text-zinc-500 dark:text-zinc-550 ml-2 select-none">
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
+                <span>SYSTEM.STATUS: <span className="text-emerald-600 dark:text-emerald-400 font-bold">OPTIMAL</span></span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-zinc-500 dark:text-zinc-650">⚡</span>
+                <span>LATENCY: 24ms</span>
+              </div>
+            </div>
+          ) : (
+            <span className="text-[10px] font-mono text-zinc-550 bg-zinc-100 dark:bg-zinc-950 px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-900 mt-0.5 transition-colors">v4.2.0-stable</span>
+          )}
+        </div>
+
+        {/* Center Space */}
+        <div className="hidden md:block" />
+
+        {/* Right: Working Dark/Light Mode, Bell notification & Avatar */}
+        <div className="flex items-center gap-3">
+          
+          {/* Top Navbar Dark/Light Theme Button Switcher */}
+          <button 
+            onClick={() => setIsDark(!isDark)}
+            className="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-[#0d1017] border border-zinc-200 dark:border-[#171c26] flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors cursor-pointer shadow-sm"
+            title="Toggle Light/Dark Theme"
+          >
+            {isDark ? <Sun className="w-4 h-4 text-amber-500" /> : <Moon className="w-4 h-4 text-indigo-500" />}
+          </button>
+
+          <button className="relative w-8 h-8 rounded-lg bg-zinc-100 dark:bg-[#0d1017] border border-zinc-200 dark:border-[#171c26] flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors cursor-pointer shadow-sm">
             <Bell className="w-4 h-4" />
             <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-[#3b82f6] rounded-full" />
           </button>
           
-          <div 
-            className="w-8 h-8 rounded-full overflow-hidden border border-[#171c26] cursor-pointer hover:opacity-90 transition-opacity"
-            onClick={() => setActiveTab('settings')}
-          >
-            <img 
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" 
-              alt="Coder Avatar"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          {isAnalysisTab ? (
+            <button 
+              onClick={() => setActiveTab('settings')}
+              className="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-[#0d1017] border border-zinc-200 dark:border-[#171c26] flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors cursor-pointer shadow-sm"
+            >
+              <Settings className="w-4 h-4" />
+            </button>
+          ) : (
+            <div 
+              className="w-8 h-8 rounded-full overflow-hidden border border-zinc-200 dark:border-[#171c26] cursor-pointer hover:opacity-90 transition-opacity"
+              onClick={() => setActiveTab('settings')}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" 
+                alt="Coder Avatar"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
         </div>
       </header>
 
@@ -110,32 +146,47 @@ export default function DashboardPage() {
       <div className="flex flex-1 relative z-10 overflow-hidden">
         
         {/* LEFT SIDEBAR (Desktop only) */}
-        <aside className="hidden md:flex flex-col w-64 border-r border-[#171c26] bg-[#080a10] shrink-0 justify-between">
+        <aside className="hidden md:flex flex-col w-64 border-r border-zinc-200 dark:border-[#171c26] bg-white dark:bg-[#080a10] shrink-0 justify-between transition-colors">
           
           {/* Upper Sidebar Navigation links */}
           <div className="flex flex-col">
-            {/* Cyber-HUD Logo Header Box */}
-            <div className="p-4 border-b border-[#171c26] flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#3b82f6]">
-                <Brain className="w-5.5 h-5.5" />
-              </div>
-              <div className="text-left font-mono">
-                <div className="text-[12px] font-bold text-white tracking-wider leading-none">CYBER-HUD</div>
-                <div className="text-[7.5px] text-emerald-400 font-bold tracking-widest mt-1 flex items-center gap-1 select-none">
-                  <span className="w-1 h-1 rounded-full bg-emerald-400 animate-ping" />
-                  SYSTEM CORE ONLINE
+            {/* Sidebar header profile box */}
+            {isAnalysisTab ? (
+              <div className="p-4 border-b border-zinc-200 dark:border-[#171c26] flex items-center gap-3 transition-colors">
+                <div className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#3b82f6] shrink-0">
+                  <User className="w-5 h-5" />
+                </div>
+                <div className="text-left font-mono">
+                  <div className="text-[12px] font-bold text-zinc-900 dark:text-white tracking-wider leading-none">OPERATOR_01</div>
+                  <div className="text-[7.5px] text-emerald-600 dark:text-emerald-400 font-bold tracking-widest mt-1 flex items-center gap-1 select-none">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-ping" />
+                    SYSTEM.STATUS: LIVE
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="p-4 border-b border-zinc-200 dark:border-[#171c26] flex items-center gap-3 transition-colors">
+                <div className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#3b82f6]">
+                  <Brain className="w-5.5 h-5.5" />
+                </div>
+                <div className="text-left font-mono">
+                  <div className="text-[12px] font-bold text-zinc-900 dark:text-white tracking-wider leading-none">CYBER-HUD</div>
+                  <div className="text-[7.5px] text-emerald-600 dark:text-emerald-400 font-bold tracking-widest mt-1 flex items-center gap-1 select-none">
+                    <span className="w-1 h-1 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-ping" />
+                    SYSTEM CORE ONLINE
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Navigation links list */}
-            <nav className="p-3 space-y-1 font-mono text-[12.5px] text-zinc-400">
+            <nav className="p-3 space-y-1 font-mono text-[12.5px] text-zinc-500 dark:text-zinc-400">
               <button 
                 onClick={() => setActiveTab('dashboard')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-left cursor-pointer ${
                   activeTab === 'dashboard' 
-                    ? 'bg-[#121824] text-white border-l-2 border-[#3b82f6] font-semibold' 
-                    : 'hover:bg-zinc-900/40 hover:text-zinc-200'
+                    ? 'bg-zinc-100 dark:bg-[#121824] text-[#3b82f6] dark:text-white border-l-2 border-[#3b82f6] font-semibold' 
+                    : 'hover:bg-zinc-100 dark:hover:bg-zinc-900/40 hover:text-zinc-900 dark:hover:text-zinc-200'
                 }`}
               >
                 <LayoutDashboard className="w-4 h-4 text-[#3b82f6]" />
@@ -146,8 +197,8 @@ export default function DashboardPage() {
                 onClick={() => setActiveTab('analysis')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-left cursor-pointer ${
                   activeTab === 'analysis' 
-                    ? 'bg-[#121824] text-white border-l-2 border-[#3b82f6] font-semibold' 
-                    : 'hover:bg-zinc-900/40 hover:text-zinc-200'
+                    ? 'bg-zinc-100 dark:bg-[#121824] text-[#3b82f6] dark:text-white border-l-2 border-[#3b82f6] font-semibold' 
+                    : 'hover:bg-zinc-100 dark:hover:bg-zinc-900/40 hover:text-zinc-900 dark:hover:text-zinc-200'
                 }`}
               >
                 <BarChart3 className="w-4 h-4 text-[#3b82f6]" />
@@ -158,8 +209,8 @@ export default function DashboardPage() {
                 onClick={() => setActiveTab('coach')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-left cursor-pointer ${
                   activeTab === 'coach' 
-                    ? 'bg-[#121824] text-white border-l-2 border-[#3b82f6] font-semibold' 
-                    : 'hover:bg-zinc-900/40 hover:text-zinc-200'
+                    ? 'bg-zinc-100 dark:bg-[#121824] text-[#3b82f6] dark:text-white border-l-2 border-[#3b82f6] font-semibold' 
+                    : 'hover:bg-zinc-100 dark:hover:bg-zinc-900/40 hover:text-zinc-900 dark:hover:text-zinc-200'
                 }`}
               >
                 <MessageSquare className="w-4 h-4 text-[#3b82f6]" />
@@ -170,51 +221,71 @@ export default function DashboardPage() {
                 onClick={() => setActiveTab('achievements')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-left cursor-pointer ${
                   activeTab === 'achievements' 
-                    ? 'bg-[#121824] text-white border-l-2 border-[#3b82f6] font-semibold' 
-                    : 'hover:bg-zinc-900/40 hover:text-zinc-200'
+                    ? 'bg-zinc-100 dark:bg-[#121824] text-[#3b82f6] dark:text-white border-l-2 border-[#3b82f6] font-semibold' 
+                    : 'hover:bg-zinc-100 dark:hover:bg-zinc-900/40 hover:text-zinc-900 dark:hover:text-zinc-200'
                 }`}
               >
                 <Trophy className="w-4 h-4 text-[#3b82f6]" />
                 Achievements
               </button>
 
-              <button 
-                onClick={() => setActiveTab('settings')}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-left cursor-pointer ${
-                  activeTab === 'settings' 
-                    ? 'bg-[#121824] text-white border-l-2 border-[#3b82f6] font-semibold' 
-                    : 'hover:bg-zinc-900/40 hover:text-zinc-200'
-                }`}
-              >
-                <Settings className="w-4 h-4 text-[#3b82f6]" />
-                Settings
-              </button>
+              {!isAnalysisTab && (
+                <button 
+                  onClick={() => setActiveTab('settings')}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-left cursor-pointer ${
+                    activeTab === 'settings' 
+                      ? 'bg-zinc-100 dark:bg-[#121824] text-[#3b82f6] dark:text-white border-l-2 border-[#3b82f6] font-semibold' 
+                      : 'hover:bg-zinc-100 dark:hover:bg-zinc-900/40 hover:text-zinc-900 dark:hover:text-zinc-200'
+                  }`}
+                >
+                  <Settings className="w-4 h-4 text-[#3b82f6]" />
+                  Settings
+                </button>
+              )}
             </nav>
           </div>
 
           {/* Lower Sidebar Area: Action buttons and logs */}
           <div className="p-4 space-y-3 shrink-0">
-            <button 
-              className="w-full bg-[#2563eb] hover:bg-[#3b82f6] text-white font-mono font-bold text-[11px] py-3.5 rounded-lg transition-all active:scale-[0.98] shadow-md shadow-blue-500/10 flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider"
-              onClick={() => alert('Deploying new node to the cluster...')}
-            >
-              <Rocket className="w-4 h-4" />
-              Deploy New Node
-            </button>
+            {isAnalysisTab ? (
+              <>
+                <button 
+                  className="w-full bg-[#2563eb] hover:bg-[#3b82f6] text-white font-mono font-bold text-[11px] py-3.5 rounded-lg transition-all active:scale-[0.98] shadow-md shadow-blue-500/10 flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider"
+                  onClick={() => alert('Initiating new training sprint...')}
+                >
+                  Initiate Sprint
+                </button>
 
-            <button 
-              className="w-full flex items-center gap-2.5 px-4 py-3 rounded-lg hover:bg-zinc-900/40 font-mono text-[11px] text-zinc-500 hover:text-zinc-300 transition-colors text-left cursor-pointer"
-              onClick={() => setActiveTab('dashboard')}
-            >
-              <Terminal className="w-3.5 h-3.5" />
-              System Logs
-            </button>
+                <div className="flex justify-center gap-6 py-2 font-mono text-[10px] text-zinc-500 dark:text-zinc-650 tracking-wider">
+                  <a href="#docs" className="hover:text-zinc-800 dark:hover:text-zinc-400 transition-colors">DOCS</a>
+                  <a href="#support" className="hover:text-zinc-800 dark:hover:text-zinc-400 transition-colors">SUPPORT</a>
+                </div>
+              </>
+            ) : (
+              <>
+                <button 
+                  className="w-full bg-[#2563eb] hover:bg-[#3b82f6] text-white font-mono font-bold text-[11px] py-3.5 rounded-lg transition-all active:scale-[0.98] shadow-md shadow-blue-500/10 flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider"
+                  onClick={() => alert('Deploying new node to the cluster...')}
+                >
+                  <Rocket className="w-4 h-4" />
+                  Deploy New Node
+                </button>
+
+                <button 
+                  className="w-full flex items-center gap-2.5 px-4 py-2.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-900/40 font-mono text-[11px] text-zinc-500 dark:text-zinc-550 hover:text-zinc-800 dark:hover:text-zinc-300 transition-colors text-left cursor-pointer"
+                  onClick={() => setActiveTab('dashboard')}
+                >
+                  <Terminal className="w-3.5 h-3.5" />
+                  System Logs
+                </button>
+              </>
+            )}
           </div>
 
         </aside>
 
         {/* MAIN SCROLLABLE VIEWPORT */}
-        <main className="flex-1 overflow-y-auto p-5 md:p-8 bg-[#06080f] text-left">
+        <main className={`flex-1 overflow-y-auto p-5 md:p-8 text-left transition-colors duration-300 ${isDark ? 'bg-[#06080f]' : 'bg-zinc-50'}`}>
           {renderTabContent()}
         </main>
 
