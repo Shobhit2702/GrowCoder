@@ -42,7 +42,9 @@ export const config = {
     },
   },
   cors: {
-    origin: parsedEnv.data.CORS_ORIGIN,
+    origin: parsedEnv.data.CORS_ORIGIN.includes(',')
+      ? parsedEnv.data.CORS_ORIGIN.split(',').map((o) => o.trim())
+      : parsedEnv.data.CORS_ORIGIN,
   },
   openai: {
     apiKey: parsedEnv.data.OPENAI_API_KEY || '',

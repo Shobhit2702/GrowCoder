@@ -10,8 +10,8 @@ export const syncSchema = z.object({
       .min(1, 'Username cannot be empty')
       .max(50, 'Username cannot exceed 50 characters')
       .regex(
-        /^[a-zA-Z0-9_-]+$/,
-        'Username can only contain alphanumeric characters, underscores, and hyphens'
+        /^[a-zA-Z0-9_.-]+$/,
+        'Username can only contain alphanumeric characters, underscores, hyphens, and periods'
       ),
   }),
 });

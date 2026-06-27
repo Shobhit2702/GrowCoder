@@ -18,8 +18,10 @@ const startServer = async () => {
   try {
     await connectDB();
     
-    server = app.listen(config.port, () => {
-      console.log(`🚀 Server running in ${config.env} mode on port ${config.port}`);
+    const PORT = process.env.PORT || 5001;
+    server = app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+      console.log(`Environment: ${config.env}`);
     });
 
     // 2b. Initialize scheduled background sync jobs

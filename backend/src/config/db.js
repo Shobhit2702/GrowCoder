@@ -6,9 +6,8 @@ import { config } from './config.js';
  */
 export const connectDB = async () => {
   try {
-    // Listen for database connection events
     mongoose.connection.on('connected', () => {
-      console.log('✅ MongoDB connected successfully');
+      console.log('MongoDB Connected');
     });
 
     mongoose.connection.on('error', (err) => {

@@ -13,6 +13,9 @@ import AppError from './utils/AppError.js';
 
 const app = express();
 
+// Trust proxy for Render deployment
+app.set('trust proxy', 1);
+
 // 1. HTTP Security headers
 app.use(helmet());
 
@@ -30,6 +33,21 @@ app.use(cors({
 // 4. Request parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Health check endpoints for deployment
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'GrowCode Backend Running',
+  });
+});
+
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'GrowCode Backend Running',
+  });
+});
 
 // 5. Rate limiting for security
 app.use('/api', rateLimiter);
