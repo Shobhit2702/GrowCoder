@@ -1,15 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { 
   ArrowLeft, 
   Code, 
   RefreshCw, 
-  Activity, 
-  CheckCircle2, 
-  Trophy, 
-  Zap, 
   AlertCircle 
 } from 'lucide-react'
+import { apiFetch } from '../config'
 
 const syncLogs = [
   "Contacting LeetCode servers...",
@@ -69,7 +66,7 @@ export default function LoginPage() {
     }, 450)
 
     try {
-      const response = await fetch('http://localhost:5001/api/v1/auth/sync', {
+      const response = await apiFetch('/api/v1/auth/sync', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -254,7 +251,7 @@ export default function LoginPage() {
                       <span className="text-[#22c55e]">system@growcode:~$</span> <span className="text-zinc-100">sync --user {username}</span>
                     </div>
                     {syncLogs.map((log, idx) => (
-                      <div key={idx} className="text-zinc-500" key={`log-${idx}`}>
+                      <div key={`log-${idx}`} className="text-zinc-500">
                         <span>[INFO] </span>{log}
                       </div>
                     ))}

@@ -10,7 +10,7 @@ import {
   ChevronRight
 } from 'lucide-react'
 
-export default function AnalysisTab({ setActiveTab, data, onStartDrill }) {
+export default function AnalysisTab({ data, onStartDrill }) {
   const masteryContainerRef = useRef(null)
   const bottlenecksContainerRef = useRef(null)
 

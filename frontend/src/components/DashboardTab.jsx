@@ -70,7 +70,6 @@ export default function DashboardTab({ isDark, data }) {
     summary: `Your complexity density is currently calibrated at ${metrics.growth}/100. Directing practice towards multi-dimensional memoization is key to breaking ELO barriers.`,
     motivationalInsight: 'Focus on Dynamic Programming optimizations today to unlock up to +85 ELO points in upcoming contests!'
   };
-  const user = { username: profile.username };
 
   // Custom Dot for Rating History peak point (dynamically selected based on actual history size)
   const renderCustomDot = (props) => {

@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 
 import { useEffect } from 'react'
+import { apiFetch } from '../config'
 
 export default function SettingsTab({ isDark, setIsDark, handleLogout, onSettingsChanged, data }) {
   const [username] = useState(() => localStorage.getItem('leetcode_username') || 'alanturing')
@@ -34,7 +35,7 @@ export default function SettingsTab({ isDark, setIsDark, handleLogout, onSetting
 
     const saveDailyTarget = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/v1/dashboard/${username}/settings`, {
+        const response = await apiFetch(`/api/v1/dashboard/${username}/settings`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -61,7 +62,7 @@ export default function SettingsTab({ isDark, setIsDark, handleLogout, onSetting
   const handleSyncNow = async () => {
     setIsSyncing(true)
     try {
-      const response = await fetch('http://localhost:5001/api/v1/auth/sync', {
+      const response = await apiFetch('/api/v1/auth/sync', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

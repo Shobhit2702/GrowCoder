@@ -1,8 +1,4 @@
 import { 
-  Award, 
-  CheckCircle2, 
-  BarChart3, 
-  Flame, 
   Zap, 
   Gauge, 
   Trophy, 
@@ -13,9 +9,7 @@ import {
   Shield,
   Lock,
   Globe,
-  Hourglass,
-  Code,
-  ArrowLeftRight
+  Code
 } from 'lucide-react'
 
 export default function AchievementsTab({ data }) {

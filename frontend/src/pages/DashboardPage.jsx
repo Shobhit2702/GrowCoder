@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { 
   Terminal, 
   Sun,
   Moon,
-  LogOut,
   LayoutDashboard,
   BarChart3,
   MessageSquare,
@@ -22,6 +21,7 @@ import AnalysisTab from '../components/AnalysisTab'
 import CoachTab from '../components/CoachTab'
 import AchievementsTab from '../components/AchievementsTab'
 import SettingsTab from '../components/SettingsTab'
+import { apiFetch } from '../config'
 
 export default function DashboardPage() {
   const navigate = useNavigate()
@@ -44,7 +44,7 @@ export default function DashboardPage() {
     }
   }, [isDark])
 
-  const fetchDashboard = async () => {
+  const fetchDashboard = useCallback(async () => {
     const username = localStorage.getItem('leetcode_username');
     if (!username) {
       navigate('/');
@@ -55,7 +55,7 @@ export default function DashboardPage() {
     setErrorMsg(null);
 
     try {
-      const response = await fetch(`http://localhost:5001/api/v1/dashboard/${username}`);
+      const response = await apiFetch(`/api/v1/dashboard/${username}`);
       const result = await response.json();
 
       if (!response.ok || result.status === 'fail' || result.status === 'error') {
@@ -68,11 +68,11 @@ export default function DashboardPage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [navigate]);
 
   useEffect(() => {
     fetchDashboard();
-  }, [navigate])
+  }, [fetchDashboard])
 
   const onStartDrill = async (topic) => {
     const username = localStorage.getItem('leetcode_username');
@@ -80,7 +80,7 @@ export default function DashboardPage() {
 
     setIsLoading(true);
     try {
-      const response = await fetch(`http://localhost:5001/api/v1/dashboard/${username}/drill`, {
+      const response = await apiFetch(`/api/v1/dashboard/${username}/drill`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
