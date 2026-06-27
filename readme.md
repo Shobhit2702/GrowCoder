@@ -11,13 +11,12 @@ The goal of GrowCode is simple:
 ---
 ## 🎥 Project Demo
 
-[![GrowCode Demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)](https://youtu.be/DVTXqWQCLME)
-## ✨ Features
+[![Watch Demo](https://img.youtube.com/vi/Imn-LvLxv8M/0.jpg)](https://youtu.be/DVTXqWQCLME?si=gfFsQ799_YL_HOas)
 
 ## 🔗 Live Demo
 https://grow-coder.vercel.app/
 ##
-
+## ✨ Features
 ### 🧠 Coding DNA Analysis
 
 Understand your unique coding profile through detailed analysis of:
