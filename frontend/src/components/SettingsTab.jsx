@@ -12,9 +12,11 @@ import {
   CheckCircle2
 } from 'lucide-react'
 
-export default function SettingsTab({ isDark, setIsDark, handleLogout }) {
-  const [username] = useState('alanturing')
-  const [dailyTarget, setDailyTarget] = useState(5)
+import { useEffect } from 'react'
+
+export default function SettingsTab({ isDark, setIsDark, handleLogout, onSettingsChanged, data }) {
+  const [username] = useState(() => localStorage.getItem('leetcode_username') || 'alanturing')
+  const [dailyTarget, setDailyTarget] = useState(() => data?.dailyTarget || 4)
   const [reminderEnabled, setReminderEnabled] = useState(true)
   const [isSyncing, setIsSyncing] = useState(false)
   
@@ -27,12 +29,56 @@ export default function SettingsTab({ isDark, setIsDark, handleLogout }) {
   const [messageSent, setMessageSent] = useState(false)
   const [isSending, setIsSending] = useState(false)
 
-  const handleSyncNow = () => {
+  useEffect(() => {
+    if (!username || dailyTarget === data?.dailyTarget) return;
+
+    const saveDailyTarget = async () => {
+      try {
+        const response = await fetch(`http://localhost:5001/api/v1/dashboard/${username}/settings`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ dailyTarget })
+        });
+        const result = await response.json();
+        if (!response.ok || result.status === 'fail') {
+          throw new Error(result.message || 'Failed to save settings');
+        }
+        if (onSettingsChanged) onSettingsChanged();
+      } catch (err) {
+        console.error('Error saving settings:', err);
+      }
+    };
+
+    const delayDebounce = setTimeout(() => {
+      saveDailyTarget();
+    }, 500);
+
+    return () => clearTimeout(delayDebounce);
+  }, [dailyTarget, username, onSettingsChanged, data]);
+
+  const handleSyncNow = async () => {
     setIsSyncing(true)
-    setTimeout(() => {
-      setIsSyncing(false)
+    try {
+      const response = await fetch('http://localhost:5001/api/v1/auth/sync', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username })
+      });
+      const result = await response.json();
+      if (!response.ok || result.status === 'fail') {
+        throw new Error(result.message || 'Sync failed');
+      }
       alert('Leetcode profile synced successfully!')
-    }, 2000)
+      if (onSettingsChanged) onSettingsChanged();
+    } catch (err) {
+      alert(`Sync error: ${err.message}`);
+    } finally {
+      setIsSyncing(false)
+    }
   }
 
   const handleSendMessage = (e) => {

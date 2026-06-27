@@ -112,18 +112,27 @@ Monitor your improvement through:
 
 ---
 
-## 🏗 Current folder structure
-```
-growcode/
+## 🏗 Folder Structure
+```text
+GrowCoder/
 │
-├── frontend/
+├── backend/                  # Express.js REST API
 │   ├── src/
-│   ├── public/
-│   └── ...
+│   │   ├── controllers/      # Route request controllers
+│   │   ├── models/           # MongoDB schemas (User, AIAnalysis, etc.)
+│   │   ├── routes/           # Express endpoints
+│   │   └── services/         # LeetCode API, Analytics & OpenAI services
+│   └── package.json
 │
-└── README.md
-
+└── frontend/                 # React.js SPA (Vite)
+    ├── src/
+    │   ├── components/       # UI Sub-tabs (Dashboard, Coach, Analysis, etc.)
+    │   ├── pages/            # Login, Dashboard main pages
+    │   └── main.jsx
+    └── package.json
 ```
+
+---
 
 ## 🎯 Why GrowCode?
 
@@ -145,76 +154,66 @@ GrowCode goes further and answers:
 
 ## 🚀 Current Development Status
 
-### Phase 1 (In Progress)
-
+### Phase 1 (Completed)
 * [x] Landing Page
 * [x] Login Page
-* [ ] Dashboard UI
-* [ ] User Authentication
+* [x] Dashboard UI
+* [x] User Authentication & Synced Session management
 
-### Phase 2
+### Phase 2 (Completed)
+* [x] LeetCode GraphQL API integration
+* [x] Performance Analytics Dashboard
+* [x] Data Processing & Metrics Normalization Layer
 
-* [ ] LeetCode Integration
-* [ ] Analytics Dashboard
-* [ ] Data Processing Layer
+### Phase 3 (Completed)
+* [x] Coding DNA Analysis
+* [x] Weakness & Bottleneck Detection Engine
+* [x] OpenAI Structured Output Summary Insights
 
-### Phase 3
-
-* [ ] Coding DNA Analysis
-* [ ] Weakness Detection Engine
-* [ ] AI Insights
-
-### Phase 4
-
-* [ ] Personalized Recommendations
-* [ ] Daily Growth Planner
-* [ ] Progress Tracking
+### Phase 4 (Completed)
+* [x] Personalized Recommendations & Dynamic Slugs routing
+* [x] Daily Growth Planner & Target Checklist
+* [x] Timed Practice Sessions & Metrics Aggregator
 
 ---
 
-## ⚙️ Installation
+## ⚙️ Installation & Setup
 
-Clone the repository:
+### 1. Prerequisite Environment variables
 
-```bash
-git clone https://github.com/your-username/growcode.git
+Create a `.env` file inside the `backend/` folder:
+```env
+PORT=5001
+MONGODB_URI=mongodb://127.0.0.1:27017/growcode
+OPENAI_API_KEY=your_openai_api_key
 ```
 
-Navigate to the project directory:
-
+### 2. Run the Backend Server
 ```bash
-cd growcode
-```
-
-Install dependencies:
-
-```bash
+cd backend
 npm install
-```
-
-Start the development server:
-
-```bash
 npm run dev
 ```
+The backend server runs on `http://localhost:5001`.
+
+### 3. Run the Frontend Client
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+The React development server runs on `http://localhost:5173`.
 
 ---
 
 ## 🔮 Future Roadmap
 
-* AI Coding Coach
-* Interview Readiness Score
-* Contest Performance Analytics
-* Company-Specific Preparation Plans
-* Multi-Platform Support
-* Weekly Progress Reports
-* Smart Revision System
+* Interview Readiness Score calculator
+* Company-Specific targeted preparation plans
+* Weekly Performance Analytics email reports
+* Multi-platform integration (Codeforces, HackerRank)
 
 ---
-
-
-
-
 
 ## 👨‍💻 Author
 

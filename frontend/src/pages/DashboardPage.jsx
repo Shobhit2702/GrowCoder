@@ -26,9 +26,11 @@ import SettingsTab from '../components/SettingsTab'
 export default function DashboardPage() {
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('dashboard')
-  
-  // Theme state switcher - default to true to match dark mode mockup
   const [isDark, setIsDark] = useState(true)
+  
+  const [dashboardData, setDashboardData] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [errorMsg, setErrorMsg] = useState(null)
 
   useEffect(() => {
     if (isDark) {
@@ -42,30 +44,116 @@ export default function DashboardPage() {
     }
   }, [isDark])
 
+  const fetchDashboard = async () => {
+    const username = localStorage.getItem('leetcode_username');
+    if (!username) {
+      navigate('/');
+      return;
+    }
+
+    setIsLoading(true);
+    setErrorMsg(null);
+
+    try {
+      const response = await fetch(`http://localhost:5001/api/v1/dashboard/${username}`);
+      const result = await response.json();
+
+      if (!response.ok || result.status === 'fail' || result.status === 'error') {
+        throw new Error(result.message || 'Failed to retrieve dashboard data');
+      }
+
+      setDashboardData(result.data);
+    } catch (err) {
+      setErrorMsg(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchDashboard();
+  }, [navigate])
+
+  const onStartDrill = async (topic) => {
+    const username = localStorage.getItem('leetcode_username');
+    if (!username) return;
+
+    setIsLoading(true);
+    try {
+      const response = await fetch(`http://localhost:5001/api/v1/dashboard/${username}/drill`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ topic })
+      });
+      const result = await response.json();
+      if (!response.ok || result.status === 'fail') {
+        throw new Error(result.message || 'Failed to start topic drill');
+      }
+      setDashboardData(result.data);
+      setActiveTab('coach');
+    } catch (err) {
+      alert(`Drill selection error: ${err.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleLogout = () => {
+    localStorage.removeItem('leetcode_username');
     navigate('/')
   }
 
   // Main selector to render active tab content
   const renderTabContent = () => {
+    if (!dashboardData) return null;
+    
     switch(activeTab) {
       case 'analysis':
-        return <AnalysisTab setActiveTab={setActiveTab} />
+        return <AnalysisTab setActiveTab={setActiveTab} data={dashboardData} onStartDrill={onStartDrill} />
       case 'coach':
-        return <CoachTab />
+        return <CoachTab data={dashboardData} />
       case 'achievements':
-        return <AchievementsTab />
+        return <AchievementsTab data={dashboardData} />
       case 'settings':
-        return <SettingsTab isDark={isDark} setIsDark={setIsDark} handleLogout={handleLogout} />
+        return <SettingsTab isDark={isDark} setIsDark={setIsDark} handleLogout={handleLogout} onSettingsChanged={fetchDashboard} data={dashboardData} />
       case 'dashboard':
       default:
-        return <DashboardTab isDark={isDark} />
+        return <DashboardTab isDark={isDark} data={dashboardData} />
     }
   }
 
   const isAnalysisTab = activeTab === 'analysis'
   const isCoachTab = activeTab === 'coach'
   const isOperatorSidebar = isAnalysisTab || isCoachTab
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#06080f] text-zinc-150 flex flex-col justify-center items-center font-mono text-sm leading-relaxed p-6">
+        <div className="w-12 h-12 rounded-lg border-2 border-blue-500 border-t-transparent animate-spin mb-4" />
+        <div className="tracking-widest animate-pulse font-bold text-[11px] text-zinc-400">CONNECTING TO GROWCODE CLUSTER...</div>
+        <div className="text-[9px] text-zinc-650 mt-2 select-none tracking-widest font-semibold uppercase">SECURE_CHANNEL // VERIFY_IDENTITY</div>
+      </div>
+    );
+  }
+
+  if (errorMsg) {
+    return (
+      <div className="min-h-screen bg-[#06080f] text-zinc-150 flex flex-col justify-center items-center font-mono text-sm leading-relaxed p-6">
+        <div className="text-rose-500 text-3xl mb-4 font-black">💥 LINK FAILURE</div>
+        <div className="max-w-md text-center bg-rose-950/10 border border-rose-900/30 p-6 rounded-xl space-y-4 shadow-2xl">
+          <p className="text-xs text-zinc-400 font-mono tracking-wide leading-relaxed">{errorMsg}</p>
+          <button 
+            onClick={() => navigate('/')}
+            className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-2.5 rounded-lg font-mono text-xs cursor-pointer shadow-md active:scale-95 transition-all select-none uppercase tracking-wide border border-blue-400/25"
+          >
+            [ RETRY PROFILE SYNC ]
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`min-h-screen flex font-sans transition-colors duration-300 ${isDark ? 'dark bg-[#06080f] text-zinc-100' : 'light bg-zinc-50 text-zinc-900'}`}>

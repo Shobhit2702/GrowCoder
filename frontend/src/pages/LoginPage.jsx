@@ -39,35 +39,82 @@ export default function LoginPage() {
   const [isSyncing, setIsSyncing] = useState(false)
   const [syncStep, setSyncStep] = useState(0)
   const [syncComplete, setSyncComplete] = useState(false)
+  const [errorMsg, setErrorMsg] = useState(null)
+  const [syncStats, setSyncStats] = useState({
+    solved: 0,
+    rating: 1500,
+    badge: 'N/A'
+  })
 
-  useEffect(() => {
-    let interval
-    if (isSyncing) {
-      setSyncStep(0)
-      setSyncComplete(false)
-      interval = setInterval(() => {
-        setSyncStep((prev) => {
-          if (prev >= syncLogs.length - 1) {
-            clearInterval(interval)
-            setSyncComplete(true)
-            return prev
-          }
-          return prev + 1
-        })
-      }, 950)
-    }
-    return () => clearInterval(interval)
-  }, [isSyncing])
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!username.trim()) return
+    const trimmedUser = username.trim()
+    if (!trimmedUser) return
+
     setIsSyncing(true)
+    setErrorMsg(null)
+    setSyncStep(0)
+    setSyncComplete(false)
+
+    // Progress visually through the initial boot steps while fetching
+    let currentStep = 0
+    const logInterval = setInterval(() => {
+      setSyncStep((prev) => {
+        if (prev < 3) { // Autoplay the first few steps while waiting
+          currentStep = prev + 1
+          return prev + 1
+        }
+        return prev
+      })
+    }, 450)
+
+    try {
+      const response = await fetch('http://localhost:5001/api/v1/auth/sync', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: trimmedUser })
+      });
+
+      clearInterval(logInterval)
+
+      const result = await response.json();
+
+      if (!response.ok || result.status === 'fail' || result.status === 'error') {
+        throw new Error(result.message || 'Synchronization failed');
+      }
+
+      // Store LeetCode profile statistics
+      const solved = result.data.solvedStats?.all || 0;
+      const rating = result.data.contest?.currentRating || 0;
+      const ranking = result.data.profile?.ranking;
+      setSyncStats({
+        solved,
+        rating,
+        badge: ranking ? `Rank #${ranking}` : 'None'
+      });
+
+      // Save username to local storage
+      localStorage.setItem('leetcode_username', trimmedUser);
+
+      // Progress through remaining steps organically with short delay
+      for (let step = currentStep; step < syncLogs.length; step++) {
+        setSyncStep(step);
+        await new Promise((r) => setTimeout(r, 200));
+      }
+      setSyncComplete(true);
+    } catch (err) {
+      clearInterval(logInterval);
+      setErrorMsg(err.message);
+      setIsSyncing(false);
+    }
   }
 
   const handleReset = () => {
     setIsSyncing(false)
     setSyncComplete(false)
+    setErrorMsg(null)
     setUsername('')
   }
 
@@ -118,8 +165,7 @@ export default function LoginPage() {
 
             {/* Terminal Body */}
             <div className="p-6 space-y-4 text-left">
-              
-              {!isSyncing ? (
+                         {!isSyncing && !syncComplete ? (
                 /* STATE 1: Initial Form State */
                 <>
                   <div className="space-y-1">
@@ -154,9 +200,15 @@ export default function LoginPage() {
                       [ EXECUTE SYNC ]
                     </button>
                   </form>
+                  {errorMsg && (
+                    <div className="text-rose-500 font-mono text-[11px] mt-2 flex items-start gap-1.5 bg-rose-950/15 border border-rose-900/30 p-2.5 rounded-lg">
+                      <AlertCircle className="w-4 h-4 shrink-0 text-rose-500 mt-0.5" />
+                      <span><strong>[ERROR]:</strong> {errorMsg}</span>
+                    </div>
+                  )}
                   <div className="text-zinc-700 text-[10px] pt-1">v4.0.2-stable</div>
                 </>
-              ) : !syncComplete ? (
+              ) : isSyncing && !syncComplete ? (
                 /* STATE 2: Syncing Profile Console logs */
                 <>
                   <div className="space-y-1">
@@ -202,18 +254,18 @@ export default function LoginPage() {
                       <span className="text-[#22c55e]">system@growcode:~$</span> <span className="text-zinc-100">sync --user {username}</span>
                     </div>
                     {syncLogs.map((log, idx) => (
-                      <div key={idx} className="text-zinc-500">
+                      <div key={idx} className="text-zinc-500" key={`log-${idx}`}>
                         <span>[INFO] </span>{log}
                       </div>
                     ))}
                   </div>
 
                   <div className="pt-3 border-t border-zinc-900 space-y-1.5 text-zinc-400">
-                    <div>[OK] <span className="text-emerald-400">247 solved questions</span> parsed successfully.</div>
+                    <div>[OK] <span className="text-emerald-400">{syncStats.solved} solved questions</span> parsed successfully.</div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-1 mt-1 text-[12px]">
-                      <div>DNA: <span className="text-blue-400 font-semibold">Speedster</span></div>
-                      <div>WEAKNESS: <span className="text-rose-400 font-semibold">Graphs</span></div>
-                      <div>RATING: <span className="text-amber-400 font-semibold">1,842</span></div>
+                      <div>DNA: <span className="text-blue-400 font-semibold">{syncStats.rating > 2000 ? 'Guardian' : syncStats.rating > 1700 ? 'Knight' : 'Coder'}</span></div>
+                      <div>BADGE: <span className="text-rose-400 font-semibold text-ellipsis overflow-hidden whitespace-nowrap inline-block max-w-[85px]" title={syncStats.badge}>{syncStats.badge}</span></div>
+                      <div>RATING: <span className="text-amber-400 font-semibold">{syncStats.rating.toLocaleString()}</span></div>
                     </div>
                     <div className="text-emerald-400 font-bold pt-1">[OK] Authorization tunnel established.</div>
                   </div>

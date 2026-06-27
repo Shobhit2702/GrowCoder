@@ -18,46 +18,64 @@ import {
   CartesianGrid
 } from 'recharts'
 
-// Mock Data for Contest Rating Graph
-const ratingHistory = [
-  { week: 'Wk 1', rating: 1500 },
-  { week: 'Wk 2', rating: 1480 },
-  { week: 'Wk 3', rating: 1530 },
-  { week: 'Wk 4', rating: 1510 },
-  { week: 'Wk 5', rating: 1590 },
-  { week: 'Wk 6', rating: 1680 },
-  { week: 'Wk 7', rating: 1720 },
-  { week: 'Wk 8', rating: 1784 }
-]
-
-// Mock Data for Topic Distribution (Donut Chart)
-const topicData = [
-  { name: 'Arrays', value: 45, color: '#2563eb' },
-  { name: 'DP', value: 25, color: '#8b5cf6' },
-  { name: 'Graphs', value: 30, color: '#10b981' }
-]
-
-// Mock Data for Solved Trend (30D) (Bar Chart)
-const solvedTrendData = [
-  { name: 'W1.1', solved: 4, active: false },
-  { name: 'W1.2', solved: 7, active: false },
-  { name: 'W2.1', solved: 3, active: false },
-  { name: 'W2.2', solved: 9, active: false },
-  { name: 'W3.1', solved: 6, active: true },
-  { name: 'W3.2', solved: 8, active: true },
-  { name: 'W4.1', solved: 10, active: true },
-  { name: 'W4.2', solved: 5, active: false },
-  { name: 'W4.3', solved: 4, active: false },
-  { name: 'W4.4', solved: 8, active: false }
-]
-
-export default function DashboardTab({ isDark }) {
+export default function DashboardTab({ isDark, data }) {
   const [ratingFilter, setRatingFilter] = useState('1M')
 
-  // Custom Dot for Rating History peak point
+  if (!data) return null;
+  const { profile, solvedStats, contest, activity, topics, aiInsight } = data;
+
+  const metrics = {
+    solved: solvedStats.all || 0,
+    easy: solvedStats.easy || 0,
+    medium: solvedStats.medium || 0,
+    hard: solvedStats.hard || 0,
+    rating: contest.currentRating || 0,
+    globalRanking: contest.contestRank || 'N/A',
+    topPercentage: 100,
+    badge: null,
+    consistency: activity.totalActiveDays || 0,
+    growth: solvedStats.growth || 0,
+    attendedContestsCount: contest.contestsParticipated || 0
+  };
+
+  const ratingHistory = contest.ratingHistory || [];
+  const solvedTrendData = activity.solvedTrendData || [];
+  const recentSubmissions = activity.recentSubmissions || [];
+  const upcomingContest = contest.upcomingContest || { title: 'Upcoming Contest', startTime: '' };
+
+  let topicData = [];
+  if (Array.isArray(topics)) {
+    if (topics.length <= 4) {
+      topicData = topics;
+    } else {
+      const top4 = topics.slice(0, 4);
+      const otherCount = topics.slice(4).reduce((acc, t) => acc + t.count, 0);
+      const otherValue = topics.slice(4).reduce((acc, t) => acc + t.value, 0);
+      topicData = [
+        ...top4,
+        {
+          name: 'Other',
+          count: otherCount,
+          value: otherValue,
+          color: '#a1a1aa'
+        }
+      ];
+    }
+  }
+
+  const activeInsight = aiInsight || {
+    codingDNA: 'Recursion Tactician',
+    strength: 'Solid foundational knowledge in core linear data structures and dynamic array manipulations.',
+    weakness: 'Struggles to transition top-down equations to bottom-up dynamic programming tabulation.',
+    summary: `Your complexity density is currently calibrated at ${metrics.growth}/100. Directing practice towards multi-dimensional memoization is key to breaking ELO barriers.`,
+    motivationalInsight: 'Focus on Dynamic Programming optimizations today to unlock up to +85 ELO points in upcoming contests!'
+  };
+  const user = { username: profile.username };
+
+  // Custom Dot for Rating History peak point (dynamically selected based on actual history size)
   const renderCustomDot = (props) => {
     const { cx, cy, index } = props;
-    if (index === 7) { // Wk 8 is the peak at rating 1784
+    if (index === ratingHistory.length - 1) { 
       return (
         <g key="rating-peak-dot">
           <circle cx={cx} cy={cy} r={8} fill="#2563eb" opacity={0.4} className="animate-pulse" />
@@ -78,7 +96,7 @@ export default function DashboardTab({ isDark }) {
         <div>
           <span className="text-[10px] tracking-widest text-zinc-500 uppercase font-mono font-bold">SYSTEM STATUS</span>
           <h1 className="font-display font-black text-4xl text-zinc-900 dark:text-white mt-1.5 flex items-center">
-            Hello, Coder.<span className="text-[#3b82f6] animate-pulse">_</span>
+            Hello, {profile?.username || 'Coder'}.<span className="text-[#3b82f6] animate-pulse">_</span>
           </h1>
         </div>
         <div className="mt-3.5 sm:mt-0 flex items-center bg-zinc-100 dark:bg-black/45 border border-zinc-200 dark:border-[#171c26] px-4 py-2 rounded-full text-[10px] font-mono text-zinc-500 dark:text-zinc-400 gap-2.5 shadow-sm transition-colors">
@@ -105,10 +123,10 @@ export default function DashboardTab({ isDark }) {
               
               <div>
                 <span className="text-[8.5px] tracking-wider text-zinc-550 uppercase font-mono font-bold">SOLVED</span>
-                <div className="text-2xl font-display font-black text-zinc-900 dark:text-white mt-1 leading-none">768</div>
+                <div className="text-2xl font-display font-black text-zinc-900 dark:text-white mt-1 leading-none">{metrics.solved.toLocaleString()}</div>
               </div>
-              <div className="text-[9.5px] text-emerald-600 dark:text-emerald-400 font-mono font-semibold">
-                +12 this week
+              <div className="text-[8.5px] text-zinc-450 font-mono font-semibold">
+                E: {metrics.easy} | M: {metrics.medium} | H: {metrics.hard}
               </div>
             </div>
 
@@ -119,10 +137,10 @@ export default function DashboardTab({ isDark }) {
               
               <div>
                 <span className="text-[8.5px] tracking-wider text-zinc-555 uppercase font-mono font-bold">RATING</span>
-                <div className="text-2xl font-display font-black text-zinc-900 dark:text-white mt-1 leading-none">1784</div>
+                <div className="text-2xl font-display font-black text-zinc-900 dark:text-white mt-1 leading-none">{metrics.rating.toLocaleString()}</div>
               </div>
-              <div className="text-[9.5px] text-zinc-500 font-mono">
-                Top 5%
+              <div className="text-[8.5px] text-zinc-450 font-mono font-semibold truncate" title={metrics.globalRanking ? `Rank: ${metrics.globalRanking.toLocaleString()}` : `Top ${metrics.topPercentage}%`}>
+                {metrics.globalRanking ? `Rank: ${metrics.globalRanking.toLocaleString()}` : `Top ${metrics.topPercentage}%`}
               </div>
             </div>
 
@@ -133,10 +151,10 @@ export default function DashboardTab({ isDark }) {
               
               <div>
                 <span className="text-[8.5px] tracking-wider text-zinc-555 uppercase font-mono font-bold">CONSISTENCY</span>
-                <div className="text-2xl font-display font-black text-zinc-900 dark:text-white mt-1 leading-none">120</div>
+                <div className="text-2xl font-display font-black text-zinc-900 dark:text-white mt-1 leading-none">{metrics.consistency}</div>
               </div>
-              <div className="text-[9.5px] text-zinc-500 font-mono">
-                days
+              <div className="text-[8.5px] text-zinc-450 font-mono font-semibold">
+                days active
               </div>
             </div>
 
@@ -147,10 +165,10 @@ export default function DashboardTab({ isDark }) {
               
               <div>
                 <span className="text-[8.5px] tracking-wider text-zinc-555 uppercase font-mono font-bold">GROWTH</span>
-                <div className="text-2xl font-display font-black text-zinc-900 dark:text-white mt-1 leading-none">91/100</div>
+                <div className="text-2xl font-display font-black text-zinc-900 dark:text-white mt-1 leading-none">{metrics.growth}/100</div>
               </div>
               <div className="w-full bg-zinc-200 dark:bg-zinc-900 h-1 rounded-full overflow-hidden border border-zinc-300 dark:border-zinc-800/40">
-                <div className="bg-[#2563eb] h-full rounded-full" style={{ width: '91%' }} />
+                <div className="bg-[#2563eb] h-full rounded-full" style={{ width: `${metrics.growth}%` }} />
               </div>
             </div>
 
@@ -168,7 +186,7 @@ export default function DashboardTab({ isDark }) {
                   <span className="text-[10px] tracking-widest text-zinc-500 dark:text-zinc-400 uppercase font-mono font-bold">CONTEST RATING HISTORY</span>
                 </div>
                 <div className="text-[11px] font-mono text-zinc-500 mt-1 flex items-center gap-1.5">
-                  LATEST: <span className="font-bold text-zinc-800 dark:text-white">1,784</span> <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-0.5">↑ 42</span>
+                  LATEST: <span className="font-bold text-zinc-800 dark:text-white">{metrics.rating.toLocaleString()}</span> <span className="text-zinc-500 font-normal">| Contests: {metrics.attendedContestsCount}</span>
                 </div>
               </div>
               
@@ -189,39 +207,46 @@ export default function DashboardTab({ isDark }) {
               </div>
             </div>
 
-            <div className="h-56 w-full -mx-4">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={ratingHistory} margin={{ top: 15, right: 15, left: -25, bottom: 5 }}>
-                  <defs>
-                    <linearGradient id="cyberRatingGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#2563eb" stopOpacity={0.25} />
-                      <stop offset="95%" stopColor="#2563eb" stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid stroke={isDark ? '#171c26' : '#e4e4e7'} strokeDasharray="3 3" opacity={0.35} vertical={false} />
-                  <Tooltip 
-                    contentStyle={{ 
-                      background: isDark ? '#09090b' : '#ffffff', 
-                      borderColor: isDark ? '#171c26' : '#e4e4e7',
-                      borderRadius: '8px',
-                      color: isDark ? '#f4f4f5' : '#18181b',
-                      fontSize: '11px',
-                      fontFamily: 'monospace'
-                    }} 
-                  />
-                  <Area 
-                    type="monotone" 
-                    dataKey="rating" 
-                    stroke="#2563eb" 
-                    strokeWidth={2.5}
-                    fillOpacity={1} 
-                    fill="url(#cyberRatingGradient)" 
-                    dot={renderCustomDot}
-                    activeDot={{ r: 5, strokeWidth: 0, fill: '#2563eb' }}
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
+            {metrics.attendedContestsCount === 0 || ratingHistory.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-56 font-mono text-[11px] text-zinc-500 border border-dashed border-zinc-200 dark:border-zinc-800/65 rounded-lg bg-zinc-50/50 dark:bg-black/10">
+                <span className="text-[#3b82f6] text-lg mb-1.5 font-bold">📊</span>
+                <span>No contest participated yet.</span>
+              </div>
+            ) : (
+              <div className="h-56 w-full -mx-4">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={ratingHistory} margin={{ top: 15, right: 15, left: -25, bottom: 5 }}>
+                    <defs>
+                      <linearGradient id="cyberRatingGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#2563eb" stopOpacity={0.25} />
+                        <stop offset="95%" stopColor="#2563eb" stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid stroke={isDark ? '#171c26' : '#e4e4e7'} strokeDasharray="3 3" opacity={0.35} vertical={false} />
+                    <Tooltip 
+                      contentStyle={{ 
+                        background: isDark ? '#09090b' : '#ffffff', 
+                        borderColor: isDark ? '#171c26' : '#e4e4e7',
+                        borderRadius: '8px',
+                        color: isDark ? '#f4f4f5' : '#18181b',
+                        fontSize: '11px',
+                        fontFamily: 'monospace'
+                      }} 
+                    />
+                    <Area 
+                      type="monotone" 
+                      dataKey="rating" 
+                      stroke="#2563eb" 
+                      strokeWidth={2.5}
+                      fillOpacity={1} 
+                      fill="url(#cyberRatingGradient)" 
+                      dot={renderCustomDot}
+                      activeDot={{ r: 5, strokeWidth: 0, fill: '#2563eb' }}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            )}
 
             {/* Simulated Command-line footer inside line chart */}
             <div className="flex justify-between items-center border-t border-zinc-200 dark:border-[#171c26]/60 pt-3 mt-1 text-[9.5px] font-mono">
@@ -295,24 +320,27 @@ export default function DashboardTab({ isDark }) {
 
         {/* RIGHT COLUMN: AI Coach Insights & Topic Distributions */}
         <div className="lg:col-span-1 space-y-6">
-          
-          {/* AI INSIGHT OPTIMIZATION NEEDED */}
+                  {/* AI INSIGHT CARD */}
           <div className="bg-white dark:bg-[#0b0e14]/50 border border-zinc-200 dark:border-[#171c26] rounded-xl p-5 relative overflow-hidden shadow-2xl space-y-3.5 transition-colors">
             <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-500/50" />
             <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-500/50" />
             
             <div className="flex items-center gap-2 font-mono">
               <Cpu className="w-4 h-4 text-[#3b82f6] animate-pulse" />
-              <span className="text-[10px] font-bold tracking-widest text-zinc-600 dark:text-zinc-300 uppercase leading-none mt-0.5">AI INSIGHT: OPTIMIZATION NEEDED</span>
+              <span className="text-[10px] font-bold tracking-widest text-zinc-650 dark:text-zinc-300 uppercase leading-none mt-0.5">
+                AI PROFILE: {activeInsight.codingDNA.toUpperCase()}
+              </span>
             </div>
 
-            <p className="text-zinc-650 dark:text-zinc-400 text-[12px] leading-relaxed">
-              Your <strong className="text-blue-600 dark:text-blue-400 font-bold">Dynamic Programming efficiency</strong> is peaking, but Graph traversal remains a bottleneck in high-stress contests. Recommend focus on DFS/BFS variations.
+            <p className="text-zinc-650 dark:text-zinc-400 text-[12px] leading-relaxed text-left">
+              {activeInsight.summary} <br />
+              <span className="mt-2 block"><strong className="text-[#3b82f6] font-bold">STRENGTH:</strong> {activeInsight.strength}</span>
+              <span className="mt-1 block"><strong className="text-rose-500 dark:text-rose-455 font-bold">WEAKNESS:</strong> {activeInsight.weakness}</span>
             </p>
 
-            <div className="flex items-center gap-2 text-[9px] font-mono text-[#10b981] dark:text-emerald-400 bg-emerald-500/5 border border-emerald-200 dark:border-emerald-500/10 rounded px-2.5 py-1.5 w-fit font-bold">
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>SUGGESTED: PROJECT-AETHER-MODULE-04</span>
+            <div className="flex items-center gap-2 text-[9.5px] font-mono text-[#10b981] dark:text-emerald-400 bg-emerald-500/5 border border-emerald-250 dark:border-emerald-500/15 rounded px-2.5 py-1.5 w-fit font-bold text-left">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+              <span>ADVICE: {activeInsight.motivationalInsight.toUpperCase()}</span>
             </div>
           </div>
 
@@ -326,7 +354,7 @@ export default function DashboardTab({ isDark }) {
             <div className="flex items-center justify-between gap-4">
               <div className="relative w-36 h-36 flex items-center justify-center shrink-0">
                 <div className="absolute flex flex-col items-center justify-center z-10 text-center">
-                  <span className="text-3xl font-display font-black text-zinc-900 dark:text-white leading-none">14</span>
+                  <span className="text-3xl font-display font-black text-zinc-900 dark:text-white leading-none">{topicData.length}</span>
                   <span className="text-[8px] text-zinc-500 font-mono tracking-widest uppercase mt-1">TAGS</span>
                 </div>
                 <ResponsiveContainer width="100%" height="100%">
@@ -353,7 +381,7 @@ export default function DashboardTab({ isDark }) {
                   <div key={idx} className="flex items-center justify-between text-[11px] font-mono">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
-                      <span className="text-zinc-600 dark:text-zinc-450">{item.name}</span>
+                      <span className="text-zinc-600 dark:text-zinc-450 select-none">{item.name}</span>
                     </div>
                     <span className="text-zinc-800 dark:text-white font-semibold">{item.value}%</span>
                   </div>
@@ -375,30 +403,44 @@ export default function DashboardTab({ isDark }) {
                   <Calendar className="w-4.5 h-4.5" />
                 </div>
                 <div className="text-left font-mono">
-                  <h4 className="text-xs font-bold text-zinc-900 dark:text-white">Weekly Contest 402</h4>
-                  <p className="text-[9.5px] text-zinc-500 mt-1">Starts in 14h 22m</p>
+                  <h4 className="text-xs font-bold text-zinc-900 dark:text-white leading-tight">{upcomingContest.title}</h4>
+                  <p className="text-[9.5px] text-[#22c55e] dark:text-emerald-400 font-bold mt-1.5 animate-pulse">
+                    {(() => {
+                      const diffMs = new Date(upcomingContest.startTime) - new Date();
+                      if (diffMs <= 0) return "Contest active!";
+                      const diffHrs = Math.floor(diffMs / (3600 * 1000));
+                      const diffMins = Math.floor((diffMs % (3600 * 1000)) / (60 * 1000));
+                      return `Starts in ${diffHrs}h ${diffMins}m`;
+                    })()}
+                  </p>
                 </div>
               </div>
               <button 
                 className="bg-[#2563eb] hover:bg-[#3b82f6] text-white font-mono font-bold text-[9.5px] px-3.5 py-2 rounded transition-all active:scale-95 cursor-pointer shadow-md shadow-blue-600/15"
-                onClick={() => alert('Registered successfully for Weekly Contest 402!')}
+                onClick={() => window.open(contest.registrationUrl || 'https://leetcode.com/contest', '_blank')}
               >
                 REGISTER
               </button>
             </div>
           </div>
 
-          {/* Console readout status lines */}
-          <div className="pt-4 border-t border-zinc-200 dark:border-[#171c26]/60 flex justify-between items-end font-mono text-[9.5px] text-zinc-500 dark:text-zinc-550 leading-relaxed shrink-0 transition-colors">
-            <div className="space-y-0.5 text-left">
-              <div className="text-zinc-650">&gt; Fetching remote_origin...</div>
-              <div className="text-zinc-650">&gt; Synchronization complete.</div>
-              <div className="text-emerald-500">&gt; Neural Link: STABLE [103%]</div>
-            </div>
-            <div className="space-y-0.5 text-right font-semibold">
-              <div>MEMORY_USAGE: 4.2GB / 16GB</div>
-              <div>CPU_THREADS: 8/8 ACTIVE</div>
-              <div className="text-zinc-650">SESSION_ID: GH_8273_XK_01</div>
+          {/* Console readout status lines showing Recent Submissions */}
+          <div className="pt-4 border-t border-zinc-200 dark:border-[#171c26]/60 flex flex-col gap-2 font-mono text-[9.5px] text-zinc-550 transition-colors">
+            <div className="space-y-1.5 text-left font-mono">
+              <div className="text-[#3b82f6] font-bold select-none uppercase tracking-wider border-b border-zinc-200 dark:border-[#171c26]/40 pb-1 flex items-center gap-1.5 mb-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6] animate-pulse" />
+                Recent AC Submissions
+              </div>
+              {recentSubmissions && recentSubmissions.length > 0 ? (
+                recentSubmissions.slice(0, 4).map((sub, i) => (
+                  <div key={sub.id || i} className="text-zinc-550 flex justify-between select-none">
+                    <span className="text-zinc-700 dark:text-zinc-350 truncate max-w-[170px]" title={sub.title}>&gt; {sub.title}</span>
+                    <span className="text-zinc-500">{new Date(sub.timestamp).toLocaleDateString(undefined, {month: 'short', day: 'numeric'})}</span>
+                  </div>
+                ))
+              ) : (
+                <div className="text-zinc-650 italic select-none">&gt; No recent activity synced.</div>
+              )}
             </div>
           </div>
 
