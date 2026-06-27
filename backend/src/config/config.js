@@ -17,7 +17,7 @@ const envVarsSchema = z.object({
     required_error: 'MONGODB_URI is required',
   }).url('MONGODB_URI must be a valid URL starting with mongodb:// or mongodb+srv://'),
   CORS_ORIGIN: z.string().default('http://localhost:5173'),
-  OPENAI_API_KEY: z.string().optional(),
+  GEMINI_API_KEY: z.string().optional(),
   SYNC_JOB_INTERVAL_MS: z.coerce.number().default(86400000),
 });
 
@@ -46,8 +46,8 @@ export const config = {
       ? parsedEnv.data.CORS_ORIGIN.split(',').map((o) => o.trim())
       : parsedEnv.data.CORS_ORIGIN,
   },
-  openai: {
-    apiKey: parsedEnv.data.OPENAI_API_KEY || '',
+  gemini: {
+    apiKey: parsedEnv.data.GEMINI_API_KEY || '',
   },
   syncJobIntervalMs: parsedEnv.data.SYNC_JOB_INTERVAL_MS,
 };

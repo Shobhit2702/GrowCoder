@@ -689,17 +689,17 @@ class AnalyticsService {
   }
   /**
    * Generates AI analytics for a user based on their LeetCode statistics.
-   * If OpenAI integration is missing/unconfigured, falls back gracefully to a heuristic generator.
+   * If Gemini integration is missing/unconfigured, falls back gracefully to a heuristic generator.
    * 
    * @param {Object} userMetrics - Sync data returned by LeetCodeService
    * @returns {Promise<Object>} Formatted AI insights object matching schema
    */
   async generateUserAnalytics(userMetrics, dailyTarget = 4) {
-    const hasKey = config.openai.apiKey && config.openai.apiKey !== 'PLACEHOLDER_KEY' && config.openai.apiKey.trim() !== '';
+    const hasKey = config.gemini.apiKey && config.gemini.apiKey !== 'PLACEHOLDER_KEY' && config.gemini.apiKey.trim() !== '';
 
     if (hasKey) {
       try {
-        console.log(`🤖 Requesting OpenAI analysis for LeetCode profile: ${userMetrics.username}...`);
+        console.log(`🤖 Requesting Gemini analysis for LeetCode profile: ${userMetrics.username}...`);
         const systemPrompt = SYSTEM_PROMPT;
         let userPrompt = createUserPrompt(userMetrics);
         userPrompt += `\n\nIMPORTANT: You must generate EXACTLY ${dailyTarget} recommended problems in the 'recommendations' array, and exactly ${dailyTarget} tasks in the 'checklist' array matching these recommended problems.`;
@@ -714,14 +714,14 @@ class AnalyticsService {
           dynamicSchema
         );
 
-        console.log('✅ OpenAI analysis completed successfully.');
+        console.log('✅ Gemini analysis completed successfully.');
         return aiOutput;
       } catch (error) {
-        console.warn('⚠️ OpenAI API call failed. Falling back to offline heuristics generator.', error.message);
+        console.warn('⚠️ Gemini API call failed. Falling back to offline heuristics generator.', error.message);
         // Fall through to offline heuristic builder
       }
     } else {
-      console.log('ℹ️ OpenAI API key not configured. Using offline heuristics generator.');
+      console.log('ℹ️ Gemini API key not configured. Using offline heuristics generator.');
     }
 
     // Offline dynamic builder using the user's actual profile statistics
@@ -730,18 +730,18 @@ class AnalyticsService {
 
   /**
    * Generates dashboard summary AI insights.
-   * If OpenAI is missing, falls back to a heuristic builder.
+   * If Gemini is missing, falls back to a heuristic builder.
    * 
    * @param {Object} userMetrics - Sync data returned by LeetCodeService
    * @param {Array} topicData - Calculated topic distribution
    * @returns {Promise<Object>} Object matching the dashboard insight schema
    */
   async generateDashboardInsight(userMetrics, topicData) {
-    const hasKey = config.openai.apiKey && config.openai.apiKey !== 'PLACEHOLDER_KEY' && config.openai.apiKey.trim() !== '';
+    const hasKey = config.gemini.apiKey && config.gemini.apiKey !== 'PLACEHOLDER_KEY' && config.gemini.apiKey.trim() !== '';
 
     if (hasKey) {
       try {
-        console.log(`🤖 Requesting OpenAI dashboard summary for: ${userMetrics.username}...`);
+        console.log(`🤖 Requesting Gemini dashboard summary for: ${userMetrics.username}...`);
         const systemPrompt = SYSTEM_PROMPT;
         const userPrompt = createDashboardPrompt(userMetrics, topicData);
 
@@ -751,10 +751,10 @@ class AnalyticsService {
           dashboardInsightResponseSchema
         );
 
-        console.log('✅ OpenAI dashboard summary completed successfully.');
+        console.log('✅ Gemini dashboard summary completed successfully.');
         return aiOutput;
       } catch (error) {
-        console.warn('⚠️ OpenAI API dashboard call failed. Falling back to offline heuristics.', error.message);
+        console.warn('⚠️ Gemini API dashboard call failed. Falling back to offline heuristics.', error.message);
         // Fall through to heuristic
       }
     }
@@ -764,17 +764,17 @@ class AnalyticsService {
 
   /**
    * Generates detailed technical weakness analyses.
-   * If OpenAI is missing, falls back to a heuristic builder.
+   * If Gemini is missing, falls back to a heuristic builder.
    * 
    * @param {Object} userMetrics - Sync data returned by LeetCodeService
    * @returns {Promise<Object>} Object matching the weakness analysis schema
    */
   async generateWeaknessAnalysis(userMetrics) {
-    const hasKey = config.openai.apiKey && config.openai.apiKey !== 'PLACEHOLDER_KEY' && config.openai.apiKey.trim() !== '';
+    const hasKey = config.gemini.apiKey && config.gemini.apiKey !== 'PLACEHOLDER_KEY' && config.gemini.apiKey.trim() !== '';
 
     if (hasKey) {
       try {
-        console.log(`🤖 Requesting OpenAI detailed weakness analysis for: ${userMetrics.username}...`);
+        console.log(`🤖 Requesting Gemini detailed weakness analysis for: ${userMetrics.username}...`);
         const systemPrompt = SYSTEM_PROMPT;
         const userPrompt = createWeaknessPrompt(userMetrics);
 
@@ -784,10 +784,10 @@ class AnalyticsService {
           weaknessAnalysisResponseSchema
         );
 
-        console.log('✅ OpenAI weakness analysis completed successfully.');
+        console.log('✅ Gemini weakness analysis completed successfully.');
         return aiOutput;
       } catch (error) {
-        console.warn('⚠️ OpenAI API weakness analysis call failed. Falling back to offline heuristics.', error.message);
+        console.warn('⚠️ Gemini API weakness analysis call failed. Falling back to offline heuristics.', error.message);
         // Fall through to heuristic
       }
     }
@@ -797,7 +797,7 @@ class AnalyticsService {
 
   /**
    * Generates AI Coach recommendation plans.
-   * If OpenAI is missing, falls back to a heuristic builder.
+   * If Gemini is missing, falls back to a heuristic builder.
    * 
    * @param {Object} userMetrics - Sync data returned by LeetCodeService
    * @param {Array} weakTopics - User's identified weakness areas
@@ -806,11 +806,11 @@ class AnalyticsService {
    * @returns {Promise<Object>} Object matching the AI Coach schema
    */
   async generateCoachPlan(userMetrics, weakTopics, goalRating, dailyTarget) {
-    const hasKey = config.openai.apiKey && config.openai.apiKey !== 'PLACEHOLDER_KEY' && config.openai.apiKey.trim() !== '';
+    const hasKey = config.gemini.apiKey && config.gemini.apiKey !== 'PLACEHOLDER_KEY' && config.gemini.apiKey.trim() !== '';
 
     if (hasKey) {
       try {
-        console.log(`🤖 Requesting OpenAI AI Coach plan for: ${userMetrics.username}...`);
+        console.log(`🤖 Requesting Gemini AI Coach plan for: ${userMetrics.username}...`);
         const systemPrompt = SYSTEM_PROMPT;
         const userPrompt = createCoachPrompt(userMetrics, weakTopics, goalRating, dailyTarget);
 
@@ -820,10 +820,10 @@ class AnalyticsService {
           coachPlanResponseSchema
         );
 
-        console.log('✅ OpenAI AI Coach plan completed successfully.');
+        console.log('✅ Gemini AI Coach plan completed successfully.');
         return aiOutput;
       } catch (error) {
-        console.warn('⚠️ OpenAI API AI Coach plan call failed. Falling back to offline heuristics.', error.message);
+        console.warn('⚠️ Gemini API AI Coach plan call failed. Falling back to offline heuristics.', error.message);
         // Fall through to heuristic
       }
     }
