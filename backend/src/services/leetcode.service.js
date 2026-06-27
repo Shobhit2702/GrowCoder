@@ -85,6 +85,49 @@ class LeetCodeService {
    */
   async fetchAndNormalize(username) {
     try {
+      // Step 1: Query the official username casing from LeetCode
+      const initialQuery = `
+        query getOfficialUsername($username: String!) {
+          matchedUser(username: $username) {
+            username
+          }
+        }
+      `;
+      
+      const initResponse = await fetch(LEETCODE_GRAPHQL_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
+          'Referer': 'https://leetcode.com/'
+        },
+        body: JSON.stringify({
+          query: initialQuery,
+          variables: { username }
+        })
+      });
+
+      if (!initResponse.ok) {
+        throw new AppError(initResponse.status, 'Error communicating with LeetCode API');
+      }
+
+      const initResult = await initResponse.json();
+      if (initResult.errors) {
+        const userMissingError = initResult.errors.find(
+          (err) => err.message && err.message.toLowerCase().includes('user') && err.message.toLowerCase().includes('not exist')
+        );
+        if (userMissingError || !initResult.data || !initResult.data.matchedUser) {
+          throw new AppError(404, `LeetCode username "${username}" does not exist`);
+        }
+      }
+      
+      if (!initResult.data || !initResult.data.matchedUser) {
+        throw new AppError(404, `LeetCode username "${username}" does not exist`);
+      }
+
+      const officialUsername = initResult.data.matchedUser.username;
+
+      // Step 2: Fetch full profile data using official case-sensitive username
       const response = await fetch(LEETCODE_GRAPHQL_URL, {
         method: 'POST',
         headers: {
@@ -94,7 +137,7 @@ class LeetCodeService {
         },
         body: JSON.stringify({
           query: LEETCODE_QUERY,
-          variables: { username }
+          variables: { username: officialUsername }
         })
       });
 

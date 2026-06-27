@@ -259,14 +259,30 @@ class AuthService {
 
     const mainTopic = user.aiAnalysis?.dailyPlan?.topic || 'Dynamic Programming';
 
-    const recommendations = (user.aiAnalysis?.recommendations || []).map((r) => ({
-      problemId: r.problemId || "100",
-      title: r.title,
-      difficulty: r.difficulty,
-      topic: r.topic || mainTopic,
-      leetcodeUrl: r.leetcodeUrl || `https://leetcode.com/problems/${r.title.toLowerCase().replace(/\s+/g, '-')}`,
-      aiReason: r.reason || r.aiReason
-    }));
+    const recommendations = (user.aiAnalysis?.recommendations || []).map((r) => {
+      let slug = r.slug;
+      if (!slug) {
+        if (r.leetcodeUrl) {
+          slug = r.leetcodeUrl.split('/problems/')[1]?.replace(/\/$/, '') || '';
+        }
+        if (!slug) {
+          slug = r.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        }
+      }
+      const difficulty = r.difficulty || 'Medium';
+      const estimatedTime = r.estimatedTime || (difficulty === 'Easy' ? 15 : difficulty === 'Medium' ? 35 : 50);
+
+      return {
+        problemId: r.problemId || "100",
+        title: r.title,
+        slug,
+        difficulty,
+        topic: r.topic || mainTopic,
+        leetcodeUrl: `https://leetcode.com/problems/${slug}/`,
+        aiReason: r.reason || r.aiReason,
+        estimatedTime
+      };
+    });
 
     const dailyChecklist = (user.aiAnalysis?.checklist || []).map((c) => ({
       id: c.id,
