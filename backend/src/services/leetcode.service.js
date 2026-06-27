@@ -145,7 +145,7 @@ class LeetCodeService {
         badge: null
       };
 
-      if (userContestRanking && userContestRanking.attendedContestsCount > 0) {
+      if (userContestRanking) {
         contestRanking.attendedContestsCount = userContestRanking.attendedContestsCount || 0;
         contestRanking.rating = Math.round(userContestRanking.rating) || 0;
         contestRanking.globalRanking = userContestRanking.globalRanking || "N/A";

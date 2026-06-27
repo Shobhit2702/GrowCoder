@@ -257,6 +257,8 @@ class AuthService {
       recentSubmissions: user.recentSubmissions || []
     };
 
+    const mainTopic = user.aiAnalysis?.dailyPlan?.topic || 'Dynamic Programming';
+
     const recommendations = (user.aiAnalysis?.recommendations || []).map((r) => ({
       problemId: r.problemId || "100",
       title: r.title,

@@ -176,6 +176,8 @@ Generate a JSON object conforming to:
   - "complexity": String (target space/time complexity)
   - "subproblems": String (target subproblem mapping notation)
   - "prereq": String (required concepts)
+  - "problemId": String (the official LeetCode problem ID/number, e.g., "139")
+  - "leetcodeUrl": String (the official LeetCode problem URL, e.g., "https://leetcode.com/problems/word-break")
 - "motivation": String (one developer-centric motivational call to action)
 - "studyStrategy": String (one-sentence core software engineering study advice)`;
 };

@@ -9,26 +9,42 @@ export const PROBLEM_CATALOG = {
     { problemId: "11", title: "Container With Most Water", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/container-with-most-water" },
     { problemId: "41", title: "First Missing Positive", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/first-missing-positive" },
     { problemId: "56", title: "Merge Intervals", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/merge-intervals" },
-    { problemId: "31", title: "Next Permutation", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/next-permutation" }
+    { problemId: "31", title: "Next Permutation", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/next-permutation" },
+    { problemId: "26", title: "Remove Duplicates from Sorted Array", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/remove-duplicates-from-sorted-array" },
+    { problemId: "189", title: "Rotate Array", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/rotate-array" },
+    { problemId: "53", title: "Maximum Subarray", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/maximum-subarray" },
+    { problemId: "84", title: "Largest Rectangle in Histogram", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/largest-rectangle-in-histogram" }
   ],
   "string": [
     { problemId: "3", title: "Longest Substring Without Repeating Characters", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/longest-substring-without-repeating-characters" },
     { problemId: "5", title: "Longest Palindromic Substring", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/longest-palindromic-substring" },
     { problemId: "76", title: "Minimum Window Substring", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/minimum-window-substring" },
     { problemId: "125", title: "Valid Palindrome", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/valid-palindrome" },
-    { problemId: "49", title: "Group Anagrams", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/group-anagrams" }
+    { problemId: "49", title: "Group Anagrams", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/group-anagrams" },
+    { problemId: "20", title: "Valid Parentheses", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/valid-parentheses" },
+    { problemId: "14", title: "Longest Common Prefix", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/longest-common-prefix" },
+    { problemId: "28", title: "Find the Index of the First Occurrence in a String", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string" },
+    { problemId: "387", title: "First Unique Character in a String", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/first-unique-character-in-a-string" },
+    { problemId: "151", title: "Reverse Words in a String", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/reverse-words-in-a-string" }
   ],
   "hashtable": [
     { problemId: "1", title: "Two Sum", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/two-sum" },
     { problemId: "49", title: "Group Anagrams", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/group-anagrams" },
     { problemId: "128", title: "Longest Consecutive Sequence", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/longest-consecutive-sequence" },
-    { problemId: "560", title: "Subarray Sum Equals K", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/subarray-sum-equals-k" }
+    { problemId: "560", title: "Subarray Sum Equals K", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/subarray-sum-equals-k" },
+    { problemId: "387", title: "First Unique Character in a String", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/first-unique-character-in-a-string" },
+    { problemId: "217", title: "Contains Duplicate", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/contains-duplicate" },
+    { problemId: "347", title: "Top K Frequent Elements", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/top-k-frequent-elements" },
+    { problemId: "380", title: "Insert Delete GetRandom O(1)", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/insert-delete-getrandom-o1" }
   ],
   "math": [
     { problemId: "7", title: "Reverse Integer", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/reverse-integer" },
     { problemId: "9", title: "Palindrome Number", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/palindrome-number" },
     { problemId: "50", title: "Pow(x, n)", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/powx-n" },
-    { problemId: "69", title: "Sqrt(x)", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/sqrtx" }
+    { problemId: "69", title: "Sqrt(x)", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/sqrtx" },
+    { problemId: "204", title: "Count Primes", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/count-primes" },
+    { problemId: "43", title: "Multiply Strings", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/multiply-strings" },
+    { problemId: "233", title: "Number of Digit One", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/number-of-digit-one" }
   ],
   "dynamicprogramming": [
     { problemId: "70", title: "Climbing Stairs", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/climbing-stairs" },
@@ -36,106 +52,179 @@ export const PROBLEM_CATALOG = {
     { problemId: "300", title: "Longest Increasing Subsequence", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/longest-increasing-subsequence" },
     { problemId: "72", title: "Edit Distance", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/edit-distance" },
     { problemId: "139", title: "Word Break", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/word-break" },
-    { problemId: "198", title: "House Robber", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/house-robber" }
+    { problemId: "198", title: "House Robber", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/house-robber" },
+    { problemId: "1143", title: "Longest Common Subsequence", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/longest-common-subsequence" },
+    { problemId: "518", title: "Coin Change II", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/coin-change-ii" },
+    { problemId: "10", title: "Regular Expression Matching", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/regular-expression-matching" },
+    { problemId: "416", title: "Partition Equal Subset Sum", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/partition-equal-subset-sum" }
   ],
   "graph": [
     { problemId: "133", title: "Clone Graph", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/clone-graph" },
     { problemId: "207", title: "Course Schedule", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/course-schedule" },
     { problemId: "200", title: "Number of Islands", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/number-of-islands" },
-    { problemId: "332", title: "Reconstruct Itinerary", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/reconstruct-itinerary" }
+    { problemId: "332", title: "Reconstruct Itinerary", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/reconstruct-itinerary" },
+    { problemId: "787", title: "Cheapest Flights Within K Stops", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/cheapest-flights-within-k-stops" },
+    { problemId: "399", title: "Evaluate Division", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/evaluate-division" },
+    { problemId: "802", title: "Find Eventual Safe States", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/find-eventual-safe-states" },
+    { problemId: "269", title: "Alien Dictionary", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/alien-dictionary" }
   ],
   "tree": [
     { problemId: "104", title: "Maximum Depth of Binary Tree", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/maximum-depth-of-binary-tree" },
     { problemId: "102", title: "Binary Tree Level Order Traversal", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/binary-tree-level-order-traversal" },
     { problemId: "236", title: "Lowest Common Ancestor of a Binary Tree", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree" },
-    { problemId: "124", title: "Binary Tree Maximum Path Sum", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/binary-tree-maximum-path-sum" }
+    { problemId: "124", title: "Binary Tree Maximum Path Sum", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/binary-tree-maximum-path-sum" },
+    { problemId: "98", title: "Validate Binary Search Tree", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/validate-binary-search-tree" },
+    { problemId: "105", title: "Construct Binary Tree from Preorder and Inorder Traversal", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal" },
+    { problemId: "108", title: "Convert Sorted Array to Binary Search Tree", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree" },
+    { problemId: "230", title: "Kth Smallest Element in a BST", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/kth-smallest-element-in-a-bst" }
   ],
   "binarytree": [
     { problemId: "104", title: "Maximum Depth of Binary Tree", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/maximum-depth-of-binary-tree" },
     { problemId: "102", title: "Binary Tree Level Order Traversal", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/binary-tree-level-order-traversal" },
     { problemId: "236", title: "Lowest Common Ancestor of a Binary Tree", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree" },
-    { problemId: "124", title: "Binary Tree Maximum Path Sum", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/binary-tree-maximum-path-sum" }
+    { problemId: "124", title: "Binary Tree Maximum Path Sum", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/binary-tree-maximum-path-sum" },
+    { problemId: "226", title: "Invert Binary Tree", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/invert-binary-tree" },
+    { problemId: "101", title: "Symmetric Tree", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/symmetric-tree" },
+    { problemId: "110", title: "Balanced Binary Tree", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/balanced-binary-tree" },
+    { problemId: "543", title: "Diameter of Binary Tree", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/diameter-of-binary-tree" }
   ],
   "binarysearch": [
     { problemId: "704", title: "Binary Search", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/binary-search" },
     { problemId: "33", title: "Search in Rotated Sorted Array", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/search-in-rotated-sorted-array" },
     { problemId: "34", title: "Find First and Last Position of Element in Sorted Array", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array" },
-    { problemId: "4", title: "Median of Two Sorted Arrays", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/median-of-two-sorted-arrays" }
+    { problemId: "4", title: "Median of Two Sorted Arrays", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/median-of-two-sorted-arrays" },
+    { problemId: "74", title: "Search a 2D Matrix", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/search-a-2d-matrix" },
+    { problemId: "153", title: "Find Minimum in Rotated Sorted Array", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array" },
+    { problemId: "162", title: "Find Peak Element", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/find-peak-element" },
+    { problemId: "875", title: "Koko Eating Bananas", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/koko-eating-bananas" }
   ],
   "depthfirstsearch": [
     { problemId: "200", title: "Number of Islands", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/number-of-islands" },
     { problemId: "133", title: "Clone Graph", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/clone-graph" },
-    { problemId: "124", title: "Binary Tree Maximum Path Sum", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/binary-tree-maximum-path-sum" }
+    { problemId: "124", title: "Binary Tree Maximum Path Sum", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/binary-tree-maximum-path-sum" },
+    { problemId: "695", title: "Max Area of Island", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/max-area-of-island" },
+    { problemId: "130", title: "Surrounded Regions", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/surrounded-regions" },
+    { problemId: "210", title: "Course Schedule II", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/course-schedule-ii" }
   ],
   "breadthfirstsearch": [
     { problemId: "200", title: "Number of Islands", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/number-of-islands" },
     { problemId: "102", title: "Binary Tree Level Order Traversal", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/binary-tree-level-order-traversal" },
-    { problemId: "127", title: "Word Ladder", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/word-ladder" }
+    { problemId: "127", title: "Word Ladder", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/word-ladder" },
+    { problemId: "994", title: "Rotting Oranges", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/rotting-oranges" },
+    { problemId: "1306", title: "Jump Game III", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/jump-game-iii" },
+    { problemId: "210", title: "Course Schedule II", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/course-schedule-ii" }
   ],
   "greedy": [
     { problemId: "55", title: "Jump Game", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/jump-game" },
     { problemId: "45", title: "Jump Game II", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/jump-game-ii" },
     { problemId: "134", title: "Gas Station", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/gas-station" },
-    { problemId: "135", title: "Candy", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/candy" }
+    { problemId: "135", title: "Candy", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/candy" },
+    { problemId: "406", title: "Queue Reconstruction by Height", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/queue-reconstruction-by-height" },
+    { problemId: "435", title: "Non-overlapping Intervals", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/non-overlapping-intervals" },
+    { problemId: "455", title: "Assign Cookies", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/assign-cookies" },
+    { problemId: "860", title: "Lemonade Change", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/lemonade-change" }
   ],
   "heap": [
     { problemId: "215", title: "Kth Largest Element in an Array", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/kth-largest-element-in-an-array" },
     { problemId: "23", title: "Merge k Sorted Lists", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/merge-k-sorted-lists" },
-    { problemId: "295", title: "Find Median from Data Stream", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/find-median-from-data-stream" }
+    { problemId: "295", title: "Find Median from Data Stream", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/find-median-from-data-stream" },
+    { problemId: "347", title: "Top K Frequent Elements", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/top-k-frequent-elements" },
+    { problemId: "703", title: "Kth Largest Element in a Stream", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/kth-largest-element-in-a-stream" },
+    { problemId: "973", title: "K Closest Points to Origin", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/k-closest-points-to-origin" },
+    { problemId: "1046", title: "Last Stone Weight", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/last-stone-weight" },
+    { problemId: "621", title: "Task Scheduler", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/task-scheduler" }
   ],
   "trie": [
     { problemId: "208", title: "Implement Trie (Prefix Tree)", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/implement-trie-prefix-tree" },
     { problemId: "212", title: "Word Search II", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/word-search-ii" },
-    { problemId: "211", title: "Design Add and Search Words Data Structure", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/design-add-and-search-words-data-structure" }
+    { problemId: "211", title: "Design Add and Search Words Data Structure", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/design-add-and-search-words-data-structure" },
+    { problemId: "421", title: "Maximum XOR of Two Numbers in an Array", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array" },
+    { problemId: "677", title: "Map Sum Pairs", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/map-sum-pairs" },
+    { problemId: "648", title: "Replace Words", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/replace-words" }
   ],
   "backtracking": [
     { problemId: "78", title: "Subsets", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/subsets" },
     { problemId: "46", title: "Permutations", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/permutations" },
     { problemId: "39", title: "Combination Sum", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/combination-sum" },
-    { problemId: "51", title: "N-Queens", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/n-queens" }
+    { problemId: "51", title: "N-Queens", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/n-queens" },
+    { problemId: "79", title: "Word Search", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/word-search" },
+    { problemId: "17", title: "Letter Combinations of a Phone Number", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/letter-combinations-of-a-phone-number" },
+    { problemId: "22", title: "Generate Parentheses", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/generate-parentheses" },
+    { problemId: "37", title: "Sudoku Solver", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/sudoku-solver" }
   ],
   "slidingwindow": [
     { problemId: "3", title: "Longest Substring Without Repeating Characters", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/longest-substring-without-repeating-characters" },
     { problemId: "76", title: "Minimum Window Substring", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/minimum-window-substring" },
-    { problemId: "567", title: "Permutation in String", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/permutation-in-string" }
+    { problemId: "567", title: "Permutation in String", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/permutation-in-string" },
+    { problemId: "209", title: "Minimum Size Subarray Sum", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/minimum-size-subarray-sum" },
+    { problemId: "438", title: "Find All Anagrams in a String", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/find-all-anagrams-in-a-string" },
+    { problemId: "239", title: "Sliding Window Maximum", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/sliding-window-maximum" }
   ],
   "prefixsum": [
     { problemId: "560", title: "Subarray Sum Equals K", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/subarray-sum-equals-k" },
     { problemId: "303", title: "Range Sum Query - Immutable", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/range-sum-query-immutable" },
-    { problemId: "238", title: "Product of Array Except Self", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/product-of-array-except-self" }
+    { problemId: "238", title: "Product of Array Except Self", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/product-of-array-except-self" },
+    { problemId: "724", title: "Find Pivot Index", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/find-pivot-index" },
+    { problemId: "525", title: "Contiguous Array", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/contiguous-array" },
+    { problemId: "974", title: "Subarray Sums Divisible by K", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/subarray-sums-divisible-by-k" }
   ],
   "bitmanipulation": [
     { problemId: "136", title: "Single Number", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/single-number" },
     { problemId: "191", title: "Number of 1 Bits", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/number-of-1-bits" },
-    { problemId: "338", title: "Counting Bits", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/counting-bits" }
+    { problemId: "338", title: "Counting Bits", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/counting-bits" },
+    { problemId: "190", title: "Reverse Bits", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/reverse-bits" },
+    { problemId: "268", title: "Missing Number", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/missing-number" },
+    { problemId: "201", title: "Bitwise AND of Numbers Range", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/bitwise-and-of-numbers-range" }
   ],
   "linkedlist": [
     { problemId: "206", title: "Reverse Linked List", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/reverse-linked-list" },
     { problemId: "21", title: "Merge Two Sorted Lists", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/merge-two-sorted-lists" },
     { problemId: "141", title: "Linked List Cycle", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/linked-list-cycle" },
-    { problemId: "19", title: "Remove Nth Node From End of List", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/remove-nth-node-from-end-of-list" }
+    { problemId: "19", title: "Remove Nth Node From End of List", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/remove-nth-node-from-end-of-list" },
+    { problemId: "2", title: "Add Two Numbers", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/add-two-numbers" },
+    { problemId: "142", title: "Linked List Cycle II", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/linked-list-cycle-ii" },
+    { problemId: "23", title: "Merge k Sorted Lists", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/merge-k-sorted-lists" },
+    { problemId: "25", title: "Reverse Nodes in k-Group", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/reverse-nodes-in-k-group" }
   ],
   "queue": [
     { problemId: "232", title: "Implement Queue using Stacks", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/implement-queue-using-stacks" },
-    { problemId: "622", title: "Design Circular Queue", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/design-circular-queue" }
+    { problemId: "622", title: "Design Circular Queue", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/design-circular-queue" },
+    { problemId: "933", title: "Number of Recent Calls", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/number-of-recent-calls" },
+    { problemId: "225", title: "Implement Stack using Queues", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/implement-stack-using-queues" }
   ],
   "stack": [
     { problemId: "20", title: "Valid Parentheses", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/valid-parentheses" },
     { problemId: "155", title: "Min Stack", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/min-stack" },
-    { problemId: "150", title: "Evaluate Reverse Polish Notation", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/evaluate-reverse-polish-notation" }
+    { problemId: "150", title: "Evaluate Reverse Polish Notation", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/evaluate-reverse-polish-notation" },
+    { problemId: "84", title: "Largest Rectangle in Histogram", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/largest-rectangle-in-histogram" },
+    { problemId: "739", title: "Daily Temperatures", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/daily-temperatures" },
+    { problemId: "85", title: "Maximal Rectangle", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/maximal-rectangle" }
   ],
   "twopointers": [
     { problemId: "167", title: "Two Sum II - Input Array Is Sorted", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted" },
     { problemId: "15", title: "3Sum", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/3sum" },
-    { problemId: "11", title: "Container With Most Water", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/container-with-most-water" }
+    { problemId: "11", title: "Container With Most Water", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/container-with-most-water" },
+    { problemId: "125", title: "Valid Palindrome", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/valid-palindrome" },
+    { problemId: "344", title: "Reverse String", difficulty: "Easy", leetcodeUrl: "https://leetcode.com/problems/reverse-string" },
+    { problemId: "42", title: "Trapping Rain Water", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/trapping-rain-water" }
+  ],
+  "sorting": [
+    { problemId: "912", title: "Sort an Array", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/sort-an-array" },
+    { problemId: "56", title: "Merge Intervals", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/merge-intervals" },
+    { problemId: "179", title: "Largest Number", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/largest-number" },
+    { problemId: "75", title: "Sort Colors", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/sort-colors" },
+    { problemId: "148", title: "Sort List", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/sort-list" }
   ],
   "segmenttree": [
     { problemId: "307", title: "Range Sum Query - Mutable", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/range-sum-query-mutable" },
-    { problemId: "1649", title: "Create Sorted Array through Instructions", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/create-sorted-array-through-instructions" }
+    { problemId: "1649", title: "Create Sorted Array through Instructions", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/create-sorted-array-through-instructions" },
+    { problemId: "308", title: "Range Sum Query 2D - Mutable", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/range-sum-query-2d-mutable" }
   ],
   "unionfind": [
     { problemId: "1319", title: "Number of Operations to Make Network Connected", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/number-of-operations-to-make-network-connected" },
-    { problemId: "684", title: "Redundant Connection", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/redundant-connection" }
+    { problemId: "684", title: "Redundant Connection", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/redundant-connection" },
+    { problemId: "547", title: "Number of Provinces", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/number-of-provinces" },
+    { problemId: "200", title: "Number of Islands", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/number-of-islands" }
   ],
   "shortestpath": [
     { problemId: "743", title: "Network Delay Time", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/network-delay-time" },
@@ -147,7 +236,8 @@ export const PROBLEM_CATALOG = {
   ],
   "matrix": [
     { problemId: "48", title: "Rotate Image", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/rotate-image" },
-    { problemId: "54", title: "Spiral Matrix", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/spiral-matrix" }
+    { problemId: "54", title: "Spiral Matrix", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/spiral-matrix" },
+    { problemId: "73", title: "Set Matrix Zeroes", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/set-matrix-zeroes" }
   ],
   "simulation": [
     { problemId: "54", title: "Spiral Matrix", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/spiral-matrix" },
@@ -159,11 +249,12 @@ export const PROBLEM_CATALOG = {
   ],
   "design": [
     { problemId: "146", title: "LRU Cache", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/lru-cache" },
-    { problemId: "355", title: "Design Twitter", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/design-twitter" }
+    { problemId: "355", title: "Design Twitter", difficulty: "Medium", leetcodeUrl: "https://leetcode.com/problems/design-twitter" },
+    { problemId: "460", title: "LFU Cache", difficulty: "Hard", leetcodeUrl: "https://leetcode.com/problems/lfu-cache" }
   ]
 };
 
-export function getRecommendationsForTopic(topicName, count) {
+export function getRecommendationsForTopic(topicName, count, mastery = 0) {
   const normalized = topicName.toLowerCase().replace(/[^a-z0-9]/g, '');
   let matchedKey = Object.keys(PROBLEM_CATALOG).find(
     (k) => k.toLowerCase().replace(/[^a-z0-9]/g, '') === normalized
@@ -173,37 +264,85 @@ export function getRecommendationsForTopic(topicName, count) {
     if (normalized === 'dfs') matchedKey = 'depthfirstsearch';
     if (normalized === 'bfs') matchedKey = 'breadthfirstsearch';
     if (normalized === 'dp') matchedKey = 'dynamicprogramming';
+    if (normalized.includes('recursion')) matchedKey = 'recursion';
+    if (normalized.includes('backtracking')) matchedKey = 'backtracking';
+    if (normalized.includes('binarysearch')) matchedKey = 'binarysearch';
+    if (normalized.includes('hashmap')) matchedKey = 'hashtable';
+    if (normalized.includes('linkedlist')) matchedKey = 'linkedlist';
+    if (normalized.includes('tree')) matchedKey = 'tree';
+    if (normalized.includes('graph')) matchedKey = 'graph';
+    if (normalized.includes('heap') || normalized.includes('priority')) matchedKey = 'heap';
+  }
+
+  // Determine target difficulty based on mastery percentage
+  // if it is very less (e.g. < 25%) first recommend easy
+  // if it is around 50% (e.g. 25% to 65%) recommend medium
+  // if > 65% recommend medium and hard
+  let targetDifficulty = 'Medium';
+  if (mastery < 25) {
+    targetDifficulty = 'Easy';
+  } else if (mastery >= 65) {
+    targetDifficulty = 'Hard';
   }
 
   const list = PROBLEM_CATALOG[matchedKey] || [];
-  const results = [];
+  
+  // Filter by target difficulty first
+  let filtered = list.filter(p => p.difficulty === targetDifficulty);
+  if (filtered.length < count) {
+    const remaining = list.filter(p => p.difficulty !== targetDifficulty);
+    filtered = [...filtered, ...remaining];
+  }
 
-  for (let i = 0; i < Math.min(count, list.length); i++) {
+  const results = [];
+  for (let i = 0; i < Math.min(count, filtered.length); i++) {
     results.push({
-      problemId: list[i].problemId,
-      title: list[i].title,
-      difficulty: list[i].difficulty,
+      problemId: filtered[i].problemId,
+      title: filtered[i].title,
+      difficulty: filtered[i].difficulty,
       topic: topicName,
-      leetcodeUrl: list[i].leetcodeUrl,
-      aiReason: `Targets optimization scenarios and boundary checks specifically for ${topicName}.`
+      leetcodeUrl: filtered[i].leetcodeUrl,
+      aiReason: `Targets optimization scenarios and boundary checks specifically for ${topicName} at your current mastery level (${mastery}%).`
     });
   }
 
   if (results.length < count) {
     const needed = count - results.length;
     const diffs = ['Easy', 'Medium', 'Hard'];
+    const diffIndex = mastery < 25 ? 0 : (mastery >= 65 ? 2 : 1);
+    
+    const REAL_FALLBACKS = {
+      'Easy': [
+        { problemId: '136', title: 'Single Number', leetcodeUrl: 'https://leetcode.com/problems/single-number' },
+        { problemId: '206', title: 'Reverse Linked List', leetcodeUrl: 'https://leetcode.com/problems/reverse-linked-list' },
+        { problemId: '217', title: 'Contains Duplicate', leetcodeUrl: 'https://leetcode.com/problems/contains-duplicate' },
+        { problemId: '704', title: 'Binary Search', leetcodeUrl: 'https://leetcode.com/problems/binary-search' }
+      ],
+      'Medium': [
+        { problemId: '3', title: 'Longest Substring Without Repeating Characters', leetcodeUrl: 'https://leetcode.com/problems/longest-substring-without-repeating-characters' },
+        { problemId: '11', title: 'Container With Most Water', leetcodeUrl: 'https://leetcode.com/problems/container-with-most-water' },
+        { problemId: '15', title: '3Sum', leetcodeUrl: 'https://leetcode.com/problems/3sum' },
+        { problemId: '33', title: 'Search in Rotated Sorted Array', leetcodeUrl: 'https://leetcode.com/problems/search-in-rotated-sorted-array' }
+      ],
+      'Hard': [
+        { problemId: '4', title: 'Median of Two Sorted Arrays', leetcodeUrl: 'https://leetcode.com/problems/median-of-two-sorted-arrays' },
+        { problemId: '23', title: 'Merge k Sorted Lists', leetcodeUrl: 'https://leetcode.com/problems/merge-k-sorted-lists' },
+        { problemId: '76', title: 'Minimum Window Substring', leetcodeUrl: 'https://leetcode.com/problems/minimum-window-substring' },
+        { problemId: '295', title: 'Find Median from Data Stream', leetcodeUrl: 'https://leetcode.com/problems/find-median-from-data-stream' }
+      ]
+    };
+
     for (let i = 0; i < needed; i++) {
-      const id = 1000 + Math.floor(Math.random() * 8000);
-      const diff = diffs[i % diffs.length];
-      const title = `${topicName} Practice Problem ${i + 1}`;
-      const slug = title.toLowerCase().replace(/\s+/g, '-');
+      const diff = diffs[(diffIndex + i) % 3];
+      const fallbackList = REAL_FALLBACKS[diff];
+      const item = fallbackList[i % fallbackList.length];
       results.push({
-        problemId: String(id),
-        title,
+        problemId: item.problemId,
+        title: item.title,
         difficulty: diff,
         topic: topicName,
-        leetcodeUrl: `https://leetcode.com/problems/${slug}`,
-        aiReason: `Focuses on algorithmic progression and memory scale constraints for ${topicName}.`
+        leetcodeUrl: item.leetcodeUrl,
+        aiReason: `Targets optimization scenarios and boundary checks specifically for ${topicName} at your current mastery level (${mastery}%).`
       });
     }
   }
@@ -384,9 +523,11 @@ const analyticsResponseSchema = {
             reason: { type: 'string', description: 'Explicit AI context rationale explaining why this problem was selected for this user' },
             complexity: { type: 'string', description: 'Time complexity target explanation (e.g., O(N^2))' },
             subproblems: { type: 'string', description: 'Target subproblem definition (e.g., Prefixes s[0...i])' },
-            prereq: { type: 'string', description: 'Prerequisite concepts needed' }
+            prereq: { type: 'string', description: 'Prerequisite concepts needed' },
+            problemId: { type: 'string', description: 'LeetCode problem ID/number, e.g. "139"' },
+            leetcodeUrl: { type: 'string', description: 'Official LeetCode problem URL, e.g. "https://leetcode.com/problems/word-break"' }
           },
-          required: ['title', 'difficulty', 'reason', 'complexity', 'subproblems', 'prereq'],
+          required: ['title', 'difficulty', 'reason', 'complexity', 'subproblems', 'prereq', 'problemId', 'leetcodeUrl'],
           additionalProperties: false
         }
       }
@@ -495,9 +636,11 @@ const coachPlanResponseSchema = {
             reason: { type: 'string', description: 'AI reason context explaining why this was selected' },
             complexity: { type: 'string', description: 'Target complexity runtime constraints' },
             subproblems: { type: 'string', description: 'Target subproblem mapping logic' },
-            prereq: { type: 'string', description: 'Prerequisites' }
+            prereq: { type: 'string', description: 'Prerequisites' },
+            problemId: { type: 'string', description: 'LeetCode problem ID/number, e.g. "215"' },
+            leetcodeUrl: { type: 'string', description: 'Official LeetCode problem URL, e.g. "https://leetcode.com/problems/kth-largest-element-in-an-array"' }
           },
-          required: ['title', 'difficulty', 'reason', 'complexity', 'subproblems', 'prereq'],
+          required: ['title', 'difficulty', 'reason', 'complexity', 'subproblems', 'prereq', 'problemId', 'leetcodeUrl'],
           additionalProperties: false
         }
       },
@@ -801,165 +944,126 @@ class AnalyticsService {
     const solved = metrics.solvedStats || { all: 0, easy: 0, medium: 0, hard: 0 };
     const rating = metrics.contestRanking?.rating || 1500;
     
-    // 1. Calculate realistic dynamic strengths
-    const easyCount = solved.easy || 0;
-    const mediumCount = solved.medium || 0;
-    const hardCount = solved.hard || 0;
-    const totalCount = solved.all || 0;
+    // Total questions per topic on LeetCode (estimate)
+    const TOPIC_TOTAL_QUESTIONS = {
+      "Array": 1650,
+      "String": 750,
+      "Hash Table": 600,
+      "Dynamic Programming": 550,
+      "Math": 500,
+      "Sorting": 400,
+      "Greedy": 380,
+      "Depth-First Search": 380,
+      "Binary Search": 280,
+      "Tree": 260,
+      "Breadth-First Search": 260,
+      "Matrix": 240,
+      "Two Pointers": 220,
+      "Binary Tree": 210,
+      "Bit Manipulation": 200,
+      "Heap (Priority Queue)": 180,
+      "Stack": 170,
+      "Graph": 160,
+      "Prefix Sum": 160,
+      "Sliding Window": 130,
+      "Design": 130,
+      "Backtracking": 120,
+      "Linked List": 110,
+      "Union Find": 90,
+      "Trie": 60,
+      "Recursion": 60
+    };
 
-    const arraysMastery = Math.min(98, 60 + Math.floor(easyCount / 3));
-    const treesMastery = Math.min(95, 45 + Math.floor(mediumCount / 2));
-    const linkedListsMastery = Math.min(92, 50 + Math.floor(easyCount / 4));
-    const hashingMastery = Math.min(90, 40 + Math.floor(mediumCount / 3.5));
-    const stringsMastery = Math.min(94, 55 + Math.floor(easyCount / 5));
+    // Calculate mastery from tagProblemCounts
+    const strengths = [];
+    const categories = ['fundamental', 'intermediate', 'advanced'];
+    
+    // Collect solved count for all tags
+    const tagSolved = {};
+    categories.forEach(cat => {
+      if (metrics.tagProblemCounts && metrics.tagProblemCounts[cat]) {
+        metrics.tagProblemCounts[cat].forEach(t => {
+          const name = t.tagName;
+          tagSolved[name] = (tagSolved[name] || 0) + t.problemsSolved;
+        });
+      }
+    });
 
-    const strengths = [
-      { topic: 'Arrays', mastery: arraysMastery },
-      { topic: 'Strings', mastery: stringsMastery },
-      { topic: 'Trees', mastery: treesMastery },
-      { topic: 'Linked Lists', mastery: linkedListsMastery },
-      { topic: 'Hashing', mastery: hashingMastery }
-    ];
+    // Populate all tags with calculated mastery
+    Object.keys(TOPIC_TOTAL_QUESTIONS).forEach(name => {
+      const sCount = tagSolved[name] || 0;
+      const total = TOPIC_TOTAL_QUESTIONS[name] || 100;
+      const mastery = Math.min(100, Math.round((sCount / total) * 100));
+      strengths.push({ topic: name, mastery });
+    });
 
     // Sort strengths by mastery level desc
     strengths.sort((a, b) => b.mastery - a.mastery);
 
-    // 2. Select bottlenecks based on user competence level
-    let level = 'intermediate'; // default
-    if (totalCount < 30 || (mediumCount + hardCount) < 10) {
-      level = 'beginner';
-    } else if (hardCount >= 15 || rating > 1800) {
-      level = 'advanced';
-    }
+    // Filter potential bottlenecks (critical topics with mastery < 50%)
+    const potentialBottlenecks = strengths.filter(s => s.mastery < 50);
+    
+    // Sort ascending by mastery (weakest first)
+    const sortedWeakest = [...potentialBottlenecks].sort((a, b) => a.mastery - b.mastery);
 
-    let bottlenecks = [];
-    let anomalies = [];
-    let dailyPlan = {};
-    let recommendations = [];
-    let nextAction = {};
+    // Take top 3 weakest (or fall back to overall weakest if none are < 50)
+    const selectedWeakest = sortedWeakest.length >= 3 
+      ? sortedWeakest.slice(0, 3) 
+      : [...strengths].sort((a, b) => a.mastery - b.mastery).slice(0, 3);
 
-    if (level === 'beginner') {
-      bottlenecks = [
-        { topic: 'Recursion & Backtracking', priority: 1, severity: 8.8, ratingPotential: 110 },
-        { topic: 'Binary Search Bounds', priority: 2, severity: 7.5, ratingPotential: 75 },
-        { topic: 'HashMap Implementations', priority: 3, severity: 6.2, ratingPotential: 40 }
-      ];
-
-      anomalies = [
-        {
-          id: 'ANOMALY 01',
-          title: 'BASE CASE OMISSION',
-          description: 'Missing terminating conditions in depth-first recursions, causing stack overflows on deep test branches.',
-          impact: 'STACK OVERFLOW RISK',
-          impactLevel: 'high'
-        },
-        {
-          id: 'ANOMALY 02',
-          title: 'SEARCH SPACE BIAS',
-          description: 'Incorrect boundary adjustments in binary search loops, leading to infinite loops or out-of-bounds index errors.',
-          impact: 'INFINITE LOOP RISK',
-          impactLevel: 'moderate'
-        },
-        {
-          id: 'ANOMALY 03',
-          title: 'KEY COLLISION DELAY',
-          description: 'Underestimating hash dispersion constraints, causing linear bucket collisions and slow lookups in nested iterations.',
-          impact: 'PERFORMANCE DEGRADATION',
-          impactLevel: 'low'
-        }
-      ];
-
-      nextAction = {
-        topic: 'Recursion & Backtracking',
-        eloGain: 110,
-        drillTitle: 'Recursion Drill'
+    const bottlenecks = selectedWeakest.map((item, idx) => {
+      const severity = parseFloat((10 - (item.mastery / 10)).toFixed(1));
+      const ratingPotential = Math.round((50 - item.mastery) * 2) || 30;
+      return {
+        topic: item.topic,
+        priority: idx + 1,
+        severity,
+        ratingPotential: Math.max(20, ratingPotential)
       };
-    } else if (level === 'advanced') {
-      bottlenecks = [
-        { topic: 'Segment Trees & BIT', priority: 1, severity: 7.8, ratingPotential: 90 },
-        { topic: 'Advanced Graph Flow', priority: 2, severity: 6.5, ratingPotential: 55 },
-        { topic: 'Math & Number Theory', priority: 3, severity: 5.2, ratingPotential: 35 }
-      ];
-
-      anomalies = [
-        {
-          id: 'ANOMALY 01',
-          title: 'QUERY RANGE OVERHEAD',
-          description: 'Suboptimal segment tree range queries resulting in O(N) worst-case updates instead of O(log N) lazy propagation.',
-          impact: 'CRITICAL TIMEOUT ERROR',
-          impactLevel: 'high'
-        },
-        {
-          id: 'ANOMALY 02',
-          title: 'FLOW RESIDUAL OVERLOOK',
-          description: 'Incorrect backward edge capacity subtraction during Edmonds-Karp implementations, causing infinite loops on directed cycles.',
-          impact: 'INFINITE PATH COST',
-          impactLevel: 'moderate'
-        },
-        {
-          id: 'ANOMALY 03',
-          title: 'INTEGER OVERFLOW IN MODULO',
-          description: 'Applying division before modulo in combinatorics logic, creating incorrect values under high numerical bounds.',
-          impact: 'VALUE CORRUPTION ERR',
-          impactLevel: 'low'
-        }
-      ];
-
-      nextAction = {
-        topic: 'Segment Trees & BIT',
-        eloGain: 90,
-        drillTitle: 'Segment Tree Drill'
-      };
-    } else {
-      // Intermediate level (DP and Backtracking weaknesses)
-      bottlenecks = [
-        { topic: 'Dynamic Programming', priority: 1, severity: 9.2, ratingPotential: 85 },
-        { topic: 'Backtracking', priority: 2, severity: 6.5, ratingPotential: 48 },
-        { topic: 'Graphs (DFS/BFS)', priority: 3, severity: 5.4, ratingPotential: 32 }
-      ];
-
-      anomalies = [
-        {
-          id: 'ANOMALY 01',
-          title: 'STATE DEFINITION GAP',
-          description: 'Recurrent failure to identify minimal sufficient parameters for state memoization, leading to redundant calculations in 42% of test cases.',
-          impact: 'HIGH LATENCY IMPACT',
-          impactLevel: 'high'
-        },
-        {
-          id: 'ANOMALY 02',
-          title: 'PRUNING INEFFICIENCY',
-          description: 'Inefficient bounding functions in optimization problems resulting in excessive branch exploration during depth-first traversals.',
-          impact: 'MODERATE COMPLEXITY',
-          impactLevel: 'moderate'
-        },
-        {
-          id: 'ANOMALY 03',
-          title: 'SUBPROBLEM OVERLAP',
-          description: 'Misidentification of optimal substructure properties in non-linear sequence problems. Tendency to over-complicate recurrence relations.',
-          impact: 'KNOWLEDGE GAP DETECTED',
-          impactLevel: 'low'
-        }
-      ];
-
-      nextAction = {
-        topic: 'DP Optimization',
-        eloGain: 85,
-        drillTitle: 'Dynamic Programming'
-      };
-    }
+    });
 
     const mainTopic = bottlenecks[0]?.topic || 'Dynamic Programming';
+    const mainTopicMastery = strengths.find(s => s.topic === mainTopic)?.mastery || 0;
 
-    dailyPlan = {
+    const anomalies = [
+      {
+        id: 'ANOMALY 01',
+        title: 'BASE CASE OMISSION',
+        description: 'Missing terminating conditions in depth-first recursions, causing stack overflows on deep test branches.',
+        impact: 'STACK OVERFLOW RISK',
+        impactLevel: 'high'
+      },
+      {
+        id: 'ANOMALY 02',
+        title: 'SEARCH SPACE BIAS',
+        description: 'Incorrect boundary adjustments in binary search loops, leading to infinite loops or out-of-bounds index errors.',
+        impact: 'INFINITE LOOP RISK',
+        impactLevel: 'moderate'
+      },
+      {
+        id: 'ANOMALY 03',
+        title: 'KEY COLLISION DELAY',
+        description: 'Underestimating hash dispersion constraints, causing linear bucket collisions and slow lookups in nested iterations.',
+        impact: 'PERFORMANCE DEGRADATION',
+        impactLevel: 'low'
+      }
+    ];
+
+    const nextAction = {
+      topic: mainTopic,
+      eloGain: bottlenecks[0]?.ratingPotential || 80,
+      drillTitle: `${mainTopic} Drill`
+    };
+
+    const dailyPlan = {
       topic: mainTopic,
       description: `Practice and optimize solutions for ${mainTopic} tasks to address your key priority bottlenecks.`,
       targetQuestions: dailyTarget,
       estTime: dailyTarget * 20 + 15
     };
 
-    const topicRecommendations = getRecommendationsForTopic(mainTopic, dailyTarget);
-    recommendations = topicRecommendations.map((r, idx) => ({
+    const topicRecommendations = getRecommendationsForTopic(mainTopic, dailyTarget, mainTopicMastery);
+    const recommendations = topicRecommendations.map((r, idx) => ({
       title: r.title,
       difficulty: r.difficulty,
       reason: r.aiReason || `Targets your coding DNA gaps in ${mainTopic} implementations.`,
