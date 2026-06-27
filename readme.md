@@ -9,8 +9,14 @@ The goal of GrowCode is simple:
 > **Stop guessing what to practice next. Start growing with data-driven insights.**
 
 ---
+## 🎥 Project Demo
 
+[![GrowCode Demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)](https://youtu.be/DVTXqWQCLME)
 ## ✨ Features
+
+## 🔗 Live Demo
+https://grow-coder.vercel.app/
+##
 
 ### 🧠 Coding DNA Analysis
 
