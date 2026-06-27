@@ -1,229 +1,316 @@
 # 🚀 GrowCode
 
-### Transform Coding Practice into Measurable Growth
+<div align="center">
 
-GrowCode is an AI-powered coding analytics platform designed to help developers improve smarter, not harder. By analyzing a user's LeetCode activity, GrowCode identifies strengths, weaknesses, learning patterns, and growth opportunities, then generates personalized recommendations and action plans.
+### AI-Powered LeetCode Analytics & Personalized Coding Coach
 
-The goal of GrowCode is simple:
+Transform your LeetCode activity into actionable insights with AI-powered analytics, personalized recommendations, and data-driven learning plans.
 
-> **Stop guessing what to practice next. Start growing with data-driven insights.**
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)](https://grow-coder.vercel.app/)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
+![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb)
+![Gemini](https://img.shields.io/badge/AI-Gemini-4285F4?style=for-the-badge)
+
+</div>
 
 ---
+
+## 🌐 Live Demo
+
+🔗 **https://grow-coder.vercel.app/**
+
+---
+
 ## 🎥 Project Demo
 
-[![Watch Demo](https://img.youtube.com/vi/Imn-LvLxv8M/0.jpg)](https://youtu.be/DVTXqWQCLME?si=gfFsQ799_YL_HOas)
-
-## 🔗 Live Demo
-https://grow-coder.vercel.app/
-##
-## ✨ Features
-### 🧠 Coding DNA Analysis
-
-Understand your unique coding profile through detailed analysis of:
-
-* Problem-solving behavior
-* Topic mastery
-* Difficulty progression
-* Consistency patterns
-* Learning trends
-* Strengths and weaknesses
+[![GrowCode Demo](https://img.youtube.com/vi/DVTXqWQCLME/maxresdefault.jpg)](https://youtu.be/DVTXqWQCLME)
 
 ---
 
-### 📊 Performance Analytics Dashboard
+# 📌 Overview
 
-Track key coding metrics including:
+GrowCode is a full-stack AI-powered coding analytics platform that helps developers prepare for coding interviews more efficiently.
 
-* Total problems solved
-* Easy / Medium / Hard distribution
-* Submission activity
-* Acceptance rate
-* Daily and weekly progress
-* Topic-wise performance
+Instead of simply displaying solved problems, GrowCode analyzes a user's LeetCode profile to identify strengths, weak topics, coding consistency, learning trends, and personalized growth opportunities. Using AI, it generates tailored practice recommendations and structured improvement plans.
+
+The platform is designed for students and software engineers who want to practice smarter rather than harder.
 
 ---
 
-### 🎯 Weakness Detection Engine
+# ✨ Features
 
-Automatically discover:
+## 📊 Advanced Performance Analytics
 
-* Weak DSA topics
-* Frequently struggled concepts
-* Learning bottlenecks
-* Areas limiting overall growth
-
----
-
-### 🤖 Personalized Problem Recommendations
-
-Receive tailored question suggestions based on:
-
-* Current skill level
-* Weak topics
-* Solving history
-* Growth goals
+- Total problems solved
+- Easy / Medium / Hard breakdown
+- Acceptance rate
+- Submission history
+- Daily & weekly activity
+- Contest performance
+- Coding consistency tracking
 
 ---
 
-### 📅 Adaptive Daily Growth Plan
+## 🧠 AI Coding DNA Analysis
 
-Generate a customized roadmap that includes:
+Generate intelligent insights about:
 
-* Recommended questions
-* Revision tasks
-* Topic-focused practice
-* Daily coding goals
-
----
-
-### 📈 Growth Insights
-
-Monitor your improvement through:
-
-* Consistency tracking
-* Progress trends
-* Skill development analytics
-* Performance reports
+- Strongest DSA topics
+- Weakest concepts
+- Learning patterns
+- Coding habits
+- Improvement trends
+- Skill progression
 
 ---
 
-## 🛠 Tech Stack
+## 🎯 Personalized Recommendations
 
-### Frontend
+Receive AI-generated practice recommendations based on:
 
-* React.js
-* Tailwind CSS
-* Framer Motion
-
-### Backend
-
-* Node.js
-* Express.js
-
-### Database
-
-* MongoDB
-
-### APIs
-
-* LeetCode Data API
-* Custom Analytics Engine
-
-### AI Layer
-
-* OpenAI API
-* Recommendation System
-* Analytics Engine
+- Weak topics
+- Recent performance
+- Coding history
+- Difficulty progression
+- Learning goals
 
 ---
 
-## 🏗 Folder Structure
+## 📅 Daily Growth Planner
+
+Generate customized daily practice plans including:
+
+- Recommended questions
+- Revision schedule
+- Topic-specific practice
+- Daily coding targets
+
+---
+
+## 📈 Progress Tracking
+
+Track long-term improvement using:
+
+- Growth analytics
+- Submission trends
+- Consistency graphs
+- Performance insights
+
+---
+
+# 🛠 Tech Stack
+
+| Layer | Technology |
+|--------|------------|
+| Frontend | React.js, Tailwind CSS, Framer Motion |
+| Backend | Node.js, Express.js |
+| Database | MongoDB Atlas |
+| AI | Google Gemini API |
+| Data Source | LeetCode GraphQL API |
+| Deployment | Vercel |
+
+---
+
+# 🏗 System Architecture
+
 ```text
-GrowCoder/
+                 User
+                  │
+                  ▼
+        React Frontend (Vite)
+                  │
+                  ▼
+          Express REST API
+                  │
+      ┌───────────┴───────────┐
+      ▼                       ▼
+LeetCode GraphQL API     Gemini AI API
+      │                       │
+      └───────────┬───────────┘
+                  ▼
+           MongoDB Atlas
+```
+
+---
+
+# 💡 Technical Highlights
+
+- Full Stack MERN Application
+- RESTful Backend Architecture
+- AI-powered coding recommendations
+- Dynamic LeetCode GraphQL integration
+- Personalized analytics engine
+- MongoDB Atlas cloud database
+- Responsive UI
+- Production deployment
+- Modular backend architecture
+- Clean reusable React components
+
+---
+
+# 📂 Project Structure
+
+```text
+GrowCode/
 │
-├── backend/                  # Express.js REST API
+├── frontend/
 │   ├── src/
-│   │   ├── controllers/      # Route request controllers
-│   │   ├── models/           # MongoDB schemas (User, AIAnalysis, etc.)
-│   │   ├── routes/           # Express endpoints
-│   │   └── services/         # LeetCode API, Analytics & OpenAI services
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── hooks/
+│   │   ├── utils/
+│   │   └── assets/
 │   └── package.json
 │
-└── frontend/                 # React.js SPA (Vite)
-    ├── src/
-    │   ├── components/       # UI Sub-tabs (Dashboard, Coach, Analysis, etc.)
-    │   ├── pages/            # Login, Dashboard main pages
-    │   └── main.jsx
-    └── package.json
+├── backend/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── models/
+│   │   ├── middleware/
+│   │   └── utils/
+│   └── package.json
+│
+└── README.md
 ```
 
 ---
 
-## 🎯 Why GrowCode?
+# 🚀 Local Installation
 
-Most coding platforms tell you:
+## Clone Repository
 
-* How many questions you've solved
-* Your contest rating
-* Your recent submissions
-
-GrowCode goes further and answers:
-
-* What topics are holding me back?
-* What should I practice next?
-* Am I improving consistently?
-* Where should I focus my effort?
-* How can I accelerate my coding growth?
+```bash
+git clone https://github.com/Shobhit2702/GrowCoder.git
+cd GrowCoder
+```
 
 ---
 
-## 🚀 Current Development Status
+## Backend Setup
 
-### Phase 1 (Completed)
-* [x] Landing Page
-* [x] Login Page
-* [x] Dashboard UI
-* [x] User Authentication & Synced Session management
+Create a `.env` file inside `backend/`
 
-### Phase 2 (Completed)
-* [x] LeetCode GraphQL API integration
-* [x] Performance Analytics Dashboard
-* [x] Data Processing & Metrics Normalization Layer
-
-### Phase 3 (Completed)
-* [x] Coding DNA Analysis
-* [x] Weakness & Bottleneck Detection Engine
-* [x] OpenAI Structured Output Summary Insights
-
-### Phase 4 (Completed)
-* [x] Personalized Recommendations & Dynamic Slugs routing
-* [x] Daily Growth Planner & Target Checklist
-* [x] Timed Practice Sessions & Metrics Aggregator
-
----
-
-## ⚙️ Installation & Setup
-
-### 1. Prerequisite Environment variables
-
-Create a `.env` file inside the `backend/` folder:
 ```env
 PORT=5001
-MONGODB_URI=mongodb://127.0.0.1:27017/growcode
-OPENAI_API_KEY=your_openai_api_key
+
+MONGODB_URI=your_mongodb_atlas_connection_string
+
+GEMINI_API_KEY=your_gemini_api_key
+
+JWT_SECRET=your_secret_key
+
+FRONTEND_URL=http://localhost:5173
 ```
 
-### 2. Run the Backend Server
+Install dependencies
+
 ```bash
 cd backend
 npm install
 npm run dev
 ```
-The backend server runs on `http://localhost:5001`.
 
-### 3. Run the Frontend Client
+Backend runs on
+
+```
+http://localhost:5001
+```
+
+---
+
+## Frontend Setup
+
 ```bash
-cd ../frontend
+cd frontend
 npm install
 npm run dev
 ```
-The React development server runs on `http://localhost:5173`.
+
+Frontend runs on
+
+```
+http://localhost:5173
+```
 
 ---
 
-## 🔮 Future Roadmap
+# 🚀 Deployment
 
-* Interview Readiness Score calculator
-* Company-Specific targeted preparation plans
-* Weekly Performance Analytics email reports
-* Multi-platform integration (Codeforces, HackerRank)
+| Service | Platform |
+|----------|----------|
+| Frontend | Vercel |
+| Database | MongoDB Atlas |
+| AI | Google Gemini API |
+| Data Source | LeetCode GraphQL API |
 
 ---
 
-## 👨‍💻 Author
+# 🎯 Why GrowCode?
+
+Most coding platforms only tell you:
+
+- How many questions you've solved
+- Contest rating
+- Recent submissions
+
+GrowCode answers more meaningful questions:
+
+- Which DSA topics are limiting my growth?
+- What should I solve next?
+- Am I improving consistently?
+- Where should I focus my effort?
+- How can I prepare more efficiently for interviews?
+
+---
+
+# 📚 What I Learned
+
+While building GrowCode, I gained practical experience with:
+
+- Full Stack MERN development
+- REST API design
+- MongoDB Atlas integration
+- AI API integration
+- GraphQL data fetching
+- State management in React
+- Deployment using Vercel
+- Responsive UI development
+- Prompt engineering
+- Clean project architecture
+
+---
+
+# 🔮 Future Improvements
+
+- Company-specific interview preparation
+- Codeforces integration
+- HackerRank integration
+- AI interview simulator
+- Weekly email reports
+- Progress forecasting
+- Achievement badges
+
+---
+
+# 👨‍💻 Author
 
 **Shobhit Kumar**
 
-B.Tech (ECE), NIT Patna
+B.Tech, Electronics & Communication Engineering
 
-Building tools that help developers learn faster, practice smarter, and grow consistently.
+National Institute of Technology Patna
+
+🌐 Live Demo: https://grow-coder.vercel.app/
+
+GitHub: https://github.com/Shobhit2702
+
+LinkedIn: https://www.linkedin.com/in/shobhit-kumar-215600325/
+
+Email: shobhit9532@gamil.com
+
+---
+
+⭐ If you found this project interesting, consider giving it a star!
